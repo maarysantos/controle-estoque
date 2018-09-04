@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+
+input{
+    overflow: visible;
+    box-sizing:border-box;
+	width:100%;
+}
+
+input[type=reset]{width:inherit;}
+/* DIV DA LINHA */
+.form-row{
+display: flex;
+flex-wrap: wrap;
+text-align:left;
+}
+
+label{display:inline-block; margin-bottom:.2em;}
+legend{color: #495057;}
+
+/* estilo da div que engloba o input e o label*/
+.form-group{
+display: block;
+padding: .375rem .75rem;
+font-size: 1rem;
+line-height: 1.5;
+color: #495057;
+background-clip: padding-box;
+box-sizing:border-box;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;}
+
+.md-col-1 {width:10%; }
+.md-col-2 {width:20%; }
+.md-col-3 { width:30%;}
+.md-col-4{width:40%;}
+.md-col-5{width:50%;}
+.md-col-6{width:60%;}
+
+/* CLASS do input para estilizar */
+.form-control {
+	display:block;
+    padding: .200rem .50rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: black;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	
+}
+
+/*MODAL*/
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    overflow: hidden;
+    outline: 0;
+    display:none;
+  }
+  
+  .modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 0.5rem;
+    pointer-events: none;
+  }
+  
+  .modal.fade .modal-dialog {
+    transition: -webkit-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    -webkit-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+  }
+  
+
+

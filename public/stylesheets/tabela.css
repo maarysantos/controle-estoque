@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.table thead th {
+	vertical-align: bottom;
+    border-right: 1px solid #ced4da;
+	border-bottom: 1px solid #ced4da;
+	color:#fff;
+	background-color:#FD5286;
+	  
+}
+
+.table tbody td{border-right: 1px solid #ced4da;
+}
+
+.table td, .table th {
+    padding: .50rem;
+    vertical-align: top;
+ 
+	
+}
+th {
+  
+    text-align: -internal-center;
+}
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.table {
+    border-collapse: collapse;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+	border:1px solid #ced4da;
+}
+
+td[scope=row]{background-color:#ced4da; color:#fff;}
+
+
