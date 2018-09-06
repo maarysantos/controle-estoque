@@ -13,11 +13,17 @@ router.get('/', function(req, res) {
   });
 });
 
-/*router.post('/', function(req, res) {
+router.post('/', function(req, res) {
   var connection = db();
   var formproduto = req.body;
-  connection.query("insert into estoque set ?", formproduto);
-  res. redirect('/');
+  console.log(formproduto);
+  connection.query("insert into estoque set ?", formproduto, function(err, result) {
+      if(err){
+          console.error(err);
+      }else{
+          console.log(result);
+      }
+      res. redirect('/');
+  });
 });
-*/
 module.exports = router;
