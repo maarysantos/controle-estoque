@@ -10,6 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var newRouter = require('./routes/new');
 var novoProduto = require('./routes/novoproduto');
+var novoFornecedor = require('./routes/novofornecedor');
+var novoProdutoXML = require('./routes/produtoxml');
 
 var app = express();
 
@@ -24,11 +26,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended:true}));
 
+
 /*Rotas*/
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/new', newRouter);
 app.use('/novoproduto', novoProduto);
+app.use('/novofornecedor', novoFornecedor);
+app.use('/produtoxml', novoProdutoXML);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
