@@ -4,11 +4,19 @@ var fs           = require('fs');
 var xml2js       = require('xml2js');
 var parser       = new xml2js.Parser();
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({storage });
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+ 
+var upload = multer({ storage: storage })
 
-
-/* GET home page. */
 
 
 
@@ -25,8 +33,8 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
 
       parser.parseString(text, function (err, result) {
 
-          var produtos = result['prod'];
-          console.log({produtos:result});
+       
+          console.log(result);
         
 
         // res.render('produtoxml', { produtos:  produtos });
