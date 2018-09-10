@@ -58,34 +58,50 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">--</th>
+            
             <th scope="col">Cód.Produto</th>
             <th scope="col">Descrição</th>
             <th scope="col">Embalagem</th>
+            <th scope="col">Quantidade</th>
             <th scope="col">Valor Unitário</th>
             <th scope="col">Valor Total</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Excluir</th>
           </tr>
         </thead>
-        
+
         <tbody>
-          <tr>
-            <td scope="row">1</td>
-            <td><input type="checkbox"/></td>
+         
           
-            <td><img src="" alt="editar"></td>
-            <td><img src="" alt="excluir"></td>
-          </tr>
+          <% informacao.det.forEach(i =>{ var [prod] =i.prod; %>
+
+            <tr>
+              <td scope="row">1</td>
+              <td> <%= prod.cProd %> </td>
+              <td> <%= prod.xProd %> </td>
+              <td> <%= prod.uCom %> </td>
+              <td> <%= prod.qCom %> </td>
+              <td> <%= prod.vUnCom %> </td>
+              <td> <%= prod.vProd %> </td>
+              <td><img src="" alt="editar"></td>
+                  <td><img src="" alt="excluir"></td>
+              <%  }); %>
+                    
+                  
+                </tr>
+               
         </tbody>
       </table>
       
 
-
-
-
-</article>
-
-
-
+        
 
 
 </article>
+
+
+</body>
+
+
+
+
