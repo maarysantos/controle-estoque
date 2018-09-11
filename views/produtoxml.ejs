@@ -73,19 +73,19 @@
         <tbody>
          
           
-          <% informacao.det.forEach(i =>{ var [prod] =i.prod; %>
+          <% for (var i =0; i< produtos.length; i++){ %>
 
             <tr>
               <td scope="row">1</td>
-              <td> <%= prod.cProd %> </td>
-              <td> <%= prod.xProd %> </td>
-              <td> <%= prod.uCom %> </td>
-              <td> <%= prod.qCom %> </td>
-              <td> <%= prod.vUnCom %> </td>
-              <td> <%= prod.vProd %> </td>
+              <td> <%= prod[i].cProd %> </td>
+              <td> <%= prod[i].xProd %> </td>
+              <td> <%= prod[i].uCom %> </td>
+              <td> <%= prod[i].qCom %> </td>
+              <td> <%= prod[i].vUnCom %> </td>
+              <td> <%= prod[i].vProd %> </td>
               <td><img src="" alt="editar"></td>
-                  <td><img src="" alt="excluir"></td>
-              <%  }); %>
+              <td><img src="" alt="excluir"></td>
+              <%  } %>
                     
                   
                 </tr>

@@ -19,13 +19,19 @@ var upload = multer({storage});
 
 
 router.post('/', upload.single('upXml'), function(req, res, next) {
-  var fileDate = fs.readFileSync(multer, 'ascii');
+
+  var fileDate = fs.readFileSync(destination.file.originalname, 'ascii');
   var parser       = new xml2js.Parser();
 
   parser.parseString(fileDate.substring(0, fileDate.length), function(err, result){
-    var [ notaFiscal ] = result.nfeProc.NFe;// primeira tag nfe
-    var [ informacao ] = notaFiscal.infNFe;// infnfe
-   res.render('produtoxml', {informacao});
+    var [ notaFiscal ] = result.nfeProc.NFe;
+    var [ informacao ] = notaFiscal.infNFe;
+    informacao.det.forEach(i => {
+      var [prod] = i.prod;
+      produtos.push(prod);
+    });
+
+   res.render('produtoxml', {produtos : produtos});
 });
    
   });
@@ -34,5 +40,6 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
 
 router.get('/', function(req, res, next) {
 
+  res.render('produtoxml', {produtos : [] });
 });
 module.exports = router;
