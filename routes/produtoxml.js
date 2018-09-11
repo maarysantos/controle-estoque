@@ -20,7 +20,7 @@ var upload = multer({storage});
 
 router.post('/', upload.single('upXml'), function(req, res, next) {
 
-  var fileDate = fs.readFileSync(destination.file.originalname, 'ascii');
+  var fileDate = fs.readFileSync('uploads/'+ req.originalname, 'ascii');
   var parser       = new xml2js.Parser();
 
   parser.parseString(fileDate.substring(0, fileDate.length), function(err, result){
