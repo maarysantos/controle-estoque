@@ -14,31 +14,43 @@ const storage = multer.diskStorage({
 var upload = multer({storage});
 
 router.post('/', upload.single('upXml'), function(req, res, next) {
-   lerXml('uploads/' + req.file.filename, () =>{
-  
-   res.render('produtoxml', {produtos : produtos});
-});
+
+  var fileDate = 'uploads/'+ req.file.filename;
+  console.log(fileDate);
+  fs.readFile(fileDate,'ascii', (err, data) => {
+    if (err){ 
+      throw err;}
+    else{
+    var parser       = new xml2js.Parser();
+
+    parser.parseString(data.substring(0, data.length), function(err, result){
+      var [ notaFiscal ] = result.nfeProc.NFe;
+      var [ informacao ] = notaFiscal.infNFe;
+      var produtos=[];
+      
+
+      informacao.det.forEach(i => {
+        var [prod] = i.prod;
+        produtos.push(prod);
+      });
+
+    });
+
+  };
+
+  }); 
+console.log(produtos);
+  res.render('produtoxml', {produtos : produtos});
+
+
    
   });
 
-var lerXml = function(filePath, callback){
-
-  var fileDate = fs.readFile(filePath,'ascii');
-  var parser       = new xml2js.Parser();
-  parser.parseString(fileDate.substring(0, fileDate.length), function(err, result){
-    var [ notaFiscal ] = result.nfeProc.NFe;
-    var [ informacao ] = notaFiscal.infNFe;
-    informacao.det.forEach(i => {
-      var [prod] = i.prod;
-      produtos.push(prod);
-    });
-    callback(result);
-  });
-
-};
 
 router.get('/', function(req, res, next) {
 
   res.render('produtoxml', {produtos : [] });
 });
+
+
 module.exports = router;
