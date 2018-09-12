@@ -3,9 +3,6 @@ var router = express.Router();
 var fs           = require('fs');
 var xml2js       = require('xml2js');
 var multer  = require('multer');
-
-
-//Salvando a nota com o nome original
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, 'uploads/')
@@ -14,15 +11,20 @@ const storage = multer.diskStorage({
       cb(null, file.originalname);
   }
 });
-
 var upload = multer({storage});
 
-
 router.post('/', upload.single('upXml'), function(req, res, next) {
+   lerXml('uploads/' + req.file.filename, () =>{
+  
+   res.render('produtoxml', {produtos : produtos});
+});
+   
+  });
 
-  var fileDate = fs.readFileSync('uploads/'+ req.originalname, 'ascii');
+var lerXml = function(filePath, callback){
+
+  var fileDate = fs.readFile(filePath,'ascii');
   var parser       = new xml2js.Parser();
-
   parser.parseString(fileDate.substring(0, fileDate.length), function(err, result){
     var [ notaFiscal ] = result.nfeProc.NFe;
     var [ informacao ] = notaFiscal.infNFe;
@@ -30,13 +32,10 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
       var [prod] = i.prod;
       produtos.push(prod);
     });
-
-   res.render('produtoxml', {produtos : produtos});
-});
-   
+    callback(result);
   });
 
-
+};
 
 router.get('/', function(req, res, next) {
 
