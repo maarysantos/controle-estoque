@@ -28,19 +28,19 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
       var [ informacao ] = notaFiscal.infNFe;
       var produtos=[];
       
+      
 
       informacao.det.forEach(i => {
         var [prod] = i.prod;
         produtos.push(prod);
       });
+      res.render('produtoxml', {produtos : produtos});
 
     });
 
   };
 
   }); 
-console.log(produtos);
-  res.render('produtoxml', {produtos : produtos});
 
 
    
@@ -52,5 +52,9 @@ router.get('/', function(req, res, next) {
   res.render('produtoxml', {produtos : [] });
 });
 
+router.post ('/produtoxml', function(req, res){
 
+res.redirect('/')
+
+})
 module.exports = router;
