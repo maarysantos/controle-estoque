@@ -16,7 +16,6 @@ var upload = multer({storage});
 router.post('/', upload.single('upXml'), function(req, res, next) {
 
   var fileDate = 'uploads/'+ req.file.filename;
-  console.log(fileDate);
   fs.readFile(fileDate,'ascii', (err, data) => {
     if (err){ 
       throw err;}
@@ -27,9 +26,6 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
       var [ notaFiscal ] = result.nfeProc.NFe;
       var [ informacao ] = notaFiscal.infNFe;
       var produtos=[];
-      
-      
-
       informacao.det.forEach(i => {
         var [prod] = i.prod;
         produtos.push(prod);
@@ -37,13 +33,8 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
       res.render('produtoxml', {produtos : produtos});
 
     });
-
   };
-
   }); 
-
-
-   
   });
 
 
@@ -52,9 +43,4 @@ router.get('/', function(req, res, next) {
   res.render('produtoxml', {produtos : [] });
 });
 
-router.post ('/produtoxml', function(req, res){
-
-res.redirect('/')
-
-})
 module.exports = router;
