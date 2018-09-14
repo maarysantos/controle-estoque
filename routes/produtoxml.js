@@ -27,8 +27,6 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
       var [ notaFiscal ] = result.nfeProc.NFe;
       var [ informacao ] = notaFiscal.infNFe;
       var produtos=[];
-      
-      
 
       informacao.det.forEach(i => {
         var [prod] = i.prod;
@@ -37,13 +35,8 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
       res.render('produtoxml', {produtos : produtos});
 
     });
-
   };
-
   }); 
-
-
-   
   });
 
 
@@ -52,9 +45,6 @@ router.get('/', function(req, res, next) {
   res.render('produtoxml', {produtos : [] });
 });
 
-router.post ('/produtoxml', function(req, res){
 
-res.redirect('/')
 
-})
 module.exports = router;
