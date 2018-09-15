@@ -43,4 +43,6 @@ router.get('/', function(req, res, next) {
   res.render('produtoxml', {produtos : [] });
 });
 
+
+
 module.exports = router;

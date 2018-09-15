@@ -14,7 +14,7 @@
    </head>
    <body>
       <header>
-         <div id="logo" class="espacamento"></div>
+         <div namelogo" class="espacamento"></div>
          <nav class="menu_principal">
             <ul>
                <li> <a href="#">Início</a></li>
@@ -49,7 +49,7 @@
       </header>
       <article>
           <h2> Ler Nota XMl</h2>
- <form id="form" action="" method="POST" enctype="multipart/form-data">        
+ <form nameform" action="" method="POST" enctype="multipart/form-data">        
 <input type="File" name="upXml" />
 <button type="submit">Ler</button>
 </form>
@@ -65,6 +65,8 @@
             
             <th scope="col">Cód.Produto</th>
             <th scope="col">Descrição</th>
+            <th scope="col">NCM</th>
+
             <th scope="col">Embalagem</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Valor Unitário</th>
@@ -78,34 +80,61 @@
          
           
           <% for (var i =0; i< produtos.length; i++){ %>
+          
             <tr>
               <td scope="row">1</td>
               <td> <%= produtos[i].cProd %> </td>
               <td> <%= produtos[i].xProd %> </td>
+              <td> <%= produtos[i].NCM %> </td>
               <td> <%= produtos[i].uCom %> </td>
               <td> <%= produtos[i].qCom %> </td>
               <td> <%= produtos[i].vUnCom %> </td>
               <td> <%= produtos[i].vProd %> </td>
               <td><img src="" alt="editar"></td>
               <td><img src="" alt="excluir"></td>
-              <%  } %>
-                    
-                  
                 </tr>
-               
+                <% } %>
         </tbody>
       </table>
-      <button type="submit" formaction="/produtoxml">Cancelar</button>
-      <button type="submit" formaction="/produtoxml">Salvar</button>
+     
 
-         
 
+      <form id="form" method="POST" action="" >
+          <% for (var i =0; i< produtos.length; i++){ %>
+        <input name="cd_produto" type="hidden" value =" <%= produtos[i].cProd %> "   />
+        <input name="ds_produto"  type="hidden" value= " <%= produtos[i].xProd %>" />
+        <input name="cd_ncm"  type="hidden" value = " <%= produtos[i].NCM %> "/>
+        <input name="tipo_embalagem_nm_tipo_embalagem"   type="hidden" value = " <%= produtos[i].uCom %> " />
+        <input name="qt_produto"  type="hidden"  value = " <%= produtos[i].qCom %> "/>
+        <input name="vl_unitario"  type="hidden" value = " <%= produtos[i].vUnCom %> " />
+        <input name="vl_total"  type="hidden" value = " <%= produtos[i].vProd %> " />
+        <%  } %>
+        <button type="button" id="btnok" formaction="/produtoxml"  >Salvar</button>
+      </form>
+      <br>
 
 </article>
 
 
 </body>
+<script>
+  
+  /*var $btn =document.querySelector('#btnok');
+  var $campos = document.querySelectorAll('input[type=hidden]');
 
+  $btn.addEventListener('click', function(){
+    for(var i=0; i<= $campos.length; i++) {
+     jsonProdutos = [{cd_produto:"", ds_produto:"", cd_ncm:"", qt_produto:"", 
+  tipo_embalagem_nm_tipo_embalagem:"", vl_unitario:"", vl_total:"" }];
+jsonProdutos.cd_produto= $campos[0].value;
+jsonProdutos.ds_produto= $campos[1].value;
+jsonProdutos.cd_ncm= $campos[2].value;
+jsonProdutos.qt_produto =$campos[3].value;
+jsonProdutos.tipo_embalagem_nm_tipo_embalagem= $campos[4].value;
+jsonProdutos.vl_unitario= $campos[5].value;
+jsonProdutos.vl_total=$campos[6].value;
+}
+  })*/
+</script>
 
-
-
+</html>

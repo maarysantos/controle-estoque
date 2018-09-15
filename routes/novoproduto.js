@@ -16,7 +16,6 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   var connection = db();
   var formproduto = req.body;
-  console.log(formproduto);
   connection.query("insert into estoque set ?", formproduto, function(err, result) {
       if(err){
           console.error(err);
