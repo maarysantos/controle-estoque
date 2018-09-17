@@ -16,21 +16,26 @@ var upload = multer({storage});
 router.post('/', upload.single('upXml'), function(req, res, next) {
 
   var fileDate = 'uploads/'+ req.file.filename;
-  fs.readFile(fileDate,'ascii', (err, data) => {
+  fs.readFile(fileDate,'utf-8', (err, data) => {
     if (err){ 
       throw err;}
     else{
     var parser       = new xml2js.Parser();
 
     parser.parseString(data.substring(0, data.length), function(err, result){
-      var [ notaFiscal ] = result.nfeProc.NFe;
-      var [ informacao ] = notaFiscal.infNFe;
-      var produtos=[];
-      informacao.det.forEach(i => {
-        var [prod] = i.prod;
-        produtos.push(prod);
-      });
-      res.render('produtoxml', {produtos : produtos});
+      if(!err){
+          var [ notaFiscal ] = result.nfeProc.NFe;
+          var [ informacao ] = notaFiscal.infNFe;
+          var produtos=[];
+          informacao.det.forEach(i => {
+            var [prod] = i.prod;
+            produtos.push(prod);
+          });
+          res.render('produtoxml', {produtos : produtos});
+      }else{
+          console.error(err);
+      }
+
 
     });
   };

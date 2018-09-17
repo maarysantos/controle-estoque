@@ -50,7 +50,7 @@
       <article>
           <h2> Ler Nota XMl</h2>
  <form id="form" action="" method="POST" enctype="multipart/form-data">        
-<input type="File" name="upXml" />
+<input type="file" name="upXml" />
 <button type="submit">Ler</button>
 </form>
 
@@ -58,6 +58,7 @@
  <input id="dt_entrada" type="date"/>
 
 
+<form id="form" method="POST" action="/salvarProdutos" >
 <table class="table">
         <thead>
           <tr>
@@ -82,7 +83,16 @@
           <% for (var i =0; i< produtos.length; i++){ %>
           
             <tr>
-              <td scope="row">1</td>
+              <td scope="row">
+                <input name="selecionado[<%- i -%>]" type="checkbox" value="true" />
+                <input name="cd_produto[<%- i -%>]" type="hidden" value ="<%= produtos[i].cProd %>"   />
+                <input name="ds_produto[<%- i -%>]"  type="hidden" value= "<%= produtos[i].xProd %>" />
+                <input name="cd_ncm[<%- i -%>]"  type="hidden" value = "<%= produtos[i].NCM %>"/>
+                <input name="tipo_embalagem_nm_tipo_embalagem[<%- i -%>]"   type="hidden" value = "<%= produtos[i].uCom %>" />
+                <input name="qt_produto[<%- i -%>]"  type="hidden"  value = "<%= produtos[i].qCom %>"/>
+                <input name="vl_unitario[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vUnCom %>" />
+                <input name="vl_total[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vProd %>" />
+              </td>
               <td> <%= produtos[i].cProd %> </td>
               <td> <%= produtos[i].xProd %> </td>
               <td> <%= produtos[i].NCM %> </td>
@@ -96,29 +106,17 @@
                 <% } %>
         </tbody>
       </table>
-     
-
-
-      <form id="form" method="POST" action="" >
-          <% for (var i =0; i< produtos.length; i++){ %>
-        <input name="cd_produto" type="hidden" value =" <%= produtos[i].cProd %> "   />
-        <input name="ds_produto"  type="hidden" value= " <%= produtos[i].xProd %>" />
-        <input name="cd_ncm"  type="hidden" value = " <%= produtos[i].NCM %> "/>
-        <input name="tipo_embalagem_nm_tipo_embalagem"   type="hidden" value = " <%= produtos[i].uCom %> " />
-        <input name="qt_produto"  type="hidden"  value = " <%= produtos[i].qCom %> "/>
-        <input name="vl_unitario"  type="hidden" value = " <%= produtos[i].vUnCom %> " />
-        <input name="vl_total"  type="hidden" value = " <%= produtos[i].vProd %> " />
-        <%  } %>
-        <button type="button" id="btnok" formaction="/produtoxml"  >Salvar</button>
-      </form>
-      <br>
+      <button type="submit" id="btnok">Salvar</button>
+  </form>
+  <br>
 
 </article>
 
 
 </body>
 <script>
-  
+    var produtos = <%-JSON.stringify(produtos)-%>;
+    console.log(produtos);//Caso queira fazer com javascript
   /*var $btn =document.querySelector('#btnok');
   var $campos = document.querySelectorAll('input[type=hidden]');
 
