@@ -5,13 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var newRouter = require('./routes/new');
-var novoProduto = require('./routes/novoproduto');
-var novoFornecedor = require('./routes/novofornecedor');
-var novoProdutoXML = require('./routes/produtoxml');
-const salvarProdutos = require('./routes/salvarProdutos')
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const newRouter = require('./routes/new');
+const novoProduto = require('./routes/novoproduto');
+const novoFornecedor = require('./routes/novofornecedor');
+const novoProdutoXML = require('./routes/produtoxml');
+const salvarProdutos = require('./routes/salvarProdutos');
+const saidaProdutos = require('./routes/saidaproduto');
+
 
 var app = express();
 
@@ -35,6 +37,7 @@ app.use('/novoproduto', novoProduto);
 app.use('/novofornecedor', novoFornecedor);
 app.use('/produtoxml', novoProdutoXML);
 app.use('/salvarProdutos', salvarProdutos);
+app.use('/saidaproduto', saidaProdutos);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
