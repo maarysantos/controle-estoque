@@ -13,18 +13,19 @@ router.post('/', function(req, res) {
       }
       sum[index][coluna] = formproduto[item];//Preenche coluna de produto de um indice
       return sum;
-  },[]);
-  
-  res.send(produtos);
-  /*
-  connection.query("insert into estoque set ?", formproduto, function(err, result) {
-      if(err){
-          console.error(err);
-      }else{
-          console.log(result);
-      }
-      res. redirect('/');
-  });
-  */
+  },[]).filter(p => p.selecionado).map(p => {
+  const {selecionado, ...prod} = p;
+  return prod;
+});
+res.send(produtos);
+
+  connection.query("insert into estoque set ?", produtos, function(err, result) {
+    if(err){
+        console.error(err);
+    }else{
+        console.log(result);
+    }
+   
+});
 });
 module.exports = router;

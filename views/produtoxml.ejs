@@ -86,12 +86,13 @@
               <td scope="row">
                 <input name="selecionado[<%- i -%>]" type="checkbox" value="true" />
                 <input name="cd_produto[<%- i -%>]" type="hidden" value ="<%= produtos[i].cProd %>"   />
-                <input name="ds_produto[<%- i -%>]"  type="hidden" value= "<%= produtos[i].xProd %>" />
                 <input name="cd_ncm[<%- i -%>]"  type="hidden" value = "<%= produtos[i].NCM %>"/>
-                <input name="tipo_embalagem_nm_tipo_embalagem[<%- i -%>]"   type="hidden" value = "<%= produtos[i].uCom %>" />
+                <input name="ds_produto[<%- i -%>]"  type="hidden" value= "<%= produtos[i].xProd %>" />
                 <input name="qt_produto[<%- i -%>]"  type="hidden"  value = "<%= produtos[i].qCom %>"/>
                 <input name="vl_unitario[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vUnCom %>" />
                 <input name="vl_total[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vProd %>" />
+                <input name="Tipo_Embalagem_nm_tipo_embalagem[<%- i -%>]"   type="hidden" value = "<%= produtos[i].uCom %>" />
+
               </td>
               <td> <%= produtos[i].cProd %> </td>
               <td> <%= produtos[i].xProd %> </td>
@@ -115,24 +116,9 @@
 
 </body>
 <script>
-    var produtos = <%-JSON.stringify(produtos)-%>;
-    console.log(produtos);//Caso queira fazer com javascript
-  /*var $btn =document.querySelector('#btnok');
-  var $campos = document.querySelectorAll('input[type=hidden]');
-
-  $btn.addEventListener('click', function(){
-    for(var i=0; i<= $campos.length; i++) {
-     jsonProdutos = [{cd_produto:"", ds_produto:"", cd_ncm:"", qt_produto:"", 
-  tipo_embalagem_nm_tipo_embalagem:"", vl_unitario:"", vl_total:"" }];
-jsonProdutos.cd_produto= $campos[0].value;
-jsonProdutos.ds_produto= $campos[1].value;
-jsonProdutos.cd_ncm= $campos[2].value;
-jsonProdutos.qt_produto =$campos[3].value;
-jsonProdutos.tipo_embalagem_nm_tipo_embalagem= $campos[4].value;
-jsonProdutos.vl_unitario= $campos[5].value;
-jsonProdutos.vl_total=$campos[6].value;
-}
-  })*/
+    //var produtos = <%= JSON.stringify(produtos)%>;
+    //console.log(produtos);//Caso queira fazer com javascript
+  
 </script>
 
 </html>
