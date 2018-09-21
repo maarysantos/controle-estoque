@@ -15,9 +15,9 @@ CREATE SCHEMA IF NOT EXISTS `estoque` DEFAULT CHARACTER SET utf8 ;
 USE `estoque` ;
 
 -- -----------------------------------------------------
--- Table `estoque`.`Usuario`
+-- Table `estoque`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Usuario` (
+CREATE TABLE IF NOT EXISTS `estoque`.`usuario` (
   `cd_usuario` INT NOT NULL,
   `nm_usuario` VARCHAR(200) NOT NULL,
   `nm_senha` VARCHAR(100) NOT NULL,
@@ -26,75 +26,73 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`Tipo_Embalagem`
+-- Table `estoque`.`tipo_embalagem`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Tipo_Embalagem` (
-  `nm_tipo_embalagem` VARCHAR(200) NOT NULL,
-  `id_tipo_embalagem` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `estoque`.`tipo_embalagem` (
+  `nm_tipo_embalagem` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`nm_tipo_embalagem`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`Estoque`
+-- Table `estoque`.`estoque`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Estoque` (
-  `cd_produto` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `estoque`.`estoque` (
+  `cd_produto` VARCHAR(10) NOT NULL,
   `cd_ncm` INT NOT NULL,
   `ds_produto` VARCHAR(200) NOT NULL,
   `qt_produto` INT NOT NULL,
   `vl_unitario` DECIMAL(10,2) NOT NULL,
   `vl_total` DECIMAL(10,2) NOT NULL,
-  `Tipo_Embalagem_nm_tipo_embalagem` VARCHAR(200) NOT NULL,
+  `tipo_embalagem_nm_tipo_embalagem` VARCHAR(100) NOT NULL,
+  INDEX `fk_Estoque_Tipo_Embalagem_idx` (`tipo_embalagem_nm_tipo_embalagem` ASC),
   PRIMARY KEY (`cd_produto`),
-  INDEX `fk_Estoque_Tipo_Embalagem_idx` (`Tipo_Embalagem_nm_tipo_embalagem` ASC),
   CONSTRAINT `fk_Estoque_Tipo_Embalagem`
-    FOREIGN KEY (`Tipo_Embalagem_nm_tipo_embalagem`)
-    REFERENCES `estoque`.`Tipo_Embalagem` (`nm_tipo_embalagem`)
+    FOREIGN KEY (`tipo_embalagem_nm_tipo_embalagem`)
+    REFERENCES `estoque`.`tipo_embalagem` (`nm_tipo_embalagem`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`Lucro`
+-- Table `estoque`.`lucro`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Lucro` (
+CREATE TABLE IF NOT EXISTS `estoque`.`lucro` (
   `cd_lucro` INT NOT NULL,
   PRIMARY KEY (`cd_lucro`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`Fornecedor`
+-- Table `estoque`.`fornecedor`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Fornecedor` (
+CREATE TABLE IF NOT EXISTS `estoque`.`fornecedor` (
   `cd_fornecedor` INT NOT NULL AUTO_INCREMENT,
-  `nm_razao` VARCHAR(200) NOT NULL,
-  `nm_fantasia` VARCHAR(200) NOT NULL,
-  `cd_cnpj` INT NOT NULL,
-  `cd_ie` INT NOT NULL,
-  `cd_cep` INT NULL,
-  `ds_endereco` VARCHAR(100) NULL,
-  `cd_numero` INT(5) NULL,
-  `nm_bairro` VARCHAR(45) NULL,
-  `nm_cidade` VARCHAR(45) NULL,
+  `nm_razao` VARCHAR(255) NOT NULL,
+  `nm_fantasia` VARCHAR(255) NOT NULL,
+  `cd_cnpj` VARCHAR(18) NOT NULL,
+  `cd_ie` VARCHAR(25) NOT NULL,
+  `cd_cep` VARCHAR(10) NULL,
+  `ds_endereco` VARCHAR(150) NULL,
+  `cd_numero` VARCHAR(6) NULL,
+  `nm_bairro` VARCHAR(50) NULL,
+  `nm_cidade` VARCHAR(50) NULL,
   `nm_estado` VARCHAR(2) NULL,
-  `cd_tel1` INT NULL,
-  `cd_tel2` INT NULL,
+  `cd_tel1` VARCHAR(15) NULL,
+  `cd_tel2` VARCHAR(15) NULL,
   `nm_email` VARCHAR(100) NULL,
   `nm_site` VARCHAR(100) NULL,
   `nm_vendedor` VARCHAR(100) NULL,
-  `cd_telvendedor` INT NULL,
-  `NotaFiscal_cd_nfe` VARCHAR(100) NOT NULL,
+  `cd_telvendedor` VARCHAR(15) NULL,
   PRIMARY KEY (`cd_fornecedor`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`NotaFiscal`
+-- Table `estoque`.`notafiscal`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`NotaFiscal` (
+CREATE TABLE IF NOT EXISTS `estoque`.`notafiscal` (
   `cd_nfe` VARCHAR(100) NOT NULL,
   `dt_emissao` DATETIME NOT NULL,
   `dt_criacao` DATETIME NOT NULL,
@@ -103,17 +101,17 @@ CREATE TABLE IF NOT EXISTS `estoque`.`NotaFiscal` (
   INDEX `fk_NotaFiscal_Fornecedor1_idx` (`Fornecedor_cd_fornecedor` ASC),
   CONSTRAINT `fk_NotaFiscal_Fornecedor1`
     FOREIGN KEY (`Fornecedor_cd_fornecedor`)
-    REFERENCES `estoque`.`Fornecedor` (`cd_fornecedor`)
+    REFERENCES `estoque`.`fornecedor` (`cd_fornecedor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`Produto`
+-- Table `estoque`.`produto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Produto` (
-  `cd_produto` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `estoque`.`produto` (
+  `cd_produto` VARCHAR(10) NOT NULL,
   `cd_ncm` INT NOT NULL,
   `ds_produto` VARCHAR(200) NOT NULL,
   `qt_produto` INT NOT NULL,
@@ -124,41 +122,41 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`Saida_Produto`
+-- Table `estoque`.`saida_produto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Saida_Produto` (
-  `cd_produto_saida` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `estoque`.`saida_produto` (
+  `cd_produto_saida` VARCHAR(10) NOT NULL,
   `ds_produto` VARCHAR(200) NOT NULL,
   `qt_produto` INT NOT NULL,
   `vl_unitario` DECIMAL(10,2) NOT NULL,
   `dt_saida` DATETIME NOT NULL,
-  `Produto_cd_produto` INT NOT NULL,
+  `produto_cd_produto` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`cd_produto_saida`),
-  INDEX `fk_Saida_Produto_Produto1_idx` (`Produto_cd_produto` ASC),
+  INDEX `fk_Saida_Produto_Produto1_idx` (`produto_cd_produto` ASC),
   CONSTRAINT `fk_Saida_Produto_Produto1`
-    FOREIGN KEY (`Produto_cd_produto`)
-    REFERENCES `estoque`.`Produto` (`cd_produto`)
+    FOREIGN KEY (`produto_cd_produto`)
+    REFERENCES `estoque`.`produto` (`cd_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`Entrada_Produto`
+-- Table `estoque`.`entrada_produto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`Entrada_Produto` (
-  `cd_produto_entrada` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `estoque`.`entrada_produto` (
+  `cd_produto_entrada` VARCHAR(10) NOT NULL,
   `cd_ncm` INT NOT NULL,
   `ds_produto` VARCHAR(200) NOT NULL,
   `qt_produto` INT NOT NULL,
   `vl_unitario` DECIMAL(10,2) NOT NULL,
   `dt_entrada` DATETIME NULL,
-  `Produto_cd_produto` INT NOT NULL,
+  `produto_cd_produto` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`cd_produto_entrada`),
-  INDEX `fk_Entrada_Produto_Produto1_idx` (`Produto_cd_produto` ASC),
+  INDEX `fk_Entrada_Produto_Produto1_idx` (`produto_cd_produto` ASC),
   CONSTRAINT `fk_Entrada_Produto_Produto1`
-    FOREIGN KEY (`Produto_cd_produto`)
-    REFERENCES `estoque`.`Produto` (`cd_produto`)
+    FOREIGN KEY (`produto_cd_produto`)
+    REFERENCES `estoque`.`produto` (`cd_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
