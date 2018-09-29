@@ -2,7 +2,26 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db');
 
-const executarSql = (sql, valor) =>{
+router.post('/', function(req, res) {
+  var connection = db();
+  var formproduto = req.body;
+  var valorunitario=req.body.vl_unitario.pa
+ 
+  const produtos = Object.keys(formproduto).reduce((sum, item) => {
+      let [coluna, index] = item.split(/\[/);// extraindo o nome e o indice do campo do formulário
+      index = parseInt(index.replace(/\]/));// Removendo o fecha colchete ']' e fazendo o parse do indice pra int
+      if(!sum[index]){
+          sum[index] = {};// Se o indice não existir cria objeto vazio
+      }
+      sum[index][coluna] = formproduto[item];//Preenche coluna de produto de um indice
+      return sum;
+  },[]).filter(p => p.selecionado).map(p => {
+    const {selecionado, ...prod} = p;
+  
+    return prod;
+  });
+
+  /* const executarSql = (sql, valor) =>{
     return new Promise((resolve, reject) =>{
         const callback = (err, result) => {
             if(err){
@@ -18,27 +37,7 @@ const executarSql = (sql, valor) =>{
         }
     });
 };
-
-
-
-router.post('/', function(req, res) {
-  var connection = db();
-  var formproduto = req.body;
-  let conjunto = new Set();
-  const produtos = Object.keys(formproduto).reduce((sum, item) => {
-      let [coluna, index] = item.split(/\[/);// extraindo o nome e o indice do campo do formulário
-      index = parseInt(index.replace(/\]/));// Removendo o fecha colchete ']' e fazendo o parse do indice pra int
-      if(!sum[index]){
-          sum[index] = {};// Se o indice não existir cria objeto vazio
-      }
-      sum[index][coluna] = formproduto[item];//Preenche coluna de produto de um indice
-      return sum;
-  },[]).filter(p => p.selecionado).map(p => {
-    const {selecionado, ...prod} = p;
-    conjunto.add(prod.Tipo_Embalagem_nm_tipo_embalagem)
-    return prod;
-  });
-  let consultas = Array.from(conjunto).map(tipo =>{
+let consultas = Array.from(conjunto).map(tipo =>{
       return new Promise((resolve, reject)=>{
         executarSql("SELECT COUNT(1) as count from tipo_embalagem WHERE nm_tipo_embalagem = ?", tipo)
         .then((result)=>{
@@ -84,5 +83,24 @@ router.post('/', function(req, res) {
     })
   });
   
-});
+});*/
+
+ let inserts = produtos.map(produto =>{
+
+   connection.query("insert into estoque set ?", produto, function(err, result) {
+        if(err){
+           console.log(err);
+       
+            
+        }else{
+            console.log(result);
+          
+           
+        }
+   });
+  
+    });
+
+
+  })
 module.exports = router;
