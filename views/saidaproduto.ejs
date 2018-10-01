@@ -3,10 +3,11 @@
    <head>
      <html lang="en"></html>
       <meta charset="utf-8">
-      <title>Novo Produto</title>
+      <title>Saída Produto</title>
       <link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
       <link href="/stylesheets/forms.css" rel="stylesheet" type="text/css">
       <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
+
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
    </head>
@@ -47,29 +48,48 @@
       </header>
       <article>
           <h2> Saída Produto</h2>
-         
-            <input type="text" id="search" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query">
-            <div id="output"></div>
+          <div class="form-row">
+            <div class="form-group md-col-5">
+            <input type="text" id="search" name="typeahead" class="typeahead tt-query form-control" autocomplete="off" spellcheck="false" placeholder="Type your Query">
+            </div>
+        </div>
+            <div id="output"></div>´
+            <div id="output-dados"></div>´
+
+  
           </article>
           </body>
          
           </html>
           <script type="text/javascript">
+
+         
             $(document).ready(function(){
                 $('input.typeahead').typeahead({
                     name: 'countries',
                     remote: 'http://localhost:3000/saidaproduto/search?key=%QUERY',
-                    limit: 10,
-                    itemSelected:function(data,value,text){ 
-                console.log(data) 
-                 alert('value is'+value);
-                 alert('text is'+text); }, //your other stuffs });
-                });
-            });
-    
-           
-            
+                    limit: 10
+            }). bind('typeahead:selected', function(obj, datum, name) {
+            var output= document.getElementById('output');
+            output.textContent= JSON.stringify(datum);
+            load_data();
 
+});           
+function load_data(){
+ 
+ $.ajax({
+  url: window.location+"/order",
+  method:"GET",
+  success: function(result) {
+       var html;
+       for (var i = 0; i< result.length; i++) {
+           html += '<td>' + result[i] +'</td>';
+       }
+       $('#output-dados').html(html);
+     }  });
+}
+
+ })
 
             </script>
           
