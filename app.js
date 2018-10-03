@@ -13,6 +13,7 @@ const novoFornecedor = require('./routes/novofornecedor');
 const novoProdutoXML = require('./routes/produtoxml');
 const salvarProdutos = require('./routes/salvarProdutos');
 const saidaProdutos = require('./routes/saidaproduto');
+const atualizarEstoque = require('./routes/atualizarEstoque');
 
 
 var app = express();
@@ -40,6 +41,7 @@ app.use('/novofornecedor', novoFornecedor);
 app.use('/produtoxml', novoProdutoXML);
 app.use('/salvarProdutos', salvarProdutos);
 app.use('/saidaproduto', saidaProdutos);
+app.use('/atualizarEstoque', atualizarEstoque);
 
 
 // catch 404 and forward to error handler
