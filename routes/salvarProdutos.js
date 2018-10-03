@@ -5,7 +5,7 @@ var db = require('../db');
 router.post('/', function(req, res) {
   var connection = db();
   var formproduto = req.body;
-  var valorunitario=req.body.vl_unitario.pa
+  var valorunitario= formproduto.vl_unitario;
  
   const produtos = Object.keys(formproduto).reduce((sum, item) => {
       let [coluna, index] = item.split(/\[/);// extraindo o nome e o indice do campo do formulário
