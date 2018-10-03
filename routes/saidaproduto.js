@@ -26,7 +26,7 @@ res.end(JSON.stringify(data));
 
 router.get('/order', function(req, res, next) {
   var connection = db();
-  var nome= req.param;                                                
+  var nome= req.params;                                                
 connection.query('SELECT * from estoque where cd_produto like "%'+nome+'%" or ds_produto like "%'+nome+'%"',
 function(err, rows, fields) {
 if (err) throw err;
