@@ -32,14 +32,11 @@ router.get('/order', function(req, res, next) {
       var data=[];
       for(i=0;i<rows.length;i++)
       {
-          let { cd_produto, ds_produto } = rows[i];
-          data.push({ cd_produto, ds_produto });
+          let { cd_produto, ds_produto, qt_produto } = rows[i];
+          data.push({ cd_produto, ds_produto, qt_produto });
       }
       res.send(data );
   });
 
 });
-router.post('/', function(req, res, next) {
-    console.log('ola')
-  });
 module.exports = router;

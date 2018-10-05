@@ -89,7 +89,7 @@ transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;}
  
 
 #custom-templates{ width:40%; float:left;}
-#result{width:50%; border:1px solid #999; border-radius:5px; float:right; }
+#result{width:50%; border:1px solid #999; border-radius:5px; float:right; padding: 10px; }
 
 .typeahead {
   padding: .200rem .50rem;
@@ -123,4 +123,6 @@ transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;}
   cursor:pointer;
 }
 
-
+/*Label contador de produtos já em estoque */
+#container-contador{font-style: italic; font-size: 12px;}
+#contador{font-weight: bold}

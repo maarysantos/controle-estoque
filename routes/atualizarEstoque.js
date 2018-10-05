@@ -7,24 +7,30 @@ router.post('/', function(req, res) {
     var codigo = req.body.cd_produto;
     var descricao = req.body.ds_produto;
     var quantidade = req.body.qt_produto;
+    var now = new Date();
+
+    connection.query("INSERT into saida_produto set ?",[codigo, descricao, quantidade,data] ,function(error, result) {
+        if (error) console.log(error);
+        });
+
 
     connection.query("SELECT qt_produto from estoque where cd_produto ="+codigo+"", function(error, result) {
-        if (error){ console.log(error);}
-        else{
-            var qt_saida = result[0].qt_produto;
-            var res= qt_saida - quantidade;
-            console.log(res);
-            if( res >= 0){
-                
-                connection.query("UPDATE estoque set qt_produto=:Saida where cd_produto=:Codigo", {Saida: qt_saida, Codigo:codigo },
-                function(error, result){
-                if (error) throw error;
-                                   console.log("Atualizado!");
+    if (error){ console.log(error);} else{
+    var qt_produto = result[0].qt_produto;
+    var res = qt_produto - quantidade;
+    if(res>=0){
+    
+    connection.query('UPDATE estoque SET qt_produto = ? WHERE cd_produto = ?', [res, codigo], function (error, results, fields) {
+        if (error) throw error;
+       console.log('ola')
+      });
+    }     else{
+
+        console.log("Não há produtos disponiveis em estoque");
+    }                   
+    }
                                 });
                
-        }
-    }
-                   
-                            });  
-                        });  
+                            });
+                       
 module.exports = router;

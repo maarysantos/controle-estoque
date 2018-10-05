@@ -74,7 +74,12 @@
                             <input id="qt_produto" name="qt_produto" type="number" class="form-control" style="width:100%"/> 
                          </div>
                          </div>
+                         <br>
 
+                         <div id="container-contador">
+                         <span>Em estoque:</span> <label id="contador"></label> 
+                        </div>
+                        <br>
                          <button id="btnAtualizar" type="submit"> Atualizar </button>     
                         </form>
 
@@ -85,9 +90,7 @@
          
           </html>
           <script type="text/javascript">
-                //<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
 
-            var dados = {};
          
             $(document).ready(function(){
                 var registros = new Bloodhound({
@@ -114,10 +117,12 @@
                 }). bind('typeahead:selected', function(obj, datum, name) {
                     var codigo = document.getElementById('cd_produto');
                     var descricao = document.getElementById('ds_produto');
+                    var lbl_contador = document.getElementById('contador');
                     
                     
                     codigo.value=datum.cd_produto;
                     descricao.value=datum.ds_produto;
+                    lbl_contador.textContent=datum.qt_produto;
 
                 });   
 
