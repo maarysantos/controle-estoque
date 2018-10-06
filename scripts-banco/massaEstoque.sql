@@ -1,15 +1,18 @@
 insert into tipo_embalagem values 
-('UN', 01),
-('PC' , 02),
-('CA' , 03),
-('RM', 04),
-('RL', 05),
-('UNIDADE', 06),
-('CAIXA', 07),
-('PACOTE', 08)
+('UN'),
+('PC'),
+('CA'),
+('RM'),
+('RL'),
+('UNIDADE'),
+('CAIXA'),
+('PACOTE')
 ;
 
 insert into usuario value (4001, 'Mari Santos',123);
+
+insert into saida_produto value(cd_produto_saida, 'caneta bic vermelha', 1, 10.00, dt_saida, 10002)
+
 
 
 

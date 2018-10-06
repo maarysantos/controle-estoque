@@ -9,6 +9,7 @@
       <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
       <script  type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
 
+
       <script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
    </head>
    <body>
@@ -57,8 +58,8 @@
             <form id="form" method="post" action="/atualizarEstoque">
                 <div class="form-row">
                     <div class="form-group  md-col-2" >
-                        <label for="cd_produto">Código</label>
-                        <input id="cd_produto" name="cd_produto" class="form-control" type="text"   />
+                        <label for="estoque_cd_produto">Código</label>
+                        <input id="estoque_cd_produto" name="estoque_cd_produto" class="form-control" type="text"   />
                     </div>
                 </div>
 
@@ -73,6 +74,12 @@
                             <label for="qt_produto">Quantidade</label>
                             <input id="qt_produto" name="qt_produto" type="number" class="form-control" style="width:100%"/> 
                          </div>
+
+                         <div class="form-group md-col-2">
+                            <label for="vl_unitario">Valor</label>
+                            <input id="vl_unitario" name="vl_unitario" class="form-control" style="width:100%"/> 
+                         </div>
+
                          </div>
                          <br>
 
@@ -115,13 +122,16 @@
                   },
                   source: registros
                 }). bind('typeahead:selected', function(obj, datum, name) {
-                    var codigo = document.getElementById('cd_produto');
+                    var codigo = document.getElementById('estoque_cd_produto');
                     var descricao = document.getElementById('ds_produto');
+                    var valor = document.getElementById('vl_unitario');
                     var lbl_contador = document.getElementById('contador');
                     
+     
                     
                     codigo.value=datum.cd_produto;
                     descricao.value=datum.ds_produto;
+                    valor.value =datum.vl_unitario;
                     lbl_contador.textContent=datum.qt_produto;
 
                 });   

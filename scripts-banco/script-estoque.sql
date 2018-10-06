@@ -125,11 +125,11 @@ ENGINE = InnoDB;
 -- Table `estoque`.`saida_produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`saida_produto` (
-  `cd_produto_saida` VARCHAR(10) NOT NULL,
+  `cd_produto_saida` INT NOT NULL AUTO_INCREMENT,
   `ds_produto` VARCHAR(200) NOT NULL,
   `qt_produto` INT NOT NULL,
   `vl_unitario` DECIMAL(10,2) NOT NULL,
-  `dt_saida` DATETIME NOT NULL,
+  `dt_saida` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `produto_cd_produto` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`cd_produto_saida`),
   INDEX `fk_Saida_Produto_Produto1_idx` (`produto_cd_produto` ASC),
@@ -145,15 +145,15 @@ ENGINE = InnoDB;
 -- Table `estoque`.`entrada_produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`entrada_produto` (
-  `cd_produto_entrada` VARCHAR(10) NOT NULL,
+  `cd_produto_entrada` INT NOT NULL AUTO_INCREMENT,
   `cd_ncm` INT NOT NULL,
   `ds_produto` VARCHAR(200) NOT NULL,
   `qt_produto` INT NOT NULL,
   `vl_unitario` DECIMAL(10,2) NOT NULL,
-  `dt_entrada` DATETIME NULL,
+  `dt_entrada` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `produto_cd_produto` VARCHAR(10) NOT NULL,
-  PRIMARY KEY (`cd_produto_entrada`),
   INDEX `fk_Entrada_Produto_Produto1_idx` (`produto_cd_produto` ASC),
+  PRIMARY KEY (`cd_produto_entrada`),
   CONSTRAINT `fk_Entrada_Produto_Produto1`
     FOREIGN KEY (`produto_cd_produto`)
     REFERENCES `estoque`.`produto` (`cd_produto`)
