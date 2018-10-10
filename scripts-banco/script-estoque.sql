@@ -59,8 +59,8 @@ ENGINE = InnoDB;
 -- Table `estoque`.`lucro`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`lucro` (
-  `cd_lucro` INT NOT NULL,
-  PRIMARY KEY (`cd_lucro`))
+  `taxa_lucro` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`taxa_lucro`))
 ENGINE = InnoDB;
 
 
@@ -108,20 +108,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`produto`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`produto` (
-  `cd_produto` VARCHAR(10) NOT NULL,
-  `cd_ncm` INT NOT NULL,
-  `ds_produto` VARCHAR(200) NOT NULL,
-  `qt_produto` INT NOT NULL,
-  `vl_unitario` DECIMAL(10,2) NOT NULL,
-  `vl_total` DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (`cd_produto`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `estoque`.`saida_produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`saida_produto` (
@@ -130,12 +116,12 @@ CREATE TABLE IF NOT EXISTS `estoque`.`saida_produto` (
   `qt_produto` INT NOT NULL,
   `vl_unitario` DECIMAL(10,2) NOT NULL,
   `dt_saida` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `produto_cd_produto` VARCHAR(10) NOT NULL,
+  `estoque_cd_produto` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`cd_produto_saida`),
-  INDEX `fk_Saida_Produto_Produto1_idx` (`produto_cd_produto` ASC),
-  CONSTRAINT `fk_Saida_Produto_Produto1`
-    FOREIGN KEY (`produto_cd_produto`)
-    REFERENCES `estoque`.`produto` (`cd_produto`)
+  INDEX `fk_saida_produto_estoque1_idx` (`estoque_cd_produto` ASC),
+  CONSTRAINT `fk_saida_produto_estoque1`
+    FOREIGN KEY (`estoque_cd_produto`)
+    REFERENCES `estoque`.`estoque` (`cd_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -151,12 +137,12 @@ CREATE TABLE IF NOT EXISTS `estoque`.`entrada_produto` (
   `qt_produto` INT NOT NULL,
   `vl_unitario` DECIMAL(10,2) NOT NULL,
   `dt_entrada` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `produto_cd_produto` VARCHAR(10) NOT NULL,
-  INDEX `fk_Entrada_Produto_Produto1_idx` (`produto_cd_produto` ASC),
+  `estoque_cd_produto` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`cd_produto_entrada`),
-  CONSTRAINT `fk_Entrada_Produto_Produto1`
-    FOREIGN KEY (`produto_cd_produto`)
-    REFERENCES `estoque`.`produto` (`cd_produto`)
+  INDEX `fk_entrada_produto_estoque1_idx` (`estoque_cd_produto` ASC),
+  CONSTRAINT `fk_entrada_produto_estoque1`
+    FOREIGN KEY (`estoque_cd_produto`)
+    REFERENCES `estoque`.`estoque` (`cd_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
