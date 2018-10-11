@@ -16,8 +16,9 @@ var router = express.Router();
     connection.query("SELECT nm_usuario, nm_senha from usuario where nm_usuario ='"+nome+"' and nm_senha="+ senha+"", 
     function(error, result) {
       if(error){throw error;}
-          
+          req.session.autorizado = true;
       });
+      
   });
   
 module.exports=router;
