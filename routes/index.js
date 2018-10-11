@@ -13,12 +13,26 @@ var router = express.Router();
     let nome = req.body.txtNome;
     let senha = req.body.txtSenha;
     var connection = db();
-    connection.query("SELECT nm_usuario, nm_senha from usuario where nm_usuario ='"+nome+"' and nm_senha="+ senha+"", 
+   
+    connection.query("SELECT nm_usuario from usuario where nm_usuario ='"+nome+"' and nm_senha="+ senha+"", 
     function(error, result) {
       if(error){throw error;}
-          req.session.autorizado = true;
+      
+        if (result[0].nm_usuario =! undefined ){
+            req.session.autorizado = true;
+            req.session.nome= result[0].nm_usuario;
+ 
+            res.redirect('novoproduto');
+          }
       });
       
   });
   
+  router.get('/sair', function(req,res){
+    req.session.destroy(function(err){
+        res.redirect('/');
+   
+});
+});
+
 module.exports=router;

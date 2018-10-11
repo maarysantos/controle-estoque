@@ -42,7 +42,7 @@
                </li>
                <li> <a href="#">Relatórios </a></li>
                <li> <a href="#">Lucro </a></li>
-               <li> <a href="#">Sair </a></li>
+               <button id="btnSair"> Sair </button>
             </ul>
          </nav>
          <div class="clear"></div>
@@ -120,5 +120,16 @@
         );
       });
       
+    
+
+$(document).ready(function(){
+
+   $('#btnSair').click(function(){
+    window.location.href = '/sair';
+  });
+
+});
+
+
    </script>
 </html>
