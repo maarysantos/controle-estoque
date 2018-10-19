@@ -5,12 +5,9 @@ var router = express.Router();
 
 
   router.get('/', function(req,res){
-    var connection = db();
-      //connection.query("SELECT * FROM usuario", function(error, result){
-          res.render('novofornecedor', {title:'oi' });
+          res.render('novofornecedor');
           
       });
- // });
   
  router.post('/', function(req, res) {
     var connection = db();

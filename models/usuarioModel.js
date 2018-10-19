@@ -3,7 +3,7 @@ var db = require('../db');
 var express = require('express');
 
 
-module.exports.validarUsuario = (callback) => {
+module.exports.validarUsuario = (req, callback) => {
     var connection = db();
     var nome = req.body.txtNome;
     var senha = req.body.txtSenha;
