@@ -19,6 +19,7 @@ const atualizarEstoque = require('./routes/atualizarEstoque');
 
 
 
+
 var app = express();
 
 // view engine setup
@@ -51,6 +52,8 @@ app.use('/produtoxml', novoProdutoXML);
 app.use('/salvarProdutos', salvarProdutos);
 app.use('/saidaproduto', saidaProdutos);
 app.use('/atualizarEstoque', atualizarEstoque);
+
+
 
 
 
