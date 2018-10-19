@@ -9,6 +9,7 @@ var session = require('express-session');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const newRouter = require('./routes/new');
+const homeRouter = require('./routes/home');
 const novoProduto = require('./routes/novoproduto');
 const novoFornecedor = require('./routes/novofornecedor');
 const novoProdutoXML = require('./routes/produtoxml');
@@ -43,6 +44,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/new', newRouter);
+app.use('/home', homeRouter);
 app.use('/novoproduto', novoProduto);
 app.use('/novofornecedor', novoFornecedor);
 app.use('/produtoxml', novoProdutoXML);
