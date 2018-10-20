@@ -42,7 +42,7 @@
 </li>
 <li> <a href="#">Relatórios </a></li>
  <li> <a href="#">Lucro </a></li>
-<li> <a href="#"> Sair </a></li>
+<li> <button type="button" id="btnSair">Sair</button>></li>
 
 
 </ul>
@@ -92,6 +92,17 @@ Olá, <p> <%= usuario %></p>
 
 
 </body>
+<script>
+
+    $(document).ready(function(){
+
+        $('#btnSair').click(function(){
+            window.location.href = '/sair';
+        });
+
+    });
+
+</script>
 
 </html>
 

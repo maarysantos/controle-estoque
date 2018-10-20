@@ -13,4 +13,11 @@ var router = express.Router();
     }
       });
 
+      router.get('/sair', function(req, res){
+        req.session.destroy(function(err){
+          res.render('/');
+      });
+
+      });;
+
       module.exports=router;
