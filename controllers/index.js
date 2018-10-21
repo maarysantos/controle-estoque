@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 var usuarioModel= require('../models/usuarioModel');
 
 module.exports.post = (req, res, next) => {

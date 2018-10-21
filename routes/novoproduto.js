@@ -5,12 +5,15 @@ var db = require('../db');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  var connection = db();
-  connection.query("SELECT nm_tipo_embalagem FROM tipo_embalagem", function(error, result){
-      res.render('novoproduto', { tipo_embalagem : result });
-   
-      
-  });
+    if (req.session.autorizado){ 
+        var usuario = req.session.nome; 
+        var connection = db();
+        connection.query("SELECT nm_tipo_embalagem FROM tipo_embalagem", function(error, result){
+            res.render('novoproduto', {usuario : usuario, tipo_embalagem:result});
+        });
+    } else{
+      res.redirect('/');
+      }
 });
 
 router.post('/', function(req, res) {
