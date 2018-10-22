@@ -25,10 +25,8 @@ module.exports.post = (req, res, next) => {
 }
 
 /* ======Produto XML ===============*/
-
 module.exports.carregarNotaXML = (req, res, next) =>{
     var parser       = new xml2js.Parser();
-
     parser.parseString(data.substring(0, data.length), function(err, result){
       if(!err){
           var [ notaFiscal ] = result.nfeProc.NFe;
@@ -52,7 +50,7 @@ module.exports.carregarNotaXML = (req, res, next) =>{
     
         if (req.session.autorizado){ 
             var usuario = req.session.nome; 
-            res.render('produtoxml', {produtos : [] });           
+            res.render('produtoxml', {produtos : [] });            
         } else{
           res.redirect('/');
           }

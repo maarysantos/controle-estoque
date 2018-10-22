@@ -17,8 +17,8 @@ const storage = multer.diskStorage({
 var upload = multer({storage});
 
 
-router.get('/', controller.carregarPagProduto);
-router.post('/', controller.post);
+router.get('/produto/novoproduto', controller.carregarPagProduto);
+router.post('/produto/novoproduto', controller.post);
 
 router.post('/', upload.single('upXml'), function(req, res, next) {
 
@@ -32,7 +32,7 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
   }); 
   });
 
-  router.get('/', controller.carregarPagProdutoXML); 
+  router.get('/produto/produtoxml', controller.carregarPagProdutoXML); 
 
     
 
