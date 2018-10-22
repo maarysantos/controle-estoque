@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../db');
+var controller = require('../controllers/produto');
+
 var fs           = require('fs');
 var xml2js       = require('xml2js');
 var multer  = require('multer');
@@ -13,6 +16,10 @@ const storage = multer.diskStorage({
 });
 var upload = multer({storage});
 
+
+router.get('/', controller.carregarPagProduto);
+router.post('/', controller.post);
+
 router.post('/', upload.single('upXml'), function(req, res, next) {
 
   var fileDate = 'uploads/'+ req.file.filename;
@@ -20,34 +27,14 @@ router.post('/', upload.single('upXml'), function(req, res, next) {
     if (err){ 
       throw err;}
     else{
-    var parser       = new xml2js.Parser();
-
-    parser.parseString(data.substring(0, data.length), function(err, result){
-      if(!err){
-          var [ notaFiscal ] = result.nfeProc.NFe;
-          var [ informacao ] = notaFiscal.infNFe;
-          var produtos=[];
-          informacao.det.forEach(i => {
-            var [prod] = i.prod;
-            produtos.push(prod);
-          });
-          res.render('produtoxml', {produtos : produtos});
-      }else{
-          console.error(err);
-      }
-
-
-    });
+      controller.carregarNotaXML;
   };
   }); 
   });
 
+  router.get('/', controller.carregarPagProdutoXML); 
 
-router.get('/', function(req, res, next) {
-
-  res.render('produtoxml', {produtos : [] });
-});
+    
 
 
-
-module.exports = router;
+  module.exports = router;
