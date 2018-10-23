@@ -12,7 +12,6 @@ const newRouter = require('./routes/new');
 const homeRouter = require('./routes/home');
 
 const Produto = require('./routes/produto');
-app.use('/produto', Produto);
 
 
 const novoFornecedor = require('./routes/novofornecedor');
@@ -53,6 +52,9 @@ app.use('/novofornecedor', novoFornecedor);
 app.use('/salvarProdutos', salvarProdutos);
 app.use('/saidaproduto', saidaProdutos);
 app.use('/atualizarEstoque', atualizarEstoque);
+
+app.use('/produto', Produto);
+
 
 
 

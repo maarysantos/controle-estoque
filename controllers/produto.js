@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var xml2js       = require('xml2js');
+var fs           = require('fs');
+
 
 
 var produtoModel= require('../models/produtoModel');
@@ -24,8 +27,13 @@ module.exports.post = (req, res, next) => {
     produtoModel.inserirProduto (formproduto, req, res);
 }
 
-/* ======Produto XML ===============*/
-module.exports.carregarNotaXML = (req, res, next) =>{
+/* ===========================Produto XML =========================================*/
+module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
+    fs.readFile(fileDate,'utf-8', (err, data) => {
+        if (err){ 
+          throw err;}
+        else{
+   
     var parser       = new xml2js.Parser();
     parser.parseString(data.substring(0, data.length), function(err, result){
       if(!err){
@@ -36,16 +44,18 @@ module.exports.carregarNotaXML = (req, res, next) =>{
             var [prod] = i.prod;
             produtos.push(prod);
           });
-          res.render('produtoxml', {produtos : produtos});
+
+          res.render('/produtoxml', {produtos : produtos});
       }else{
           console.error(err);
       }
 
-
+   
     });
 
     }
-    
+});
+}
     module.exports.carregarPagProdutoXML = (req, res, next) =>{
     
         if (req.session.autorizado){ 
@@ -53,5 +63,5 @@ module.exports.carregarNotaXML = (req, res, next) =>{
             res.render('produtoxml', {produtos : [] });            
         } else{
           res.redirect('/');
-          }
-        }
+          };
+        };
