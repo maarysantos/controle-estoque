@@ -45,7 +45,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
             produtos.push(prod);
           });
 
-          res.render('/produtoxml', {produtos : produtos});
+          res.render('produtoxml', {produtos : produtos});
       }else{
           console.error(err);
       }
