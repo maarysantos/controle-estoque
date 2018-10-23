@@ -53,7 +53,7 @@ app.use('/salvarProdutos', salvarProdutos);
 app.use('/saidaproduto', saidaProdutos);
 app.use('/atualizarEstoque', atualizarEstoque);
 
-app.use('/produto', Produto);
+app.use(Produto);
 
 
 
