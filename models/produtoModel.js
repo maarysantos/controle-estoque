@@ -20,7 +20,7 @@ module.exports.inserirProduto = (formproduto, req, res) =>{
         if(err){
             console.error(err);
         }else{
-            res.redirect('novoproduto')
+            res.redirect('/novoproduto')
         }
     });
   
@@ -43,37 +43,38 @@ module.exports.buscadorTypeAhead = (key, req, res) =>{
 
 };
     
-    module.exports.atualizarEstoque = (formvenda, codigo, quantidade, req, res) =>{ 
-            var connection = db();
+module.exports.atualizarEstoque = (formvenda, codigo, quantidade, req, res) =>{ 
+     var connection = db();
 
-            connection.query("SELECT qt_produto from estoque where cd_produto ="+codigo+"", function(error, result) {
-                if (error){ console.log(error);} else{
+    connection.query("SELECT qt_produto from estoque where cd_produto ="+codigo+"", function(error, result) {
+    if (error){ console.log(error);} else{
             
-                var qt_produto = result[0].qt_produto;
-                var res = qt_produto - quantidade;
+    var qt_produto = result[0].qt_produto;
+    var res = qt_produto - quantidade;
+    
             
-                if(res>=0){
+    if(res>=0){
                 
-                connection.query('UPDATE estoque SET qt_produto = ? WHERE cd_produto = ?', [res, codigo], function (error, results, fields) {
-                    if (error) throw error;
+    connection.query('UPDATE estoque SET qt_produto = ? WHERE cd_produto = ?', [res, codigo], function (error, results, fields) {
+    if (error) throw error;
                   
-                  });
+    });
             
-                  connection.query("INSERT into saida_produto set ?",formvenda
-                  ,function(error, result) {
-                       if (error) throw error;
+    connection.query("INSERT into saida_produto set ?",formvenda,function(error, result) {
+    if (error) throw error;
             
-                  });
+   });
               
-                }else{
+    }else{
             
-                res.render('saidaproduto', { msg: 'Não há produtos disponiveís no estoque' }, function(err, html){
-                    if(err)throw err;
+     /* res.render('saidaproduto', { msg: 'Não há produtos disponiveís no estoque' }, function(err, html){
+    if(err)throw err;
                        
-                      })
-                                 }                   
-                }
-                                            });
+    })*/
+   console.log('Não há produtos disponíveis no estoque')
+    }                   
+    }
+     });
                                             
                                        
             
