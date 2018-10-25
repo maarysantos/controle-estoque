@@ -54,8 +54,6 @@
 <button type="submit">Ler</button>
 </form>
 
-<label for="dt_entrada"> da compra:</label>
- <input id="dt_entrada" type="date"/>
 
 
 <form id="form" method="POST" action="/salvarProdutos" >
@@ -91,7 +89,7 @@
                 <input name="qt_produto[<%- i -%>]"  type="hidden"  value = "<%= produtos[i].qCom %>"/>
                 <input name="vl_unitario[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vUnCom %>" />
                 <input name="vl_total[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vProd %>" />
-                <input name="Tipo_Embalagem_nm_tipo_embalagem[<%- i -%>]"   type="hidden" value = "<%= produtos[i].uCom %>" />
+                <input name="tipo_embalagem_nm_tipo_embalagem[<%- i -%>]"   type="hidden" value = "<%= produtos[i].uCom %>" />
 
               </td>
               <td> <%= produtos[i].cProd %> </td>

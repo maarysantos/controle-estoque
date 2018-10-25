@@ -14,9 +14,12 @@ const storage = multer.diskStorage({
 });
 var upload = multer({storage});
 
+  /*=================Rotas página novoProduto ===============*/
 
-router.get('/novoproduto', controller.carregarPagProduto);
+router.get('/novoproduto', controller.carregaPagNovoProduto);
 router.post('/novoproduto', controller.post);
+
+/*============Rotas página Produto Xml ==================*/
 
 router.post('/produtoxml', upload.single('upXml'), function(req, res, next) {
 
@@ -26,6 +29,13 @@ router.post('/produtoxml', upload.single('upXml'), function(req, res, next) {
   });
 
   router.get('/produtoxml', controller.carregarPagProdutoXML); 
+  router.post('/salvarProdutos', controller.salvarProdutosNota); 
+
+  /*=================Rotas Saída de Produto ===============*/
+
+  router.get('/saidaproduto', controller.carregarPagSaidaProduto);
+  router.get('/saidaproduto/search', controller.carregaTypeAhead );
+  router.post('/atualizarEstoque', controller.atualizarEstoque);
 
     
 
