@@ -173,3 +173,11 @@ module.exports.atualizarEstoque = (req, res, next) =>{
 
     produtoModel.atualizarEstoque(formvenda,codigo, quantidade, req, res);
 }
+
+module.exports.getNovoFornecedor = (req, res, next) =>{
+    if (req.session.autorizado){ 
+        res.redirect('/novofornecedor');
+    } else{
+      res.redirect('/');
+      }
+    }

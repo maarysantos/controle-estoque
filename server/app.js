@@ -7,17 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const newRouter = require('./routes/new');
 const homeRouter = require('./routes/home');
-
 const Produto = require('./routes/produto');
-
-
-const novoFornecedor = require('./routes/novofornecedor');
-
-
-
+const novoFornecedor = require('./routes/fornecedor');
 
 var app = express();
 
@@ -25,13 +17,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 //Middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/../public')));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(session({
   secret:'abcdfefejeg',
@@ -42,22 +33,9 @@ app.use(session({
 
 /*Rotas*/
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/new', newRouter);
 app.use('/home', homeRouter);
 app.use('/novofornecedor', novoFornecedor);
-
-
 app.use(Produto);
-
-
-
-
-
-
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
