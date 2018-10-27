@@ -1,4 +1,4 @@
-insert into tipo_embalagem values 
+insert into tipo_embalagem values
 ('UN'),
 ('PC'),
 ('CA'),

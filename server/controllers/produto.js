@@ -8,7 +8,7 @@ var produtoModel= require('../models/produtoModel');
 /*======== Novo Produto ========*/
 module.exports.carregaPagNovoProduto = (req, res, next) =>{
     var usuario = req.session.nome; 
-    produtoModel.carregaTiposdeEmbalagem(usuario, req, res, next);
+    produtoModel.getPagNovoProduto(usuario, req, res, next);
 
 }
 

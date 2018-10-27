@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `estoque`.`estoque` (
   `vl_unitario` DECIMAL(10,2) NOT NULL,
   `vl_total` DECIMAL(10,2) NOT NULL,
   `tipo_embalagem_nm_tipo_embalagem` VARCHAR(100) NOT NULL,
-  INDEX `fk_Estoque_Tipo_Embalagem_idx` (`tipo_embalagem_nm_tipo_embalagem` ASC),
   PRIMARY KEY (`cd_produto`),
-  CONSTRAINT `fk_Estoque_Tipo_Embalagem`
+  INDEX `fk_estoque_tipo_embalagem1_idx` (`tipo_embalagem_nm_tipo_embalagem` ASC),
+  CONSTRAINT `fk_estoque_tipo_embalagem1`
     FOREIGN KEY (`tipo_embalagem_nm_tipo_embalagem`)
     REFERENCES `estoque`.`tipo_embalagem` (`nm_tipo_embalagem`)
     ON DELETE NO ACTION

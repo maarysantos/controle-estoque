@@ -54,13 +54,17 @@ p.legenda{background-color:#09C; color:white; text-align:center;}
 p.legenda a:hover{}
 .img_menu{float:left; margin-left:25px; margin-bottom:25px; }
 
-.item{width:100px; height:100px;}
+.item{width:100px; 
+	height:100px;
+background-position: center;
+background-repeat: no-repeat;}
 
-#item_new{background-image:url(../imagens/icon-new.png); background-position:center;background-size:cover;}
-#item_entrada{background-image:url(../imagens/icon-entrada.png); background-position:center;}
-#item_saida{background-image:url(../imagens/icon-saida.png) ;background-position:center;}
-#item_fornecedor{background-image:url(../imagens/icon-fornecedor.png); background-position:center;background-size:cover;}
-#item_relatorio{background-image:url(../imagens/icon-relatorio.png); background-position:center; background-repeat:no-repeat; background-size:cover;}
+#item_new{background-image:url(../imagens/icon-new.png); 
+}
+#item_entrada{background-image:url(../imagens/icon-entrada.png);}
+#item_saida{background-image:url(../imagens/icon-saida.png) ;}
+#item_fornecedor{background-image:url(../imagens/icon-fornecedor.png); }
+#item_relatorio{background-image:url(../imagens/icon-relatorio.png); }
 
 
 
