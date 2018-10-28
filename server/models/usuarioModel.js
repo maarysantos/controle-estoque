@@ -19,3 +19,13 @@ module.exports.validarUsuario = (nome, senha ,req, res) => {
 
   });
 };
+
+/*
+<i class="fas fa-home"></i>home
+<i class="fas fa-times"></i> sair
+<i class="fas fa-truck"></i> --- fornecedor
+<i class="fas fa-tag"></i> -- tag -- new produto
+<i class="fas fa-shopping-bag"></i> -- saida produto
+<i class="far fa-clipboard"></i> - relatorios
+lucro <i class="fas fa-dollar-sign"></i>
+*/

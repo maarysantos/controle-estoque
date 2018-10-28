@@ -21,5 +21,8 @@
     "typeahead.js": "^0.11.1",
     "xml-parser": "^1.2.1",
     "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.4.2"
   }
 }
