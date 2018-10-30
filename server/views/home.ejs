@@ -10,48 +10,7 @@
 </head>
 
 <body> 
-<header>
-<div id="logo" class="espacamento"></div>
-
-
-<nav class="menu_principal">
-
-<ul>
-
-<li> <a href="home">Início</a></li>
-<li> <a href="">Produtos</a>
-    <ul>
-       <li><a href="novoproduto"> Novo Produto </li>
-       <li><a href="entradasaida"> Entrada de Produto </li>
-       <li><a href="entradasaida"> Saída de Produto </li>
-
-       <li><a href="editarproduto"> Editar Produto </li>
-
-    </ul>
-</li>
-
-<li> <a href="#">Estoque </a></li>
-<li> <a href="#">Fornecedores </a>
-     <ul>
-       <li><a href="novofornecedor"> Novo Fornecedor</a> </li>
-       <li><a href="#"> Lista de Fornecedores</a> </li>
-       <li><a href="#"> Pesquisar Fornecedor</a> </li>
-       <li><a href="#"> Editar Fornecedor</li>
-
-    </ul>
-</li>
-<li> <a href="#">Relatórios </a></li>
- <li> <a href="#">Lucro </a></li>
-<li> <button type="button" id="btnSair">Sair</button>></li>
-
-
-</ul>
-Olá, <p> <%= usuario %></p>
-</nav>
-
-<div class="clear"></div>
-</header>
-
+    <%- include ('menu'); -%>
 <article> 
 <h1> Menu Rápido </h1>
 
