@@ -10,47 +10,68 @@
 <link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/forms.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/menu.css" rel="stylesheet" type="text/css">
+
 
 <title>Novo Fornecedor</title>
 </head>
 
 <body>
-<header>
-<div id="logo" class="espacamento"></div>
+  <aside>
+    <nav class="menu_principal">
+      <ul>
+        <li><a href="home"> <i class="fas fa-home"></i> Início</a></li>
+        <li> <a href=""> <i class="fas fa-tag"></i> Produtos</a>
+          <ul>
+            <li><a href="novoproduto"> Novo Produto </li>
+            <li><a href="entradasaida"> Adicionar nota XML </li>
+            <li><a href="entradasaida"> Saída de Produto </li>
+            <li><a href="editarproduto"> Editar Produto </li>
+          </ul>
+        </li>
+        <li> <a href="#"> <i class="fas fa-truck"></i> Fornecedores </a>
+          <ul>
+            <li><a href="novofornecedor"> Novo Fornecedor</a> </li>
+            <li><a href="#"> Editar Fornecedor</a> </li>
+            <li><a href="#"> Pesquisar Fornecedor</a> </li>
+            <li><a href="#"> Lista de Fornecedores </a> </li>
+          </ul>
+        </li>
+        <li> <a href="#"> <i class="far fa-clipboard"></i> Estoque </a>
+          <ul>
+            <li><a href=""> Produtos sem estoque </a> </li>
+            <li><a href="#"> Mais Vendidos </a> </li>
+            <li><a href="#"> Menos Vendidos </a> </li>
+            <li><a href="#"> Produtos Comprados </a> </li>
+          </ul>
+        </li>
+        <li> <a href="#"> <i class="fas fa-dollar-sign"></i>Lucro </a>
+          <ul>
+            <li><a href="#"> Por mês </a> </li>
+            <li><a href="#"> Por Semana </a> </li>
+            <li><a href="#"> Por Ano </a> </li>
+          </ul>
+        </li>
+        <li> <a href="#"><i class="fas fa-wallet"></i> Despesas </a>
+          <ul>
+            <li><a href="#"> Loja</a> </li>
+            <li><a href="#"> Pessoais </a> </li>
+          </ul>
+        </li>
+        <li>
+          <button type="button" id="btnSair"> Sair</button>
+          <i class="fas fa-times"></i> </li>
+      </ul>
+    </nav>
+  </aside>
+  <div id="barraIdentificacao">
+    <div id="logo"></div>
+    <div id="conteudoId"> Olá <b><span id="lblLogado"> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
+      <button type="button" id="btnSair"> Sair</button>
+    </div>
+  </div>
 
-
-<nav class="menu_principal">
-
-<ul>
-
-<li> <a href="">Produtos </a>
-    <ul>
-       <li><a href="novoproduto.html"> Novo Produto </li>
-       <li><a href="#"> Entrada de Produto </li>
-       <li><a href="#"> Saída de Produto </li>
-    </ul>
-</li>
-
-<li> <a href="#">Estoque </a></li>
-<li> <a href="#">Fornecedores </a>
-     <ul>
-       <li><a href="#"> Novo Fornecedor</a> </li>
-       <li><a href="#"> Lista de Fornecedores</a> </li>
-       <li><a href="#"> Pesquisar Fornecedor</a> </li>
-    </ul>
-</li>
-<li> <a href="#">Lucro </a></li>
-<li> <a href="#">Sair </a></li>
-
-
-</ul>
-
-</nav>
-
-<div class="clear"></div>
-</header>
-
-<article>
+<div id="conteudo">
 <h1> Novo Fornecedor</h1>
 
 <form id="form" method="post">
@@ -187,6 +208,6 @@
     </div>
   </div>
 </form>
-</article>
+</div>
 </body>
 </html>

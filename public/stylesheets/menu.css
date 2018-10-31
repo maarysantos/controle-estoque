@@ -1,20 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 
-/* RESET */
 
-*, body {
-	margin: 0;
-	padding: 0;
-	font-family: 'Raleway', sans-serif;
-}
-a {
-	text-decoration: none;
-	color: #fff;
-}
-ul li {
-	list-style: none;
-}
+
 aside {
 	position: fixed;
 	top: 0;
@@ -22,7 +10,7 @@ aside {
 	width: 160px;
 	font-size: 14px;
 	height: 100%;
-	background-color: rgb(90, 47, 101) /*OU #11143B*/;
+	background-color:  #7c418b/* rgb(90, 47, 101) OU #11143B*/;
 	z-index: 1;
 	padding-top: 57px;
 	box-sizing:content-box;
@@ -45,7 +33,7 @@ aside {
 	
 }
 .menu_principal ul li a:hover {
-	background-color: #FD5286;
+	/*background-color: #FD5286;*/
 	transition: 2s;
 	text-decoration: none;
 	color: white;
@@ -56,7 +44,7 @@ aside {
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: rgb(90, 47, 101);
+	background-color:#7c418b;
 	color: #fff;
 	z-index: 2;
 	min-height: 57px;
@@ -66,3 +54,6 @@ aside {
 	padding: 10px;
 	text-align: right;
 }
+
+.fas:hover{color: #C82C64; background-color:white}
+#btnSair{background-color:#7c418b; border:none; color:white; font-size:14px; cursor:pointer;}
