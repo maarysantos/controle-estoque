@@ -88,7 +88,9 @@ transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;}
   
  
 
-#custom-templates{ width:40%; float:left;}
+#custom-templates{ width:40%; float:left; margin:20px;}
+#custom-templates-editar{  margin:20px;}
+
 #result{width:50%; border:1px solid #999; border-radius:5px; float:right; padding: 10px; }
 
 .typeahead {

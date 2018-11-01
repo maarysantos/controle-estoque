@@ -36,7 +36,10 @@ router.post('/produtoxml', upload.single('upXml'), function(req, res, next) {
   router.get('/saidaproduto/search', controller.carregaTypeAhead );
   router.post('/atualizarEstoque', controller.atualizarEstoque);
 
-    
+  router.get('/editarproduto', controller.carregarEditarProduto);
+  router.get('/editarproduto/search', controller.carregaTypeAhead );
+
+
 
 
   module.exports = router;

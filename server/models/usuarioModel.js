@@ -11,7 +11,7 @@ module.exports.validarUsuario = (nome, senha ,req, res) => {
     if (result[0] != undefined ){
       req.session.autorizado = true;
       req.session.nome= result[0].nm_usuario;
-      res.redirect('home');
+      res.render('home', {usuario: req.session.nome});
     }
     else{
       res.redirect('/')

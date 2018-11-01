@@ -181,3 +181,13 @@ module.exports.getNovoFornecedor = (req, res, next) =>{
       res.redirect('/');
       }
     }
+
+    module.exports.carregarEditarProduto = (req, res, next) =>{
+    
+        if (req.session.autorizado){ 
+            var usuario = req.session.nome; 
+            res.render('editarproduto', {usuario: usuario});            
+        } else{
+          res.redirect('/');
+          };
+        };

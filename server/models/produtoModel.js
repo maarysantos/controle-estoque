@@ -27,6 +27,7 @@ var connection = db();
   
 }
 
+
 module.exports.buscadorTypeAhead = (key, req, res) =>{
   var connection = db();
   connection.query('SELECT * from estoque where cd_produto like "%'+key+'%" or ds_produto like "%'+key+'%"',
@@ -35,8 +36,8 @@ module.exports.buscadorTypeAhead = (key, req, res) =>{
     var data=[];
     for(i=0;i<rows.length;i++){
             
-      let { cd_produto, ds_produto,qt_produto, vl_unitario} = rows[i];
-      data.push({ cd_produto, ds_produto,  qt_produto, vl_unitario });
+      let { cd_produto,cd_ncm, ds_produto,qt_produto, vl_unitario, vl_total, tipo_embalagem_nm_tipo_embalagem} = rows[i];
+      data.push({ cd_produto,cd_ncm, ds_produto,qt_produto, vl_unitario, vl_total, tipo_embalagem_nm_tipo_embalagem});
 
     }
       res.end(JSON.stringify(data));
