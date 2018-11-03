@@ -50,7 +50,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
     
         if (req.session.autorizado){ 
             var usuario = req.session.nome; 
-            res.render('produtoxml', {produtos : [] });            
+            res.render('produtoxml', {produtos : [], usuario:usuario });            
         } else{
           res.redirect('/');
           };
@@ -155,7 +155,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
 module.exports.carregarPagSaidaProduto = (req, res, next) =>{
      if (req.session.autorizado){ 
             var usuario = req.session.nome; 
-            res.render('saidaproduto');            
+            res.render('saidaproduto', {usuario:usuario});            
                 } else{
             res.redirect('/');
                   };
@@ -176,7 +176,7 @@ module.exports.atualizarEstoque = (req, res, next) =>{
 
 module.exports.getNovoFornecedor = (req, res, next) =>{
     if (req.session.autorizado){ 
-        res.redirect('/novofornecedor');
+        res.render('novofornecedor', {usuario:usuario});
     } else{
       res.redirect('/');
       }

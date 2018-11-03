@@ -11,121 +11,148 @@
 	height: 100%;
     font-size:13px
 }
+
 #conteudoBarraMenu {
 	padding: 10px;
 	padding-top: 57px;
 	color: #fff;
 }
+
 #conteudoBarraMenu ul {
 	margin: 0;
 	padding: 0;
     width:100%;
 	list-style-type: none;
 }
+
 #conteudoBarraMenu ul li a {
 	padding: 10.5px 11px;
 	display: block;
 	border-radius: 5px;
 }
+
 .submenu {
 	background-color: #363635;
 	border-radius: 4px;
 	padding: 20px;
 }
+
 .subitem {
 	font-size: 11px;
 	margin-left: 20px;
 }
+
 a.lnkSubItem {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkSubItem:hover {
 	text-decoration: underline;
 	color: #fff;
 }
+
 a.lnkSubItem:visited {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkSubItem>active {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkBranco {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkBranco:hover {
 	text-decoration: none;
 	color: #fff;
 	background-color: #C82C64;
 }
+
 a.lnkBranco:visited {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkBranco:active {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkBrancoSimples {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkBrancoSimples:hover {
 	text-decoration: underline;
 	color: #fff;
 }
+
 a.lnkBrancoSimples:visited {
 	text-decoration: none;
 	color: #fff;
 }
+
 a.lnkBrancoSimples:active {
 	text-decoration: none;
 	color: #fff;
 }
+
 .titulo {
 	color: #137ed0;
 	font-weight: bold;
 	font-size: 18px;
 	text-transform: uppercase;
 }
+
 a.lnkGeral {
 	text-decoration: none;
 	color: #2c286c;
 }
+
 a.lnkGeral:hover {
 	text-decoration: none;
 	color: #2c286c;
 }
+
 a.lnkGeral:visited {
 	text-decoration: none;
 	color: #2c286c;
 }
+
 a.lnkGeral:active {
 	text-decoration: none;
 	color: #2c286c;
 }
+
 #barraSubMenu {
 	background-color: #000;
 	min-height: 56px;
 }
+
 #conteudoBarraSubMenu {
 	padding: 10px;
 	color: #fff;
 	float: left;
 }
+
 #conteudoBarraSubMenu ul {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	list-style-type: none;
 }
+
 #conteudoBarraSubMenu ul li {
 	float: left;
 	padding-right: 10px;
 }
+
 #conteudoBarraSubMenu ul li a {
 	text-decoration: none;
 	padding: 10.5px 11px;
@@ -144,12 +171,18 @@ a.lnkGeral:active {
 	z-index: 2;
 	min-height: 57px;
 }
+
 #conteudoId {
 	margin-top: 10px;
 	padding: 10px;
 	text-align: right;
 }
 
-.fas:hover{color: #C82C64; background-color:white}
-#btnSair{background-color:#7c418b; border:none; color:white; font-size:14px; cursor:pointer;}
-#btnSair:hover{background:  #C82C64;}
+#btnSair{
+	background-color:#000; 
+	border:none; 
+	color:#fff; 
+	cursor:pointer;
+}
+
+#btnSair:hover{background:  #C82C64; border-radius:3px;}

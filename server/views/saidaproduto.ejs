@@ -4,67 +4,78 @@
      <html lang="en"></html>
       <meta charset="utf-8">
       <title>Saída Produto</title>
+      <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
       <link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
       <link href="/stylesheets/forms.css" rel="stylesheet" type="text/css">
       <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
       <link href="/stylesheets/menu.css" rel="stylesheet" type="text/css">
-
       <script  type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
-
-
       <script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
+      <script type="text/javascript" src="/javascripts/script.js"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+
    </head>
    <body>
-    <aside>
-        <nav class="menu_principal">
-          <ul>
-            <li><a href="home"> <i class="fas fa-home"></i> Início</a></li>
-            <li> <a href=""> <i class="fas fa-tag"></i> Produtos</a>
-              <ul>
-                <li><a href="novoproduto"> Novo Produto </li>
-                <li><a href="entradasaida"> Adicionar nota XML </li>
-                <li><a href="entradasaida"> Saída de Produto </li>
-                <li><a href="editarproduto"> Editar Produto </li>
-              </ul>
-            </li>
-            <li> <a href="#"> <i class="fas fa-truck"></i> Fornecedores </a>
-              <ul>
-                <li><a href="novofornecedor"> Novo Fornecedor</a> </li>
-                <li><a href="#"> Editar Fornecedor</a> </li>
-                <li><a href="#"> Pesquisar Fornecedor</a> </li>
-                <li><a href="#"> Lista de Fornecedores </a> </li>
-              </ul>
-            </li>
-            <li> <a href="#"> <i class="far fa-clipboard"></i> Estoque </a>
-              <ul>
-                <li><a href=""> Produtos sem estoque </a> </li>
-                <li><a href="#"> Mais Vendidos </a> </li>
-                <li><a href="#"> Menos Vendidos </a> </li>
-                <li><a href="#"> Produtos Comprados </a> </li>
-              </ul>
-            </li>
-            <li> <a href="#"> <i class="fas fa-dollar-sign"></i>Lucro </a>
-              <ul>
-                <li><a href="#"> Por mês </a> </li>
-                <li><a href="#"> Por Semana </a> </li>
-                <li><a href="#"> Por Ano </a> </li>
-              </ul>
-            </li>
-            <li> <a href="#"><i class="fas fa-wallet"></i> Despesas </a>
-              <ul>
-                <li><a href="#"> Loja</a> </li>
-                <li><a href="#"> Pessoais </a> </li>
-              </ul>
-            </li>
-            <li>
-              <button type="button" id="btnSair"> Sair</button>
-              <i class="fas fa-times"></i> </li>
-          </ul>
-        </nav>
-      </aside>
+    <aside id="barraMenu">
+      <nav id="conteudoBarraMenu">
+        <ul>
+          <li><a href="home" class="lnkBranco"><i class="fas fa-home"></i></i>&nbsp;Home</a></li>
+    
+          <li>
+            <a id="itemConf1" href="" class="lnkBranco"><i class="fas fa-tag"></i>&nbsp;Produtos</a>
+            <ul class="lstSubMenu1 submenu" >
+              <li><a href="novoproduto" class="lnkSubItem subitem" > Novo Produto</a> </li>
+              <li><a href="produtoxml" class="lnkSubItem subitem" > Adicionar nota XML</a> </li>
+              <li><a href="saidaproduto" class="lnkSubItem subitem" > Saída de Produto </a> </li>
+              <li><a href="editarproduto" class="lnkSubItem subitem" > Editar Produto </a> </li>
+            </ul>
+          </li>
+    
+          <li>
+            <a id="itemConf2" href="" class="lnkBranco"><i class="fas fa-truck"></i></i>&nbsp;Fornecedores</a>
+            <ul class="lstSubMenu2 submenu" >
+              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Editar Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Pesquisar Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Lista de Fornecedores </a> </li>
+            </ul>
+          </li>
+    
+          <li>
+            <a id="itemConf3" href="" class="lnkBranco"><i class="far fa-clipboard"></i> &nbsp;Relatórios</a>
+            <ul class="lstSubMenu3 submenu" >
+              <li><a href="" class="lnkSubItem subitem" > Produtos sem estoque </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Mais Vendidos </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Menos Vendidos </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Produtos Comprados </a> </li>
+            </ul>
+          </li>
+          
+    
+          <li> 
+            <a id="itemConf4"  class="lnkBranco" href="#"> <i class="fas fa-dollar-sign"></i>&nbsp;Lucro </a>
+            <ul class="lstSubMenu4 submenu" >
+              <li><a href="#" class="lnkSubItem subitem" > Por mês </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Por Semana </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Por Ano </a> </li>
+            </ul>
+          </li>
+    
+          <li> 
+            <a id="itemConf5" href="#" class="lnkBranco"><i class="fas fa-wallet"></i> </i>&nbsp;Despesas</a>
+            <ul class="lstSubMenu5 submenu">
+              <li><a href="" class="lnkSubItem subitem">Loja</a></li>
+              <li><a href="" class="lnkSubItem subitem">Pessoais</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    
       <div id="barraIdentificacao">
         <div id="logo"></div>
-        <div id="conteudoId"> Olá <b><span id="lblLogado"> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
+        <div id="conteudoId"> Olá <b><span id="lblLogado"> <%= usuario %> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
           <button type="button" id="btnSair"> Sair</button>
         </div>
       </div>

@@ -19,6 +19,11 @@ $(document).ready(
         
          $("#itemConf5").click(function (e) { e.preventDefault();
         $(".lstSubMenu5").slideToggle(); });
+
+        $('#btnSair').click(function(){
+            window.location.href = '/sair';
+        });
+
     });
     
     

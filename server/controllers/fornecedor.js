@@ -5,7 +5,7 @@ var fornecedorModel = require('../models/fornecedorModel');
 module.exports.getNovoFornecedor = (req, res, next) => {
     if (req.session.autorizado){ 
         var usuario = req.session.nome; 
-        res.render('novofornecedor');            
+        res.render('novofornecedor', {usuario:usuario});            
     } else{
       res.render('index');
       };

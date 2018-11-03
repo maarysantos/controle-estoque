@@ -1,39 +1,56 @@
 @charset "utf-8";
 /* CSS Document */
-html{text-size-adjust: 100%;}
-body{padding-top:57px; padding-left:170px;}
-#conteudo{padding:20px; }
+html {
+	text-size-adjust: 100%;
+}
 
-h1{color:black;}
+body {
+	padding-top: 57px;
+	padding-left: 170px;
+}
 
-#conteudo_item_menu{
-	display:flex; 
-	 justify-content: center; 
-	 padding:10px;
-	margin-top:30px;}
+/*Div Central*/
+#conteudo {
+	padding: 20px;
+}
 
-.item{display:flex;
+h1 {
+	color: black;
+}
+
+#conteudo_item_menu {
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	margin-top: 30px;
+}
+
+.item {
+	display: flex;
 	flex-direction: column;
-	justify-content:center;
+	justify-content: center;
 	align-items: center;
-	width:100px; 
-	  height:100px;
-	  border: 1px solid #ccc;
-	margin:5px;
-	
-    border-radius:3px;
-    padding:3px;}
-figure img{width:50px; }
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ccc;
+	margin: 5px;
+	border-radius: 3px;
+	padding: 3px;
+}
 
-.item:hover{ -moz-transform: scale(1.1); 
-transform: scale(1.1);}
+figure img {
+	width: 50px;
+}
 
-.legenda{text-align:center;}
+.item:hover {
+	-moz-transform: scale(1.1);
+	transform: scale(1.1);
+}
 
-.legenda a {color:black; }
+.legenda {
+	text-align: center;
+}
 
-
-
-
-
-
+.legenda a {
+	color: black;
+}

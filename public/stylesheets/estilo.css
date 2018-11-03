@@ -1,127 +1,138 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-	body{
+body{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
-	
-  }
+	background:-moz-linear-gradient(#D97E62,#EF7B62 0%, #EE7763, #BA3A6B,#C43869,#8F3669,#903669,#713567,#262E55,#081235 90%);
+    background:-webkit-linear-gradient(#D97E62,#EF7B62 0%, #EE7763, #BA3A6B,#C43869,#8F3669,#903669,#713567,#262E55,#081235 90%);
+}
   
 /*Div principal*/
-	.content{  
+.content{  
 	 width:350px;
 	 height:300px; 
   	 border: 1px solid #EBEEEA;
 	 border-left:transparent;
      border-right:transparent;
-	}
+}
 
 
- /*alinha o formulario no centro da div
-*/	#formulario {
-
+ /*alinha o formulario no centro da div*/
+#formulario {
 	 text-align:center;
 	 transform:translateY(20%);
-
-		
-	}
+}
   
   
-	.inputText {width:210px;
-		   height:35px;
-		   border:none;
-		   border-radius:0 5px 5px 0;
-		   margin-top:15px;
-		   float:right;
-		   margin-right:45px;
-		   font-family: 'Raleway', sans-serif;
-		   font-size:11px;
-	}
+.inputText {width:210px;
+	 height:35px;
+	 border:none;
+	 border-radius:0 5px 5px 0;
+	 margin-top:15px;
+	 float:right;
+	 margin-right:45px;
+	 font-family: 'Raleway', sans-serif;
+	 font-size:11px;
+}
 	 
 	  
-	#icon-user{width:46px;
-			   height:35.5px;
-			   float:left;      
-			   margin-top:15px;
-			   border-radius:5px 0 0 5px;
-			   border:1px solid #fff;
-			   margin-left:45px;
-			   background-image:url(../imagens/user-small.png);
-			   background-position:center;
-			   background-repeat:no-repeat;
+#icon-user{
+	 width:46px;
+	 height:35.5px;
+	 float:left;      
+	 margin-top:15px;
+	 border-radius:5px 0 0 5px;
+	 border:1px solid #fff;
+	 margin-left:45px;
+	 background-image:url(../imagens/user-small.png);
+	 background-position:center;
+	 background-repeat:no-repeat;
 
-	}
+}
 	  
-	  #icon-password{
-				 width:46px;
-				 height:35.5px;
-				 float:left;      
-				  margin-top:15px;
-				 border-radius:5px 0 0 5px;
-				  border:1px solid #fff;
-				 margin-left:45px;
-				  background-image:url(../imagens/padlock2.png);
-				 background-repeat:no-repeat;
-				  background-position:center;
-				
-		  
-	  }
+#icon-password{
+	width:46px;
+	height:35.5px;
+	float:left;      
+	margin-top:15px;
+	border-radius:5px 0 0 5px;
+	border:1px solid #fff;
+	margin-left:45px;
+	background-image:url(../imagens/padlock2.png);
+	background-repeat:no-repeat;
+	background-position:center;
+}
 
-	   /*Estilização do checkbox utilizando um label
+/*Estilização do checkbox utilizando um label
 */
-			input[type=checkbox] + label{display: block;
-			  cursor: pointer;
-				  
-			}
+input[type=checkbox] + label{
+	display: block;
+	cursor: pointer;
+}
 			
-			input[type=checkbox]{
-		    display:none;
+input[type=checkbox]{
+	display:none;
 	
-		}
+}
 
-			input[type=checkbox] + label:before {
-			  content: "\2714";
-			  border: 0.1em solid #fff;
-			  border-radius: 0.2em;
-			  display: inline-block;
-			  width: 1em;
-			  height: 1em;
-			  padding-left: 0.2em;
-			  padding-bottom: 0.3em;
-			  margin-right: 0.2em;
-			  
-			  color: transparent;
-			  transition: .2s;
-			}
+input[type=checkbox] + label:before {
+	content: "\2714";
+	border: 0.1em solid #fff;
+	border-radius: 0.2em;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	padding-left: 0.2em;
+	padding-bottom: 0.3em;
+	margin-right: 0.2em;
+	color: transparent;
+	transition: .2s;
+}
 
+input[type=checkbox] + label:active:before{transform: scale (0)}
 
-			input[type=checkbox] + label:active:before{transform: scale (0)}
-			input[type=checkbox]:checked + label:before{background-color:transparent; color:#FD5286;}
+input[type=checkbox]:checked + label:before{
+	background-color:transparent;
+	color:#FD5286;
+}
 
-	 /*Botão*/ 
-	  #btnEntrar{width:260px;
-			 height:35px;
-			 border:none;
-			 border-radius:5px;
-			 cursor:pointer;
-			 margin-top:20px;
-			 background-color:#FD5286;
-			 color:#fff;
-
-		  }
+/*Botão*/ 
+#btnEntrar{
+	width:260px;
+	height:35px;
+	border:none;
+	border-radius:5px;
+	cursor:pointer;
+	margin-top:20px;
+	background-color:#FD5286;
+	color:#fff;
+}
 		  
-		  /*div da checklist e lembrar a senha*/
+/*div da checklist e lembrar a senha*/
 
-		.container-senha{ width:260px; margin:30px auto;}
-		#esquerda{float:left;  width:50%; font-size:13px;  text-align:left;}
-		#direita{float:right; width:50%;}
-		.lksenha {text-decoration:none;
-					font-style:italic; 
-					color:#fff;
-					font-size:13px;
-				   }
+.container-senha{
+	width:260px; 
+	margin:30px auto;
+}
+
+#esquerda{
+	float:left;  
+	width:50%; 
+	font-size:13px;  
+	text-align:left;
+}
+
+#direita{
+	float:right; 
+	width:50%;
+}
+
+.lksenha {
+	text-decoration:none;
+	font-style:italic; 
+	color:#fff;
+	font-size:13px;
+}
 				   
-		 body{background:-moz-linear-gradient(#D97E62,#EF7B62 0%, #EE7763, #BA3A6B,#C43869,#8F3669,#903669,#713567,#262E55,#081235 90%);
-   background:-webkit-linear-gradient(#D97E62,#EF7B62 0%, #EE7763, #BA3A6B,#C43869,#8F3669,#903669,#713567,#262E55,#081235 90%);
-		   }

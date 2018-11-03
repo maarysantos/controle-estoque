@@ -9,6 +9,8 @@
       <link href="/stylesheets/forms.css" rel="stylesheet" type="text/css">
       <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
       <link href="/stylesheets/menu.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
 
       <script  type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
       <script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
@@ -67,19 +69,13 @@
               <li><a href="" class="lnkSubItem subitem">Pessoais</a></li>
             </ul>
           </li>
-                      <li>
-                 <i class="fas fa-times"></i><button type="button" id="btnSair"> Sair</button>
-                </li>
-    
-         
-          
         </ul>
       </nav>
     </aside>
     
     <div id="barraIdentificacao">
       <div id="logo"></div>
-      <div id="conteudoId"> Olá <b><span id="lblLogado"> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
+      <div id="conteudoId"> Olá <b><span id="lblLogado"> <%= usuario %> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
         <button type="button" id="btnSair"> Sair</button>
       </div>
     </div>
