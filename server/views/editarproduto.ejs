@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+   <head>
+     
+      <meta charset="utf-8">
+      <title>Editar Produto</title>
+      <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+      <link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/forms.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/menu.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+
+      <script  type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
+      <script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
+
+   </head>
+   <body>
+    <aside id="barraMenu">
+      <nav id="conteudoBarraMenu">
+        <ul>
+          <li><a href="home" class="lnkBranco"><i class="fas fa-home"></i></i>&nbsp;Home</a></li>
+    
+          <li>
+            <a id="itemConf1" href="" class="lnkBranco"><i class="fas fa-tag"></i>&nbsp;Produtos</a>
+            <ul class="lstSubMenu1 submenu" >
+              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Produto</a> </li>
+              <li><a href="produtoxml" class="lnkSubItem subitem" > Adicionar nota XML</a> </li>
+              <li><a href="saidaproduto" class="lnkSubItem subitem" > Saída de Produto </a> </li>
+              <li><a href="editarproduto" class="lnkSubItem subitem" > Editar Produto </a> </li>
+            </ul>
+          </li>
+    
+          <li>
+            <a id="itemConf2" href="" class="lnkBranco"><i class="fas fa-truck"></i></i>&nbsp;Fornecedores</a>
+            <ul class="lstSubMenu2 submenu" >
+              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Editar Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Pesquisar Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Lista de Fornecedores </a> </li>
+            </ul>
+          </li>
+    
+          <li>
+            <a id="itemConf3" href="" class="lnkBranco"><i class="far fa-clipboard"></i> &nbsp;Relatórios</a>
+            <ul class="lstSubMenu3 submenu" >
+              <li><a href="" class="lnkSubItem subitem" > Produtos sem estoque </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Mais Vendidos </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Menos Vendidos </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Produtos Comprados </a> </li>
+            </ul>
+          </li>
+          
+    
+          <li> 
+            <a id="itemConf4"  class="lnkBranco" href="#"> <i class="fas fa-dollar-sign"></i>&nbsp;Lucro </a>
+            <ul class="lstSubMenu4 submenu" >
+              <li><a href="#" class="lnkSubItem subitem" > Por mês </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Por Semana </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Por Ano </a> </li>
+            </ul>
+          </li>
+    
+          <li> 
+            <a id="itemConf5" href="#" class="lnkBranco"><i class="fas fa-wallet"></i> </i>&nbsp;Despesas</a>
+            <ul class="lstSubMenu5 submenu">
+              <li><a href="" class="lnkSubItem subitem">Loja</a></li>
+              <li><a href="" class="lnkSubItem subitem">Pessoais</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    
+    <div id="barraIdentificacao">
+      <div id="logo"></div>
+      <div id="conteudoId"> Olá <b><span id="lblLogado"> <%= usuario %> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
+        <button type="button" id="btnSair"> Sair</button>
+      </div>
+    </div>
+
+    <div id="conteudo">
+      <h2> Editar Produto</h2>
+
+      <div id="custom-templates-editar">
+        <input type="text" id="search" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Entre com o código do produto ou descrição">
+      </div>
+
+       
+    <form id="form" method="post" action="/editarProduto">
+
+      <div class="form-row">
+        <div class="form-group  md-col-2" >
+          <label for="estoque_cd_produto">Código</label>
+          <input id="estoque_cd_produto" name="estoque_cd_produto" class="form-control"    />
+        </div>
+      </div>
+                
+      <div class="form-row">
+        <div class="form-group  md-col-2" >
+          <label for="cd_ncm">NCM </label>
+          <input id="cd_ncm" name="cd_ncm" class="form-control"    />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group  md-col-4">
+          <label for="ds_produto">Nome Produto </label>
+          <input id="ds_produto" class="form-control" name="ds_produto" />
+        </div>
+      </div>
+
+     <div class="form-row">
+        <div class="form-group md-col-2">
+          <label for="tipo_embalagem_nm_tipo_embalagem">Tipo Embalagem</label>
+          <input id="tipo_embalagem_nm_tipo_embalagem" class="form-control" name="tipo_embalagem_nm_tipo_embalagem" />
+        </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group md-col-2">
+        <label for="qt_produto">Quantidade</label>
+        <input id="qt_produto" name="qt_produto" type="number" class="form-control"/> 
+      </div>
+    </div>
+                  
+    <div class="form-row">
+      <div class="form-group md-col-2">
+        <label for="vl_unitario">Valor Unitário</label>
+        <input id="vl_unitario" name="vl_unitario" class="form-control"/> 
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group md-col-2">
+        <label for="vl_total">Valor Total</label>
+        <input id="vl_total"  name="vl_total" class="form-control"/>
+      </div>
+    </div>
+   
+    <div class="form-row">
+      <div class="form-group md-col-2">
+        <button id="btnAtualizar" type="submit"> Atualizar </button>   
+     </div>
+    </div>
+  </form>
+  </div>
+  </body>
+         
+</html>
+
+<script type="text/javascript">
+
+         
+            $(document).ready(function(){
+             
+                var registros = new Bloodhound({
+                  datumTokenizer: function(datum) {
+                    return Bloodhound.tokenizers.whitespace(datum.value);
+                  },
+                  queryTokenizer: Bloodhound.tokenizers.whitespace,
+                  remote: {
+                    wildcard: '%QUERY',
+                    url: '/editarproduto/search?key=%QUERY'
+                  }
+                });
+
+                $('#custom-templates-editar .typeahead').typeahead(null, {
+                  display: 'ds_produto',
+                  name:'produtos',
+                  identify: function(obj) { return obj.cd_produto; },
+                  templates: {
+                    suggestion: function(data){
+                          return '<p><strong>' + data.cd_produto + '</strong> - ' + data.ds_produto + '</p>';
+                    }
+                  },
+                  source: registros
+                }). bind('typeahead:selected', function(obj, datum, name) {
+                    var codigo = document.getElementById('estoque_cd_produto');
+                    var ncm = document.getElementById('cd_ncm');
+                    var descricao = document.getElementById('ds_produto');
+                    var quantidade = document.getElementById('qt_produto');
+                    var valor = document.getElementById('vl_unitario');
+                    var vltotal = document.getElementById('vl_total');
+                    var embalagem = document.getElementById('tipo_embalagem_nm_tipo_embalagem');
+
+                    
+                    codigo.value=datum.cd_produto;
+                    ncm.value = datum.cd_ncm;
+                    descricao.value=datum.ds_produto;
+                    quantidade.value=datum.qt_produto;
+                    valor.value =datum.vl_unitario;
+                    vltotal = datum.vl_total;
+                    embalagem.value=datum.tipo_embalagem_nm_tipo_embalagem;
+                });   
+
+         $(".lstSubMenu1").hide();
+         $(".lstSubMenu2").hide();
+          $(".lstSubMenu3").hide();
+           $(".lstSubMenu4").hide();
+            $(".lstSubMenu5").hide();
+        $("#itemConf1").click(function (e) { e.preventDefault();
+        $(".lstSubMenu1").slideToggle(); });
+        
+         $("#itemConf2").click(function (e) { e.preventDefault();
+        $(".lstSubMenu2").slideToggle(); });
+        
+         $("#itemConf3").click(function (e) { e.preventDefault();
+        $(".lstSubMenu3").slideToggle(); });
+        
+         $("#itemConf4").click(function (e) { e.preventDefault();
+        $(".lstSubMenu4").slideToggle(); });
+        
+         $("#itemConf5").click(function (e) { e.preventDefault();
+        $(".lstSubMenu5").slideToggle(); });    
+  });
+
+
+
+
+</script>
+
+          
+    
+
+
+           
+            

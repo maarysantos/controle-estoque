@@ -2,42 +2,46 @@
 /* CSS Document */
 .table thead th {
 	vertical-align: bottom;
-    border-right: 1px solid #ced4da;
+	border-right: 1px solid #ced4da;
 	border-bottom: 1px solid #ced4da;
-	color:#fff;
-	background-color:#FD5286;
-	  
+	color: #fff;
+	background-color: #FD5286;
 }
 
-.table tbody td{border-right: 1px solid #ced4da;
+.table tbody td {
+	border-right: 1px solid #ced4da;
 }
 
 .table td, .table th {
     padding: .50rem;
-    vertical-align: top;
- 
-	
+	vertical-align: top;
 }
+
 th {
-  
-    text-align: -internal-center;
+	text-align: -internal-center;
 }
 
 td, th {
-    display: table-cell;
-    vertical-align: inherit;
+	display: table-cell;
+	vertical-align: inherit;
 }
 
 .table {
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
+
 .table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-	border:1px solid #ced4da;
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 1rem;
+	border: 1px solid #ced4da;
 }
 
-td[scope=row]{background-color:#ced4da; color:#fff;}
+td[scope=row] {
+	background-color: #ced4da;
+	color: #fff;
+}
 
-#dt_entrada{width:inherit;}
+#dt_entrada {
+	width: inherit;
+}

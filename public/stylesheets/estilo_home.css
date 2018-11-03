@@ -1,77 +1,56 @@
 @charset "utf-8";
 /* CSS Document */
-html{text-size-adjust: 100%;}
-body{background-color:#fff; padding-top:100px; }
-
-header{height:100px;
-background-color:#081235;
-width:100%;
-position:absolute;
-z-index:3;
-top:0;
+html {
+	text-size-adjust: 100%;
 }
 
-#logo{width:10%; height:100%; background-color:#d1d1d1; float:left;}
-
-.espacamento{margin-right:10px;}
-
-.menu_principal{margin-top:20px; width:100%}
-
-.menu_principal ul li{float: left;
-background-color:#081235;
-	
-	
-	padding: 0.75rem;
-	display:inline-block;
-	text-decoration:none;
-	text-align:center;
-
-
+body {
+	padding-top: 57px;
+	padding-left: 170px;
 }
 
-.menu_principal ul{
-	padding: 0px;
+/*Div Central*/
+#conteudo {
+	padding: 20px;
 }
 
-.menu_principal ul ul{
-	display: none;
+h1 {
+	color: black;
 }
 
-.menu_principal ul li:hover > ul{
-	display:block;
-	width:150px;
-
-	
+#conteudo_item_menu {
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	margin-top: 30px;
 }
 
-.menu_principal ul li a:hover{background-color:#FD5286;  transition:1s; text-decoration:none; color:white;}
+.item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ccc;
+	margin: 5px;
+	border-radius: 3px;
+	padding: 3px;
+}
 
+figure img {
+	width: 50px;
+}
 
-article{width:90%; height:100%; margin-top:20px auto; margin:auto;}
+.item:hover {
+	-moz-transform: scale(1.1);
+	transform: scale(1.1);
+}
 
-h1{color:black; margin-left:10px;}
-p.legenda{background-color:#09C; color:white; text-align:center;}
-p.legenda a:hover{}
-.img_menu{float:left; margin-left:25px; margin-bottom:25px; }
+.legenda {
+	text-align: center;
+}
 
-.item{width:100px; height:100px;}
-
-#item_new{background-image:url(../imagens/icon-new.png); background-position:center;background-size:cover;}
-#item_entrada{background-image:url(../imagens/icon-entrada.png); background-position:center;}
-#item_saida{background-image:url(../imagens/icon-saida.png) ;background-position:center;}
-#item_fornecedor{background-image:url(../imagens/icon-fornecedor.png); background-position:center;background-size:cover;}
-#item_relatorio{background-image:url(../imagens/icon-relatorio.png); background-position:center; background-repeat:no-repeat; background-size:cover;}
-
-
-
-
-
-footer {width:100%; 
-height:50px; 
-background-color:#081235;
-position:fixed;
-bottom:0;}
-
-
-
-
+.legenda a {
+	color: black;
+}
