@@ -37,6 +37,7 @@ module.exports.buscadorTypeAhead = (key, req, res) =>{
     for(i=0;i<rows.length;i++){
             
       let { cd_produto,cd_ncm, ds_produto,qt_produto, vl_unitario, vl_total, tipo_embalagem_nm_tipo_embalagem} = rows[i];
+      
       data.push({ cd_produto,cd_ncm, ds_produto,qt_produto, vl_unitario, vl_total, tipo_embalagem_nm_tipo_embalagem});
 
     }

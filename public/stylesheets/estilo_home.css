@@ -25,7 +25,8 @@ h1{color:black;}
     padding:3px;}
 figure img{width:50px; }
 
-.item:hover{ -moz-transform: scale(1.1);}
+.item:hover{ -moz-transform: scale(1.1); 
+transform: scale(1.1);}
 
 .legenda{text-align:center;}
 
