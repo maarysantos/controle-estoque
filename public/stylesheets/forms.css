@@ -4,8 +4,10 @@
 input {
 	overflow: visible;
 	box-sizing: border-box;
-	width: 100%;
+	width:90%;
 }
+
+
 
 input[type=reset] {
 	width: inherit;
@@ -21,6 +23,8 @@ input[type=reset] {
 label {
 	display: inline-block;
 	margin-bottom: .2em;
+	font-size:14px; 
+	color:#000;
 }
 
 legend {
@@ -84,20 +88,20 @@ legend {
 }
 
 #custom-templates {
-	width: 40%;
-	float: left;
-	margin: 20px;
+	
+	margin-top:20px;
+	margin-bottom:20px;
 }
 
 #custom-templates-editar {
-	margin: 20px;
+	margin-top:20px;
+	margin-bottom:20px;
 }
 
 #result {
 	width: 50%;
 	border: 1px solid #999;
 	border-radius: 5px;
-	float: right;
 	padding: 10px;
 }
 
@@ -109,7 +113,7 @@ legend {
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	width: 400px;
-	border-radius: 2px;
+	border-radius: 5px;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 

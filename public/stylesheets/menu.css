@@ -7,7 +7,7 @@
 	left: 0;
 	width: 160px;
 	z-index: 1;
-	background-color: #000;
+	background-color: #444444;
 	height: 100%;
     font-size:13px
 }
@@ -166,7 +166,7 @@ a.lnkGeral:active {
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color:#000;
+	background-color:#444444;
 	color: #fff;
 	z-index: 2;
 	min-height: 57px;
@@ -179,7 +179,7 @@ a.lnkGeral:active {
 }
 
 #btnSair{
-	background-color:#000; 
+	background-color:#444444; 
 	border:none; 
 	color:#fff; 
 	cursor:pointer;

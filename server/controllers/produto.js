@@ -23,7 +23,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
         if (err){ 
           throw err;}
         else{
-   
+    var usuario = req.session.nome; 
     var parser       = new xml2js.Parser();
     parser.parseString(data.substring(0, data.length), function(err, result){
       if(!err){
@@ -35,7 +35,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
             produtos.push(prod);
           });
 
-          res.render('produtoxml', {produtos : produtos});
+          res.render('produtoxml', {produtos : produtos, usuario:usuario});
       }else{
           console.error(err);
       }
