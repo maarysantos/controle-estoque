@@ -13,6 +13,7 @@
 <link href="/stylesheets/menu.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/javascripts/script.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<script type="text/javascript" src="/javascripts/jquery.mask.js"></script>
 
 
 <title>Novo Fornecedor</title>
@@ -108,14 +109,14 @@
 <div class="form-row">
 <div class="form-group md-col-3">
   <label for="cd_cnpj">CNPJ</label>
-  <input id="cd_cnpj" name="cd_cnpj" class="form-control" type="text"  />
+  <input id="cd_cnpj" name="cd_cnpj" class="form-control cnpj"   />
 </div>
 
 
 
 <div class="form-group md-col-3">
   <label for="cd_ie">Inscrição Estadual</label>
-  <input id="cd_ie" name="cd_ie"  class="form-control"/> 
+  <input id="cd_ie" name="cd_ie"  class="form-control ie"/> 
 </div>
 </div>
 
@@ -127,7 +128,7 @@
 <div class="form-group md-col-2">
   <label for="cd_cep">CEP</label>
 
-  <input id="cd_cep" name="cd_cep" type="" class="form-control" />
+  <input id="cd_cep" name="cd_cep" class="form-control cep" />
 </div>
 
 <div class="form-group md-col-4">
@@ -139,7 +140,7 @@
 <div class="form-group md-col-1">
   <label for="cd_numero">Número</label>
 
-  <input id="cd_numero" name="cd_numero" class="form-control" type="" />
+  <input id="cd_numero" name="cd_numero" class="form-control"  />
 </div>
 
 <div class="form-group md-col-3">
@@ -153,13 +154,13 @@
 <div class="form-group md-col-2">
   <label for="nm_cidade">Cidade</label>
 
-  <input id="nm_cidade" name="nm_cidade" class="form-control" type="" />
+  <input id="nm_cidade" name="nm_cidade" class="form-control" />
 </div>
 
 <div class="form-group md-col-1">
   <label for="nm_estado">Estado</label>
 
-  <input id="nm_estado" name="nm_estado" class="form-control" type="" />
+  <input id="nm_estado" name="nm_estado" class="form-control" />
 </div>
       </div>
 
@@ -167,13 +168,13 @@
 <div class="form-group md-col-2">
   <label for="nm_vendedor">Telefone 1</label>
 
-  <input id="nm_vendedor" name="nm_vendedor" class="form-control"/>
+  <input id="nm_vendedor" name="nm_vendedor" class="form-control telefone"/>
 </div>
 
 <div class="form-group md-col-2">
   <label for="cd_telvendedor">Telefone 2</label>
 
-  <input id="cd_telvendedor" name="cd_telvendedor" class="form-control" type="" />
+  <input id="cd_telvendedor" name="cd_telvendedor" class="form-control telefone" type="" />
 </div>
 
 <div class="form-group md-col-3">
@@ -185,7 +186,7 @@
 <div class="form-group md-col-3">
   <label for="nm_site">Site</label>
 
-  <input id="nm_site" name="nm_site" class="form-control" type="text" />
+  <input id="nm_site" name="nm_site" class="form-control"  />
 </div>
 
 </div>
@@ -199,10 +200,10 @@
     
     <div class="form-group md-col-2">
       <label for="cd_telvendedor">Celular</label>
-    
-      <input id="cd_telvendedor" name="cd_telvendedor" class="form-control" type="" />
+      <input id="cd_telvendedor" name="cd_telvendedor" class="form-control celular" />
     </div>
     </div>
+
  <input id="btnCancelar" type="reset"/>
 <button id="btnGravar" type="button" data-toggle="modal" data-target="#mymodal" >Inserir</button>
 
@@ -228,4 +229,31 @@
 </form>
 </div>
 </body>
+<script>
+
+  
+
+$(document).ready(function(){
+  $('.cep').mask('00000-000');
+  $('.telefone').mask('(00) 0000-0000');
+  $('.cpf').mask('000.000.000-00', {reverse: true});
+  $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+  $('.ie').mask('000.000.000/0000-00', {reverse: true});/*arrumar função unmask() para remover as máscaras de edição*/
+
+var maskBehavior = function (val) {
+  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+options = {onKeyPress: function(val, e, field, options) {
+        field.mask(maskBehavior.apply({}, arguments), options);
+    }
+};
+
+  $('celular').mask(maskBehavior, options);
+
+
+
+});
+
+
+</script>
 </html>
