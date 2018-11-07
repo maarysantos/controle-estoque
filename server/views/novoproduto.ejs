@@ -135,7 +135,7 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Salvar Produto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -152,6 +152,10 @@
             </div>
          </form>
         </div>
+        <% if (msg.length = 0){ %>
+          <% } else { %>
+        <div id="msg"> <%= msg %> </div>
+        <% }  %>
    </body>
    <script>
       $(function() {
@@ -161,5 +165,13 @@
         }
         );
       });
+
+      /* em js*/
+      /*if (<%= msg.length = 0){}else{
+      var aviso = document.getElementById('msg');
+      aviso.textContent = <%=msg%>;
+      aviso.style.display='none';
+
+      }*/
    </script>
 </html>

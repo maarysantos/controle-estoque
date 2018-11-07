@@ -31,9 +31,14 @@ app.use(session({
   saveUninitialized: false
 }));
 
-
-/*Rotas*/
 app.use('/', indexRouter);
+app.use(function(req, res, next) {
+  if (req.session.autorizado) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+});
 app.use('/home', homeRouter);
 app.use('/novofornecedor', novoFornecedor);
 app.use(Produto);

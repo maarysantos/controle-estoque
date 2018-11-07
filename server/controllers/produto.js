@@ -20,8 +20,7 @@ module.exports.post = (req, res, next) => {
 /* ===========================Produto XML =========================================*/
 module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
     fs.readFile(fileDate,'utf-8', (err, data) => {
-        if (err){ 
-          throw err;}
+        if (err){throw err;}
         else{
     var usuario = req.session.nome; 
     var parser       = new xml2js.Parser();
@@ -47,13 +46,8 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
 });
 }
     module.exports.carregarPagProdutoXML = (req, res, next) =>{
-    
-        if (req.session.autorizado){ 
             var usuario = req.session.nome; 
             res.render('produtoxml', {produtos : [], usuario:usuario });            
-        } else{
-          res.redirect('/');
-          };
         };
 
 
@@ -153,12 +147,8 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
               
             /* Saída de Produto*/
 module.exports.carregarPagSaidaProduto = (req, res, next) =>{
-     if (req.session.autorizado){ 
             var usuario = req.session.nome; 
             res.render('saidaproduto', {usuario:usuario});            
-                } else{
-            res.redirect('/');
-                  };
                 };
 
  module.exports.carregaTypeAhead = (req, res, next) =>{
@@ -175,19 +165,10 @@ module.exports.atualizarEstoque = (req, res, next) =>{
 }
 
 module.exports.getNovoFornecedor = (req, res, next) =>{
-    if (req.session.autorizado){ 
         res.render('novofornecedor', {usuario:usuario});
-    } else{
-      res.redirect('/');
-      }
     }
 
     module.exports.carregarEditarProduto = (req, res, next) =>{
-    
-        if (req.session.autorizado){ 
-            var usuario = req.session.nome; 
+           var usuario = req.session.nome; 
             res.render('editarproduto', {usuario: usuario});            
-        } else{
-          res.redirect('/');
-          };
         };

@@ -39,3 +39,10 @@ font-size:16px;
 font-weight: bold;
 }
 
+/*#msg{
+	position: fixed; 
+	width: 200px; 
+	height: 200px; 
+	margin:0; 
+	border-radius:5px; 
+	background-color:orange;}*/
