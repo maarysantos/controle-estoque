@@ -108,7 +108,7 @@
         <td> <%= fornecedores[i].nm_vendedor %> </td>
         <td> <%= fornecedores[i].cd_telvendedor%> </td>
         <td> Editar </td>
-        <td> <a href='/delete/<%= fornecedores[i].cd_fornecedor %>' onclick= 'return confirm("Tem certeza?");'> Excluir </a></td>
+        <td> <a href='fornecedores/delete/<%= fornecedores[i].cd_fornecedor %>' onclick= 'return confirm("Tem certeza?");'> Excluir </a></td>
 
     </tr>
       <% } %>

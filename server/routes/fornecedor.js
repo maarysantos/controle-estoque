@@ -6,6 +6,6 @@ router.get('/novofornecedor', controller.getNovoFornecedor);
 router.post('/novofornecedor', controller.insereNovoFornecedor);
 
 router.get('/fornecedores', controller.listaFornecedores);
-router.get('/delete/:id', controller.deleteFornecedor);
+router.get('/fornecedores/delete/:id', controller.deleteFornecedor);
   
 module.exports = router;
