@@ -152,11 +152,13 @@
             </div>
          </form>
         </div>
-        <% if (msg.length = 0){ %>
-          <% } else { %>
-        <div id="msg"> <%= msg %> </div>
-        <% }  %>
-   </body>
+        <% if (msg.length > 0){ %>
+          <div class="alert alert-success alert-dismissible" id="msg">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <%= msg %>
+          </div>
+        <% } %>   
+  </body>
    <script>
       $(function() {
         $('.mask').maskMoney({
@@ -166,12 +168,5 @@
         );
       });
 
-      /* em js*/
-      /*if (<%= msg.length = 0){}else{
-      var aviso = document.getElementById('msg');
-      aviso.textContent = <%=msg%>;
-      aviso.style.display='none';
-
-      }*/
    </script>
 </html>

@@ -93,33 +93,29 @@
 <input type="file" name="upXml" />
 <button type="submit">Ler</button>
 </form>
-<br>
+<br>       
+<hr class="divisoria" />
+
 <h5>Selecione abaixo os produtos que deseja salvar:</h5>
-          <hr class="divisoria" />
 
 
 <form id="form" method="POST" action="/salvarProdutos" >
 <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            
+            <th scope="col"><input type="checkbox" /></th>
             <th scope="col">Cód.Produto</th>
             <th scope="col">Descrição</th>
             <th scope="col">NCM</th>
-
             <th scope="col">Embalagem</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Valor Unitário</th>
             <th scope="col">Valor Total</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Excluir</th>
           </tr>
         </thead>
 
         <tbody>
          
-          
           <% for (var i =0; i< produtos.length; i++){ %>
           
             <tr>
@@ -141,8 +137,6 @@
               <td> <%= produtos[i].qCom %> </td>
               <td> <%= produtos[i].vUnCom %> </td>
               <td> <%= produtos[i].vProd %> </td>
-              <td><img src="" alt="editar"></td>
-              <td><img src="" alt="excluir"></td>
                 </tr>
                 <% } %>
         </tbody>
@@ -150,7 +144,6 @@
       <button type="submit" id="btnok">Salvar</button>
   </form>
   <br>
-
 </div>
 
 
@@ -158,6 +151,25 @@
 <script>
     //var produtos = <%= JSON.stringify(produtos)%>;
     //console.log(produtos);//Caso queira fazer com javascript
+
+    function editar(produtos){
+      var p = JSON.parse(produtos);
+
+
+      var div = document.getElementById('container-editar');
+
+      var cod = document.getElementById('cd_prod');
+      var qttd = document.getElementById('qt_prod');
+      var embalagem = document.getElementById('tipo_embalagem');
+
+      cod.value = p.cProd;
+      qttd.value = p.qCom;
+      embalagem.value=p.uCom;
+
+
+      div.style.display='block';
+      console.log(p.uCom);
+    }
   
 </script>
 

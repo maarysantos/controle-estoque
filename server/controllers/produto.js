@@ -5,7 +5,7 @@ var fs           = require('fs');
 var produtoModel= require('../models/produtoModel');
 
 
-/*======== Novo Produto ========*/
+/*============== Novo Produto ===========================*/
 module.exports.carregaPagNovoProduto = (req, res, next) =>{
     var usuario = req.session.nome; 
     produtoModel.getPagNovoProduto(usuario, req, res, next);
@@ -19,13 +19,13 @@ module.exports.post = (req, res, next) => {
 
 /* ===========================Produto XML =========================================*/
 module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
-    fs.readFile(fileDate,'utf-8', (err, data) => {
-        if (err){throw err;}
-        else{
-    var usuario = req.session.nome; 
-    var parser       = new xml2js.Parser();
-    parser.parseString(data.substring(0, data.length), function(err, result){
-      if(!err){
+  fs.readFile(fileDate,'utf-8', (err, data) => {
+    if (err){throw err;}
+
+      var usuario = req.session.nome; 
+      var parser       = new xml2js.Parser();
+      parser.parseString(data.substring(0, data.length), function(err, result){
+        if(!err){
           var [ notaFiscal ] = result.nfeProc.NFe;
           var [ informacao ] = notaFiscal.infNFe;
           var produtos=[];
@@ -35,26 +35,22 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           });
 
           res.render('produtoxml', {produtos : produtos, usuario:usuario});
-      }else{
+        }else{
           console.error(err);
-      }
-
-   
+        }
     });
-
-    }
 });
 }
-    module.exports.carregarPagProdutoXML = (req, res, next) =>{
-            var usuario = req.session.nome; 
-            res.render('produtoxml', {produtos : [], usuario:usuario });            
-        };
+
+module.exports.carregarPagProdutoXML = (req, res, next) =>{
+   var usuario = req.session.nome; 
+   res.render('produtoxml', {produtos : [], usuario:usuario });            
+};
 
 
-        module.exports.salvarProdutosNota= (req, res, next)=>{
-                var formproduto = req.body;
-               
-                const produtos = Object.keys(formproduto).reduce((sum, item) => {
+module.exports.salvarProdutosNota= (req, res, next)=>{
+  var formproduto = req.body;
+  const produtos = Object.keys(formproduto).reduce((sum, item) => {
                     let [coluna, index] = item.split(/\[/);// extraindo o nome e o indice do campo do formulário
                     index = parseInt(index.replace(/\]/));// Removendo o fecha colchete ']' e fazendo o parse do indice pra int
                     if(!sum[index]){
@@ -147,9 +143,9 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
               
             /* Saída de Produto*/
 module.exports.carregarPagSaidaProduto = (req, res, next) =>{
-            var usuario = req.session.nome; 
-            res.render('saidaproduto', {usuario:usuario});            
-                };
+   var usuario = req.session.nome; 
+   res.render('saidaproduto', {usuario:usuario, msg:{}});            
+};
 
  module.exports.carregaTypeAhead = (req, res, next) =>{
 var key = req.query.key;

@@ -9,7 +9,7 @@ var session = require('express-session');
 const indexRouter = require('./routes/index');
 const homeRouter = require('./routes/home');
 const Produto = require('./routes/produto');
-const novoFornecedor = require('./routes/fornecedor');
+const Fornecedor = require('./routes/fornecedor');
 
 
 var app = express();
@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
   }
 });
 app.use('/home', homeRouter);
-app.use('/novofornecedor', novoFornecedor);
+app.use(Fornecedor);
 app.use(Produto);
 
 // catch 404 and forward to error handler

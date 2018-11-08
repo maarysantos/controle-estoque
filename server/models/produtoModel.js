@@ -14,13 +14,12 @@ module.exports.getPagNovoProduto = (usuario, req, res, next) =>{
 
 
 module.exports.inserirProduto = (formproduto, req, res) =>{
-
   var connection = db();
 
   connection.query("insert into estoque set ?", formproduto, function(err, result) {
     if(err){throw(err);
 
-    }else{
+    } else {
 
       connection.query("SELECT nm_tipo_embalagem FROM tipo_embalagem", function(error, result){
 
@@ -31,9 +30,9 @@ module.exports.inserirProduto = (formproduto, req, res) =>{
     
          res.render('novoproduto', {usuario : usuario, tipo_embalagem_nm_tipo_embalagem : result, msg:msg});
 
-    });
-}
-});
+      });
+    }
+  });
 };
 
 module.exports.buscadorTypeAhead = (key, req, res) =>{
@@ -50,7 +49,6 @@ module.exports.buscadorTypeAhead = (key, req, res) =>{
       for(i=0;i<rows.length;i++){
             
         let { cd_produto,cd_ncm, ds_produto,qt_produto, vl_unitario, vl_total, tipo_embalagem_nm_tipo_embalagem} = rows[i];
-      
         data.push({ cd_produto,cd_ncm, ds_produto,qt_produto, vl_unitario, vl_total, tipo_embalagem_nm_tipo_embalagem});
 
       }
@@ -62,40 +60,31 @@ module.exports.buscadorTypeAhead = (key, req, res) =>{
 };
     
 module.exports.atualizarEstoque = (formvenda, codigo, quantidade, req, res) =>{ 
-
+  let usuario = req.session.nome;
   var connection = db();
 
   connection.query("SELECT qt_produto from estoque where cd_produto ="+codigo+"", function(error, result) {
    
     if (error){ console.log(error);} 
-
-    else{
-            
     var qt_produto = result[0].qt_produto;
-    var res = qt_produto - quantidade;
+    var resultado= qt_produto - quantidade;
     
+    if (resultado >= 0) {
+        connection.query('UPDATE estoque SET qt_produto = ? WHERE cd_produto = ?', [resultado, codigo], function (error, results, fields) {
+          if (error) {throw error};
+        });
             
-      if(res>=0){
-                
-        connection.query('UPDATE estoque SET qt_produto = ? WHERE cd_produto = ?', [res, codigo], function (error, results, fields) {
+        connection.query("INSERT into saida_produto set ?",formvenda,function(error, result) {
+          if (error) {throw error};
 
-          if (error) {throw error};
-                  
+          let msg="Produto atualizado com sucesso!";
+          res.render('saidaproduto', {usuario : usuario, msg:msg});
         });
-            
-         connection.query("INSERT into saida_produto set ?",formvenda,function(error, result) {
-          if (error) {throw error};
-            
-        });
-              
-    }else{
-            
-     /* res.render('saidaproduto', { msg: 'Não há produtos disponiveís no estoque' }, function(err, html){
-    if(err)throw err;
-                       
-    })*/
-        console.log('Não há produtos disponíveis no estoque');
-    }                    
+    }     
+
+    if (resultado < 0){ 
+          let msg="Não há produtos disponíveis no estoque!";
+          res.render('saidaproduto', {usuario : usuario, msg:msg});
     }
   });
 };

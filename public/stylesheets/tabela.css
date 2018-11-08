@@ -41,7 +41,11 @@ td[scope=row] {
 	background-color: #ced4da;
 	color: #fff;
 }
+td a{color:#000;
+	 cursor: pointer;
+	  text-transform: underline;}
 
 #dt_entrada {
 	width: inherit;
 }
+

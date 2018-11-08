@@ -68,23 +68,23 @@ ENGINE = InnoDB;
 -- Table `estoque`.`fornecedor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`fornecedor` (
-  `cd_fornecedor` INT NOT NULL AUTO_INCREMENT,
+  `cd_fornecedor` varchar (255) NOT NULL,
   `nm_razao` VARCHAR(255) NOT NULL,
   `nm_fantasia` VARCHAR(255) NOT NULL,
-  `cd_cnpj` VARCHAR(18) NOT NULL,
+  `cd_cnpj` VARCHAR(255) NOT NULL,
   `cd_ie` VARCHAR(25) NOT NULL,
   `cd_cep` VARCHAR(10) NULL,
-  `ds_endereco` VARCHAR(150) NULL,
-  `cd_numero` VARCHAR(6) NULL,
-  `nm_bairro` VARCHAR(50) NULL,
-  `nm_cidade` VARCHAR(50) NULL,
-  `nm_estado` VARCHAR(2) NULL,
-  `cd_tel1` VARCHAR(15) NULL,
-  `cd_tel2` VARCHAR(15) NULL,
-  `nm_email` VARCHAR(100) NULL,
-  `nm_site` VARCHAR(100) NULL,
-  `nm_vendedor` VARCHAR(100) NULL,
-  `cd_telvendedor` VARCHAR(15) NULL,
+  `ds_endereco` VARCHAR(255) NULL,
+  `cd_numero` VARCHAR(255) NULL,
+  `nm_bairro` VARCHAR(255) NULL,
+  `nm_cidade` VARCHAR(255) NULL,
+  `nm_estado` VARCHAR(255) NULL,
+  `cd_tel1` VARCHAR(255) NULL,
+  `cd_tel2` VARCHAR(255) NULL,
+  `nm_email` VARCHAR(255) NULL,
+  `nm_site` VARCHAR(255) NULL,
+  `nm_vendedor` VARCHAR(255) NULL,
+  `cd_telvendedor` VARCHAR(255) NULL,
   PRIMARY KEY (`cd_fornecedor`))
 ENGINE = InnoDB;
 
@@ -93,10 +93,10 @@ ENGINE = InnoDB;
 -- Table `estoque`.`notafiscal`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`notafiscal` (
-  `cd_nfe` VARCHAR(100) NOT NULL,
+  `cd_nfe` VARCHAR(255) NOT NULL,
   `dt_emissao` DATETIME NOT NULL,
   `dt_criacao` DATETIME NOT NULL,
-  `Fornecedor_cd_fornecedor` INT NOT NULL,
+  `Fornecedor_cd_fornecedor` varchar(255) NOT NULL,
   PRIMARY KEY (`cd_nfe`),
   INDEX `fk_NotaFiscal_Fornecedor1_idx` (`Fornecedor_cd_fornecedor` ASC),
   CONSTRAINT `fk_NotaFiscal_Fornecedor1`
