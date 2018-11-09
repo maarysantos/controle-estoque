@@ -17,7 +17,7 @@ module.exports.post = (req, res, next) => {
     produtoModel.inserirProduto (formproduto, req, res);
 }
 
-/* ===========================Produto XML =========================================*/
+/* ============= Produto XML ===============================*/
 module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
   fs.readFile(fileDate,'utf-8', (err, data) => {
     if (err){throw err;}
@@ -39,7 +39,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           console.error(err);
         }
     });
-});
+  });
 }
 
 module.exports.carregarPagProdutoXML = (req, res, next) =>{
@@ -51,18 +51,19 @@ module.exports.carregarPagProdutoXML = (req, res, next) =>{
 module.exports.salvarProdutosNota= (req, res, next)=>{
   var formproduto = req.body;
   const produtos = Object.keys(formproduto).reduce((sum, item) => {
-                    let [coluna, index] = item.split(/\[/);// extraindo o nome e o indice do campo do formulário
-                    index = parseInt(index.replace(/\]/));// Removendo o fecha colchete ']' e fazendo o parse do indice pra int
-                    if(!sum[index]){
-                        sum[index] = {};// Se o indice não existir cria objeto vazio
-                    }
-                    sum[index][coluna] = formproduto[item];//Preenche coluna de produto de um indice
-                    return sum;
-                },[]).filter(p => p.selecionado).map(p => {
-                  const {selecionado, ...prod} = p;
+    let [coluna, index] = item.split(/\[/);// extraindo o nome e o indice do campo do formulário
+    index = parseInt(index.replace(/\]/));// Removendo o fecha colchete ']' e fazendo o parse do indice pra int
+    if(!sum[index]){
+      sum[index] = {};// Se o indice não existir cria objeto vazio
+    }
+    sum[index][coluna] = formproduto[item];//Preenche coluna de produto de um indice
+    return sum;
+  },[]).filter(p => p.selecionado).map(p => {
+    const {selecionado, ...prod} = p;
                 
-                  return prod;
-                });
+      return prod;
+
+  });
               
                 /* const executarSql = (sql, valor) =>{
                   return new Promise((resolve, reject) =>{
@@ -128,43 +129,43 @@ module.exports.salvarProdutosNota= (req, res, next)=>{
                 
               });*/
               
-               let inserts = produtos.map(produto =>{
-                var connection = db();
-                connection.query("insert into estoque set ?", produto, function(err, result) {
-                      if(err){
-                         console.log(err);
-                      }else{
-                          console.log(result);
-                      }
-                 });
+  let inserts = produtos.map(produto =>{
+    var connection = db();
+    connection.query("insert into estoque set ?", produto, function(err, result) {
+    if(err){
+      console.log(err);
+      }else{
+        console.log(result);
+      }
+    });
                 
-                  });
-                };
+  });
+};
               
-            /* Saída de Produto*/
+/*============== Saída de Produto =================*/
 module.exports.carregarPagSaidaProduto = (req, res, next) =>{
    var usuario = req.session.nome; 
    res.render('saidaproduto', {usuario:usuario, msg:{}});            
 };
 
- module.exports.carregaTypeAhead = (req, res, next) =>{
-var key = req.query.key;
-produtoModel.buscadorTypeAhead(key, req, res);
+module.exports.carregaTypeAhead = (req, res, next) =>{
+  var key = req.query.key;
+  produtoModel.buscadorTypeAhead(key, req, res);
  };     
           
 module.exports.atualizarEstoque = (req, res, next) =>{
-    var formvenda = req.body;
-    var codigo = req.body.estoque_cd_produto;
-    var quantidade = req.body.qt_produto;
+  var formvenda = req.body;
+  var codigo = req.body.estoque_cd_produto;
+  var quantidade = req.body.qt_produto;
 
-    produtoModel.atualizarEstoque(formvenda,codigo, quantidade, req, res);
-}
+  produtoModel.atualizarEstoque(formvenda,codigo, quantidade, req, res);
+};
 
 module.exports.getNovoFornecedor = (req, res, next) =>{
-        res.render('novofornecedor', {usuario:usuario});
-    }
+  res.render('novofornecedor', {usuario:usuario});
+};
 
-    module.exports.carregarEditarProduto = (req, res, next) =>{
-           var usuario = req.session.nome; 
-            res.render('editarproduto', {usuario: usuario});            
-        };
+module.exports.carregarEditarProduto = (req, res, next) =>{
+  var usuario = req.session.nome; 
+  res.render('editarproduto', {usuario: usuario});            
+};
