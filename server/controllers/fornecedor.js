@@ -25,4 +25,10 @@ module.exports.deleteFornecedor = (req, res, next) => {
   fornecedorModel.deleteFornecedor(id, req, res, next);
 };
 
+module.exports.editarFornecedor = (req, res, next) => {
+  let id = req.params.id;
+  let usuario = req.session.nome;
+  fornecedorModel.editarFornecedor(id, usuario, req, res, next);
+}
+
 

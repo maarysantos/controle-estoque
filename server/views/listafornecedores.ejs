@@ -12,7 +12,7 @@
 <script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
 <script type="text/javascript" src="/javascripts/script.js"></script>
 
-<title>Bazar Olimpio | Home</title>
+<title>Fornecedores</title>
 </head>
 
 <body> 
@@ -107,8 +107,8 @@
         <td> <%= fornecedores[i].nm_fantasia %> </td>
         <td> <%= fornecedores[i].nm_vendedor %> </td>
         <td> <%= fornecedores[i].cd_telvendedor%> </td>
-        <td> Editar </td>
-        <td> <a href='fornecedores/delete/<%= fornecedores[i].cd_fornecedor %>' onclick= 'return confirm("Tem certeza?");'> Excluir </a></td>
+        <td> <a href="/edit/<%= fornecedores[i].cd_fornecedor %>" onclick= 'return confirm("Deseja editar esse fornecedor ?");'> Editar </a></td>
+        <td> <a href='/delete/<%= fornecedores[i].cd_fornecedor %>' onclick= 'return confirm("Tem certeza ?");'> Excluir </a></td>
 
     </tr>
       <% } %>

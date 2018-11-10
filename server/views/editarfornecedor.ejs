@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+   <head>
+     
+      <meta charset="utf-8">
+      <title>Editar Fornecedor</title>
+      <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+      <link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/forms.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/menu.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+      <script  type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
+      <script type="text/javascript" src="/javascripts/script.js"></script>
+
+      <script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
+
+   </head>
+   <body>
+    <aside id="barraMenu">
+      <nav id="conteudoBarraMenu">
+        <ul>
+          <li><a href="home" class="lnkBranco"><i class="fas fa-home"></i></i>&nbsp;Home</a></li>
+    
+          <li>
+            <a id="itemConf1" href="" class="lnkBranco"><i class="fas fa-tag"></i>&nbsp;Produtos</a>
+            <ul class="lstSubMenu1 submenu" >
+              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Produto</a> </li>
+              <li><a href="produtoxml" class="lnkSubItem subitem" > Adicionar nota XML</a> </li>
+              <li><a href="saidaproduto" class="lnkSubItem subitem" > Saída de Produto </a> </li>
+              <li><a href="editarproduto" class="lnkSubItem subitem" > Editar Produto </a> </li>
+            </ul>
+          </li>
+    
+          <li>
+            <a id="itemConf2" href="" class="lnkBranco"><i class="fas fa-truck"></i></i>&nbsp;Fornecedores</a>
+            <ul class="lstSubMenu2 submenu" >
+              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Editar Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Pesquisar Fornecedor</a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Lista de Fornecedores </a> </li>
+            </ul>
+          </li>
+    
+          <li>
+            <a id="itemConf3" href="" class="lnkBranco"><i class="far fa-clipboard"></i> &nbsp;Relatórios</a>
+            <ul class="lstSubMenu3 submenu" >
+              <li><a href="" class="lnkSubItem subitem" > Produtos sem estoque </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Mais Vendidos </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Menos Vendidos </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Produtos Comprados </a> </li>
+            </ul>
+          </li>
+          
+    
+          <li> 
+            <a id="itemConf4"  class="lnkBranco" href="#"> <i class="fas fa-dollar-sign"></i>&nbsp;Lucro </a>
+            <ul class="lstSubMenu4 submenu" >
+              <li><a href="#" class="lnkSubItem subitem" > Por mês </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Por Semana </a> </li>
+              <li><a href="#" class="lnkSubItem subitem" > Por Ano </a> </li>
+            </ul>
+          </li>
+    
+          <li> 
+            <a id="itemConf5" href="#" class="lnkBranco"><i class="fas fa-wallet"></i> </i>&nbsp;Despesas</a>
+            <ul class="lstSubMenu5 submenu">
+              <li><a href="" class="lnkSubItem subitem">Loja</a></li>
+              <li><a href="" class="lnkSubItem subitem">Pessoais</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    
+    <div id="barraIdentificacao">
+      <div id="logo"></div>
+      <div id="conteudoId"> Olá <b><span id="lblLogado"> <%= usuario %> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
+        <button type="button" id="btnSair"> Sair</button>
+      </div>
+    </div>
+
+    <div id="conteudo">
+        <h1>Fornecedor</h1>
+        <br>
+        <h2> Editar Dados Fornecedor</h2>
+        <br>
+
+        <form id="form" method="post">
+                <% for (var i =0; i< dados.length; i++){ %>
+
+            <div class="form-row">
+                    <div class="form-group  md-col-5">
+                            <label for="cd_fornecedor">Código</label>
+                            <input id="cd_fornecedor" class="form-control" name="cd_fornecedor" value="<%= dados[i].cd_fornecedor %>" />
+                          </div>
+
+              <div class="form-group  md-col-5">
+                <label for="nm_razao">Nome/Razão Social</label>
+                <input id="nm_razao" class="form-control" name="nm_razao" value ="<%= dados[i].nm_razao %>"/>
+              </div>
+              
+              <div class="form-group  md-col-5">
+                <label for="nm_fantasia">Nome Fantasia</label>
+                <input id="nm_fantasia" class="form-control" name="nm_fantasia" value="<%= dados[i].nm_fantasia %>" />
+              </div>
+            </div>
+          
+        
+            <div class="form-row">
+              <div class="form-group md-col-3">
+                <label for="cd_cnpj">CNPJ</label>
+                <input id="cd_cnpj" name="cd_cnpj" class="form-control cnpj" value="<%= dados[i].cd_cnpj %>"   />
+              </div>
+        
+              <div class="form-group md-col-3">
+                <label for="cd_ie">Inscrição Estadual</label>
+                <input id="cd_ie" name="cd_ie"  class="form-control ie" value="<%= dados[i].cd_ie %>"/> 
+              </div>
+            </div>
+        
+      
+            <div class="form-row">
+              <div class="form-group md-col-2">
+                <label for="cd_cep">CEP</label>
+                <input id="cd_cep" name="cd_cep" class="form-control cep" value="<%= dados[i].cd_cep %>" />
+              </div>
+        
+              <div class="form-group md-col-4">
+                <label for="ds_endereco">Endereço</label>
+                <input id="ds_endereco" name="ds_endereco" class="form-control" value="<%= dados[i].ds_endereco %>" />
+              </div>
+        
+              <div class="form-group md-col-1">
+                <label for="cd_numero">Número</label>
+                <input id="cd_numero" name="cd_numero" class="form-control" value="<%= dados[i].cd_numero %>"  />
+              </div>
+        
+              <div class="form-group md-col-3">
+                <label for="nm_bairro">Bairro</label>
+                <input id="nm_bairro" name="nm_bairro" class="form-control" type="" value="<%= dados[i].nm_bairro %>"/>
+              </div>
+            </div>
+        
+            <div class="form-row">
+              <div class="form-group md-col-2">
+                <label for="nm_cidade">Cidade</label>
+                <input id="nm_cidade" name="nm_cidade" class="form-control" value="<%= dados[i].nm_cidade %>" />
+              </div>
+        
+              <div class="form-group md-col-1">
+                <label for="nm_estado">Estado</label>
+                <input id="nm_estado" name="nm_estado" class="form-control" value="<%= dados[i].nm_estado %>"/>
+              </div>
+            </div>
+        
+            <div class="form-row">
+              <div class="form-group md-col-2">
+                <label for="nm_vendedor">Telefone 1</label>
+                <input id="nm_vendedor" name="nm_vendedor" class="form-control telefone" value="<%= dados[i].cd_tel1 %>"/>
+              </div>
+        
+              <div class="form-group md-col-2">
+                <label for="cd_telvendedor">Telefone 2</label>
+                <input id="cd_telvendedor" name="cd_telvendedor" class="form-control telefone" value="<%= dados[i].cd_tel2 %>" />
+              </div>
+        
+              <div class="form-group md-col-3">
+                <label for="nm_email">Email</label>
+                <input id="nm_email" name="nm_email" class="form-control" type="email" value="<%= dados[i].nm_email %>" />
+              </div>
+        
+              <div class="form-group md-col-3">
+                <label for="nm_site">Site</label>
+                <input id="nm_site" name="nm_site" class="form-control" value="<%= dados[i].nm_site %>" />
+              </div>
+            </div>
+        
+            <div class="form-row">
+              <div class="form-group md-col-5">
+                <label for="nm_vendedor">Vendedor</label>
+                <input id="nm_vendedor" name="nm_vendedor" class="form-control" value= "<%= dados[i].nm_vendedor %>"/>
+              </div>
+            
+              <div class="form-group md-col-2">
+                <label for="cd_telvendedor">Celular</label>
+                <input id="cd_telvendedor" name="cd_telvendedor" class="form-control celular" value= "<%= dados[i].nm_telvendedor %>" />
+              </div>
+            </div>
+            <% } %>
+             <input id="btnCancelar" type="reset"/>
+             <button id="btnGravar" type="button" data-toggle="modal" data-target="#mymodal" >Inserir</button>
+        
+            <div id="mymodal" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Salvar Novo Fornecedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Deseja salvar os dados?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" onclick="document.querySelector('#form').submit()">Salvar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+</div>        
+    </html>

@@ -24,7 +24,7 @@ module.exports.listaFornecedores = (req, res, next) =>{
 
     if(err){throw err};
       let usuario = req.session.nome;
-      res.render('fornecedores', {usuario:usuario, fornecedores: result});
+      res.render('listafornecedores', {usuario:usuario, fornecedores: result});
 
   });
 };
@@ -34,7 +34,22 @@ module.exports.deleteFornecedor = (id, req, res,next) =>{
 
   connection.query("Delete from fornecedor where cd_fornecedor= ?", id, function(error, result){
     if (error){throw error;}
-    /*Continuar implementando aqui*/
+    
+        res.redirect('/listafornecedores');
+  
+    });
+
+};
+
+module.exports.editarFornecedor = (id,usuario, req, res, next) =>{
+  var connection = db();
+
+  connection.query("Select * from fornecedor where cd_fornecedor= ?", id, function(error, result){
+    if (error){throw error;}
+    console.log(result);
+    res.render('editarfornecedor', {usuario:usuario, dados:result});
 
   });
+
 };
+
