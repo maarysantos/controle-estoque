@@ -1,159 +1,97 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/menu.css" type="text/css" rel="stylesheet">
-<link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-<script  type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
-<script  type="text/javascript" src="/javascripts/typeahead.min.js"></script>
-<script type="text/javascript" src="/javascripts/script.js"></script>
+<% include header %>
+<% include aside %>
 
-<title>Bazar Olimpio | Home</title>
-</head>
 
-<body> 
-  
-    <aside id="barraMenu">
-      <nav id="conteudoBarraMenu">
-        <ul>
-          <li><a href="home" class="lnkBranco"><i class="fas fa-home"></i></i>&nbsp;Home</a></li>
-    
-          <li>
-            <a id="itemConf1" href="" class="lnkBranco"><i class="fas fa-tag"></i>&nbsp;Produtos</a>
-            <ul class="lstSubMenu1 submenu" >
-              <li><a href="novoproduto" class="lnkSubItem subitem" > Novo Produto</a> </li>
-              <li><a href="produtoxml" class="lnkSubItem subitem" > Adicionar nota XML</a> </li>
-              <li><a href="saidaproduto" class="lnkSubItem subitem" > Saída de Produto </a> </li>
-              <li><a href="editarproduto" class="lnkSubItem subitem" > Editar Produto </a> </li>
-            </ul>
-          </li>
-    
-          <li>
-            <a id="itemConf2" href="" class="lnkBranco"><i class="fas fa-truck"></i></i>&nbsp;Fornecedores</a>
-            <ul class="lstSubMenu2 submenu" >
-              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Fornecedor</a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Editar Fornecedor</a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Pesquisar Fornecedor</a> </li>
-              <li><a href="listafornecedores" class="lnkSubItem subitem" > Lista de Fornecedores </a> </li>
-            </ul>
-          </li>
-    
-          <li>
-            <a id="itemConf3" href="" class="lnkBranco"><i class="far fa-clipboard"></i> &nbsp;Relatórios</a>
-            <ul class="lstSubMenu3 submenu" >
-              <li><a href="" class="lnkSubItem subitem" > Produtos sem estoque </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Mais Vendidos </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Menos Vendidos </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Produtos Comprados </a> </li>
-            </ul>
-          </li>
-          
-    
-          <li> 
-            <a id="itemConf4"  class="lnkBranco" href="#"> <i class="fas fa-dollar-sign"></i>&nbsp;Lucro </a>
-            <ul class="lstSubMenu4 submenu" >
-              <li><a href="#" class="lnkSubItem subitem" > Por mês </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Por Semana </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Por Ano </a> </li>
-            </ul>
-          </li>
-    
-          <li> 
-            <a id="itemConf5" href="#" class="lnkBranco"><i class="fas fa-wallet"></i> </i>&nbsp;Despesas</a>
-            <ul class="lstSubMenu5 submenu">
-              <li><a href="" class="lnkSubItem subitem">Loja</a></li>
-              <li><a href="" class="lnkSubItem subitem">Pessoais</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-    
-    <div id="barraIdentificacao">
-      <div id="logo"></div>
-      <div id="conteudoId"> Olá <b><span id="lblLogado"> <%= usuario %></span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
-        <button type="button" id="btnSair"> Sair</button>
+
+  <div id="barraIdentificacao">
+    <div id="logo"></div>
+    <div id="conteudoId"> Olá <b><span id="lblLogado">
+          <%= usuario %></span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
+      <button type="button" id="btnSair"> Sair</button>
+    </div>
+  </div>
+
+
+  <div id="conteudo">
+    <h1> Menu Rápido </h1>
+
+    <div id="conteudo_item_menu">
+
+      <div class="item">
+        <div class="imagem">
+          <a href="novoproduto">
+            <figure id="item_new">
+              <img src="../imagens/icon-new.png" alt="Novo Produto">
+            </figure>
+          </a>
+        </div>
+        <div class="legenda">
+          <p><a href="novoproduto">Novo Produto</a></p>
+        </div>
+
       </div>
+
+
+      <div class="item">
+        <div class="imagem">
+          <a href="produtoxml">
+            <figure id="entradaxml">
+              <img src="../imagens/icon-entrada.png" alt="Entrada XML">
+            </figure>
+          </a>
+        </div>
+        <div class="legenda">
+          <p><a href="produtoxml"> Entrada de Produto</a></p>
+        </div>
+      </div>
+
+
+      <div class="item">
+        <div class="imagem">
+          <a href="saidaproduto">
+            <figure id="saida">
+              <img src="../imagens/icon-saida.png" alt="Saída de Produto">
+            </figure>
+          </a>
+        </div>
+        <div class="legenda">
+          <p> <a href="saidaproduto"> Saída de Produto</p> </a>
+        </div>
+      </div>
+
+
+
+      <div class="item">
+        <div class="imagem">
+          <a href="novofornecedor">
+            <figure>
+              <img src='../imagens/icon-fornecedor.png' alt="Novo Fornecedor">
+            </figure>
+          </a>
+        </div>
+        <div class="legenda">
+          <p class="legenda"><a href="novofornecedor"> Novo Fornecedor</a></p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="imagem">
+          <a href="">
+            <figure>
+              <img src='../imagens/icon-relatorio.png' alt="Relatório">
+            </figure>
+          </a>
+        </div>
+        <div class="legenda">
+          <p class="legenda"> <a href="">Relatório </a></p>
+        </div>
+      </div>
+
     </div>
-
-      
-<div id="conteudo"> 
-<h1> Menu Rápido </h1>
-
-<div id="conteudo_item_menu">
-
-<div class="item">
-<div class="imagem">
-<a href="novoproduto"><figure id="item_new"  >
-    <img src="../imagens/icon-new.png" alt="Novo Produto">
-</figure></a>
-</div>
-<div class="legenda">
-<p ><a href="novoproduto">Novo Produto</a></p>
-</div>
-
-</div>
-
-
-<div class="item">
-<div class="imagem" >
-<a href="produtoxml"><figure id="entradaxml">
-    <img src="../imagens/icon-entrada.png" alt="Entrada XML">
-</figure></a>
-</div>
-<div class="legenda">
-<p ><a href="produtoxml"> Entrada de Produto</a></p> 
-</div>
-</div>
-
-
-<div class="item">
-<div class="imagem" > 
-<a href="saidaproduto"><figure id="saida" >
-    <img src="../imagens/icon-saida.png" alt="Saída de Produto">
-</figure></a>
-</div>
-<div class="legenda">
-<p > <a href="saidaproduto"> Saída de Produto</p> </a>
-</div>
-</div>
-
-
-
-<div class="item">
-    <div class ="imagem"> 
-      <a href="novofornecedor"> <figure>
-            <img src='../imagens/icon-fornecedor.png' alt="Novo Fornecedor">
-        </figure> </a>
-    </div>
-    <div class="legenda">
-        <p class="legenda"><a href="novofornecedor"> Novo Fornecedor</a></p> 
-   </div>
- </div>
-
-<div class="item">
-    <div class="imagem">
-        <a href="">
-        <figure>
-                <img src='../imagens/icon-relatorio.png' alt="Relatório">
-        </figure></a>
-    </div>
-    <div class="legenda">
-       <p class="legenda"> <a href="">Relatório </a></p> 
-    </div>
-</div>
-
-</div>
-</div>
+  </div>
 
 
 
 </body>
 
 </html>
-
-
-

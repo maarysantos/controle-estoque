@@ -1,51 +1,51 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<link href="/stylesheets/estilo.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
 
-<title>Bazar Olimpio | Login</title>
+<head>
+    <meta charset="utf-8">
+    <link href="/stylesheets/estilo.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <title>Bazar Olimpio | Login</title>
 </head>
 
 <body>
 
+    <div class="content">
 
-<div class="content">
+        <form id="formulario" method="POST">
 
+            <div id="icon-user"></div><input id="txtNome" name="txtNome" class="inputText" required placeholder="EMAIL">
+            <div class="clear"></div>
 
+            <div id="icon-password"></div><input id="txtSenha" name="txtSenha" class="inputText" type="password"
+                required placeholder="SENHA">
+            <div class="clear"></div>
 
-<form id="formulario" method="POST" >
-
-<div id="icon-user"></div><input id="txtNome" name="txtNome" class="inputText"  required placeholder="EMAIL"> <div class="clear"></div>
-
-<div id="icon-password"></div><input id="txtSenha" name="txtSenha" class="inputText" type="password" required placeholder="SENHA">
-<div class="clear"></div>
-
-<button id="btnEntrar"name="btnEntrar" type="submit"> LOGIN </button><br>
-
-
-<div class="container-senha">
-
-<div id="esquerda">
-<input id="chkLembrar" name="chkLembrar" value="Sim" type="checkbox" /> 
-</div>
-
-<div id="direita">
-<span > <a  href="#" class="lksenha"> Esqueceu sua senha? </span></a> <br>
-</div>
-
-<div class="clear"> </div>
+            <button id="btnEntrar" name="btnEntrar" type="submit"> LOGIN </button><br>
 
 
+            <div class="container-senha">
 
-</div>
+                <div id="esquerda">
+                    <input id="chkLembrar" name="chkLembrar" value="Sim" type="checkbox" />
+                </div>
 
-</div>
-</form>
+                <div id="direita">
+                    <span> <a href="#" class="lksenha"> Esqueceu sua senha? </span></a> <br>
+                </div>
+
+                <div class="clear"> </div>
+
+
+
+            </div>
+
+    </div>
+    </form>
 
 
 </body>
-</html>
 
+</html>
