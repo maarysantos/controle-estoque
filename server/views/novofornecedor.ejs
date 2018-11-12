@@ -18,62 +18,7 @@
 
   </head>
 
-  <body>
-    <aside id="barraMenu">
-      <nav id="conteudoBarraMenu">
-        <ul>
-          <li><a href="home" class="lnkBranco"><i class="fas fa-home"></i></i>&nbsp;Home</a></li>
-  
-          <li>
-            <a id="itemConf1" href="" class="lnkBranco"><i class="fas fa-tag"></i>&nbsp;Produtos</a>
-            <ul class="lstSubMenu1 submenu" >
-              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Produto</a> </li>
-              <li><a href="produtoxml" class="lnkSubItem subitem" > Adicionar nota XML</a> </li>
-              <li><a href="saidaproduto" class="lnkSubItem subitem" > Saída de Produto </a> </li>
-              <li><a href="editarproduto" class="lnkSubItem subitem" > Editar Produto </a> </li>
-            </ul>
-          </li>
-  
-          <li>
-            <a id="itemConf2" href="" class="lnkBranco"><i class="fas fa-truck"></i></i>&nbsp;Fornecedores</a>
-            <ul class="lstSubMenu2 submenu" >
-              <li><a href="novofornecedor" class="lnkSubItem subitem" > Novo Fornecedor</a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Editar Fornecedor</a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Pesquisar Fornecedor</a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Lista de Fornecedores </a> </li>
-            </ul>
-          </li>
-  
-          <li>
-            <a id="itemConf3" href="" class="lnkBranco"><i class="far fa-clipboard"></i> &nbsp;Relatórios</a>
-            <ul class="lstSubMenu3 submenu" >
-              <li><a href="" class="lnkSubItem subitem" > Produtos sem estoque </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Mais Vendidos </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Menos Vendidos </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Produtos Comprados </a> </li>
-            </ul>
-          </li>
-        
-          <li> 
-            <a id="itemConf4"  class="lnkBranco" href="#"> <i class="fas fa-dollar-sign"></i>&nbsp;Lucro </a>
-            <ul class="lstSubMenu4 submenu" >
-              <li><a href="#" class="lnkSubItem subitem" > Por mês </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Por Semana </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Por Ano </a> </li>
-            </ul>
-          </li>
-  
-          <li> 
-            <a id="itemConf5" href="#" class="lnkBranco"><i class="fas fa-wallet"></i> </i>&nbsp;Despesas</a>
-            <ul class="lstSubMenu5 submenu">
-              <li><a href="" class="lnkSubItem subitem">Loja</a></li>
-              <li><a href="" class="lnkSubItem subitem">Pessoais</a></li>
-            </ul>
-          </li>
-
-        </ul>
-      </nav>
-    </aside>
+  <%- include('menu'); %>
   
     <div id="barraIdentificacao">
       <div id="logo"></div>
