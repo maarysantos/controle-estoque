@@ -89,3 +89,7 @@ module.exports.atualizarEstoque = (formvenda, codigo, quantidade, req, res) =>{
   });
 };
   
+module.exports.editaProduto = (form, res, req, next) => {
+ var dados = form;
+
+}

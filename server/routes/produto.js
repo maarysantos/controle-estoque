@@ -39,6 +39,11 @@ router.post('/produtoxml', upload.single('upXml'), function(req, res, next) {
   router.get('/editarproduto', controller.carregarEditarProduto);
   router.get('/editarproduto/search', controller.carregaTypeAhead );
 
+  router.post('/editar', controller.editaProduto);
+
+
+
+
 
 
 

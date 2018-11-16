@@ -36,7 +36,7 @@
       </div>
 
        
-    <form id="form" method="post" action="/editarProduto">
+    <form id="form" onsubmit="enviar(); return false;">
 
       <div class="form-row">
         <div class="form-group  md-col-2" >
@@ -89,7 +89,7 @@
    
     <div class="form-row">
       <div class="form-group md-col-2">
-        <button id="btnAtualizar" type="submit"> Atualizar </button>   
+        <button id="btnAtualizar" type="submit" > Atualizar </button>   
      </div>
     </div>
   </form>
@@ -162,9 +162,43 @@
         
         $("#itemConf5").click(function (e) { e.preventDefault();
         $(".lstSubMenu5").slideToggle(); });    
-  });
+
+});
+ 
+/*var form = document.getElementById('form');
+form.addEventListener('change', function(){
+  alert("The text has been changed.");
 
 
+});*/
+
+let camposAlterados = {};
+document.querySelectorAll('input, select').forEach(function(i){
+    i.addEventListener('change', function(e){
+           camposAlterados[this.getAttribute('name')] = this.value;
+        });
+});
+
+var jason = JSON.stringify(camposAlterados);
+
+function enviar(){
+  $.ajax({
+  type: "POST",
+  url: "/editar",
+  contentType: "application/json",
+  data: jason,
+  success: function(data){
+  console.log('foi');
+},
+error: function(data)
+{
+console.log(data);
+
+}
+});
+
+
+};
 
 
 </script>
