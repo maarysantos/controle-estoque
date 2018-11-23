@@ -10,7 +10,7 @@ const indexRouter = require('./routes/index');
 const homeRouter = require('./routes/home');
 const Produto = require('./routes/produto');
 const Fornecedor = require('./routes/fornecedor');
-
+const Relatorios= require('./routes/relatorios');
 
 var app = express();
 
@@ -43,6 +43,7 @@ app.use(function(req, res, next) {
 app.use('/home', homeRouter);
 app.use(Fornecedor);
 app.use(Produto);
+app.use('/relatorios', Relatorios);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

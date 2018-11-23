@@ -59,3 +59,77 @@ figure img {
 .legenda a {
 	color: black;
 }
+
+
+/*Painel para Escolher tipo de relatorio e datas*/
+
+/*Container geral*/
+.click-grid {
+	display:flex;
+	flex-wrap: wrap;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    box-lines: multiple;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    border: solid #d4d8dc;
+    border-radius: 0;
+    width: 40%;
+	z-index: 110;
+	padding:10px;
+}
+
+.click-grid__box .click-grid__label {
+    
+    background-color: #fff;
+    border: solid #d4d8dc;
+    border-width: 0 1px 1px 0;
+    color:#000;
+    cursor: pointer;
+    display: grid;
+    font-weight: 500;
+    height: 100%;
+    margin-bottom: 0;
+    min-height: 40px;
+    padding: 13px 5px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 100;
+}
+.click-grid__input:checked+.click-grid__label {
+    background-color: #526173;
+    border-color: #5b667d;
+    color: #F1F2F4;
+}
+
+input[type='checkbox']+label, .page-v1 input[type='radio']+label {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.click-grid__input {
+    height: 0;
+    position: absolute;
+    width: 0;
+    z-index: -1000;
+}
+
+.click-grid__input:not(:checked):enabled+.click-grid__label:hover {
+    background-color: #d4d8dc;
+}
+
+.step{background-color:pink; width:50px; height: 50px; border-radius:50px;
+text-align:center; font-size:30px; margin-bottom:10px;}
+
+
+/* Produtos Mais Vendidos
+    Produtos Menos Vendidos
+    Produtos com Estoque Minimo
+    Produtos com Estoque Máximo
+    Consumo de Produto
+    Gastos Pessoais
+    Gastos da Loja
+    Todos fornecedores*/

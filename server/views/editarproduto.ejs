@@ -173,15 +173,21 @@ form.addEventListener('change', function(){
 });*/
 
 let camposAlterados = {};
+
+
+
+
 document.querySelectorAll('input, select').forEach(function(i){
     i.addEventListener('change', function(e){
            camposAlterados[this.getAttribute('name')] = this.value;
         });
 });
 
-var jason = JSON.stringify(camposAlterados);
+
 
 function enviar(){
+  
+  var jason = JSON.stringify(camposAlterados);
   $.ajax({
   type: "POST",
   url: "/editar",

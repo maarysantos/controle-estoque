@@ -174,7 +174,7 @@ module.exports.carregarEditarProduto = (req, res, next) =>{
 module.exports.editaProduto = (req, res, next) => {
     var form = req.body;
     var usuario = req.session.nome;
-    console.log(form)
+    
     produtoModel.editaProduto(form, usuario, req, res, next);
     
   };
