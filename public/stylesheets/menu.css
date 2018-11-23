@@ -7,7 +7,8 @@
 	left: 0;
 	width: 160px;
 	z-index: 1;
-	background-color: #444444;
+	background-color:#444444 ;
+	/*#363c4a;*/
 	height: 100%;
     font-size:13px
 }

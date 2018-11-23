@@ -1,35 +1,47 @@
+/*Painel para Escolher tipo de relatorio e datas*/
+
+/*Container geral*/
 .click-grid {
+	display:flex;
+	flex-wrap: wrap;
     -webkit-box-lines: multiple;
     -moz-box-lines: multiple;
     box-lines: multiple;
-    -webkit-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
     border: solid #d4d8dc;
-    border-radius: 0;
-    border-width: 1px 0 0 1px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    z-index: 110;
-   
+    border-radius: 3px;
+    width: 40%;
+	z-index: 110;
+    padding:10px;
+    float:left;
+    margin-right:10px;
+    
 }
 
-.click-grid__box .click-grid__label {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #fff;
+#date-grid{display:flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
     border: solid #d4d8dc;
-    border-width: 0 1px 1px 0;
-    color: #7e7f88;
+    border-radius: 3px;
+    width: 40%;
+    padding:10px;
+    float:left;
+    height:378px;
+    }
+
+.click-grid__box .click-grid__label {
+    
+    background-color: #fff;
+    border: solid #d9d9d9;
+    border-width: 1px 1px 1px 1px;
+    color:#000;
     cursor: pointer;
-    display: grid;
     font-weight: 500;
     height: 100%;
-    margin-bottom: 0;
+    margin-bottom:0;
     min-height: 40px;
     padding: 13px 5px;
     position: relative;
@@ -38,8 +50,8 @@
     z-index: 100;
 }
 .click-grid__input:checked+.click-grid__label {
-    background-color: #526173;
-    border-color: #5b667d;
+    background-color: #d12e6a;
+    border-color: #666666;
     color: #F1F2F4;
 }
 
@@ -55,3 +67,24 @@ input[type='checkbox']+label, .page-v1 input[type='radio']+label {
     width: 0;
     z-index: -1000;
 }
+
+.click-grid__input:not(:checked):enabled+.click-grid__label:hover {
+    background-color: #f1c0d2;
+}
+
+.step{background-color:#081235; color:#fff; width:50px; height: 50px; border-radius:50px;
+text-align:center; font-size:30px; margin-bottom:10px; margin-top:10px;}
+form{margin-bottom:10px; }
+
+
+
+    
+
+/* Produtos Mais Vendidos
+    Produtos Menos Vendidos
+    Produtos com Estoque Minimo
+    Produtos com Estoque Máximo
+    Consumo de Produto
+    Gastos Pessoais
+    Gastos da Loja
+    Todos fornecedores*/

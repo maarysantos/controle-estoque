@@ -8,11 +8,13 @@
 <link href="/stylesheets/reset.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/menu.css" type="text/css" rel="stylesheet">
 <link href="/stylesheets/estilo_home.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/relatorios.css" type="text/css" rel="stylesheet">
+
 
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-<script type="text/javascript" src="/javascripts/script.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<script type="text/javascript" src="/javascripts/script.js"></script>
 
 
 <title>Bazar Olimpio | Home</title>
@@ -30,15 +32,15 @@
 
       <div id="conteudo">
       <h1>Relatórios</h1>
-   
+      
    
 
-
+      
      <div class="click-grid">
        <div class="step">1</div>
-
-     <form>
-        <label class="click-grid__legend">Escolha uma opção: </label>           
+       <form action="/relatorios/do">
+  
+        <label class="click-grid__legend"><span>Escolha uma opção: </span></label>           
         
         <div class="click-grid__box">
         <input type = "radio" name = "reportControl" id ="item1" class="click-grid__input" value = "1" checked = "checked" />
@@ -61,10 +63,46 @@
         <input type = "radio" name = "reportControl" id = "item5" class="click-grid__input"  value = "5" />
         <label for = "item5" class="click-grid__label"> Consumo de Produto</label>
         </div>
-   </form>
+   
   </div>
    
+  <div id="date-grid">
+      <div class="step">2</div>
+      <label><span>Escolha o período:</span></label>
+      
+        <div class="click-grid__box">
+        <label for="data_inicio">De:</label>
+        <input type="date" name="data_inicio"><br>
+      </div>
+  
+      <div class="click-grid__box">
+        <label for="data_final">Até:</label>
+        <input type="date" name="data_final">
+      </div>
 
+      <button id="btnAvancar">Avançar</button>
+
+
+      <div class="msg_erro"></div>
+     
+    </form>
+    </div>
+ 
       </div>
       </body>
+      <script>
+      
+      document.getElementById('btnAvancar').addEventListener('click', function(){
+      
+      let tipoRel= document.getElementsByName('reportControl');
+      for (let i=0; i<=tipoRel.length; i++){
+        let selecionado=[];
+        selecionado.push(tipoRel[i].)
+
+      }
+        
+      })
+      
+      </script>
+
       </html>
