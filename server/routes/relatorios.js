@@ -7,8 +7,12 @@ router.get('/relatorios', function(req, res,next){
 });
 
 router.get('/relatorios/relatorio', function(req, res,next){
+      var form = req.body;
+      console.log(form);
       
       res.render('relatorio');
 });
+
+
 
 module.exports = router;

@@ -38,7 +38,7 @@
     <div id="acao">
      <div class="click-grid">
        <div class="step">1</div>
-       <form id="myform" action="/relatorios/do">
+       <form id="myform">
   
         <label class="click-grid__legend"><span>Escolha uma opção: </span></label>           
         
@@ -109,26 +109,39 @@
         }*/
 
        if(!form.data_inicio.value){
+
+        console.log(form.data_inicio.value)
         
           erro.innerHTML="Escolha uma data de partida!";
           }
 
        if(!form.data_final.value){
        
+        console.log(form.data_inicio.value)
           erro.innerHTML="Escolha uma data final!";
 
-          }
+          } else{
+          let campos = {};
+          campos.data_inicio=form.data_inicio.value
+          campos.data_final=form.data_final.value;
+          campos.reporControl=form.reportControl.value;
+          console.log(campos);
+          var jason = JSON.stringify(campos);
 $.ajax({
   url:'/relatorios/relatorio',
   method:'get',
+  contentType: "application/json",
+  data:jason,
   success: function(data){
     $('#acao').html(data);
   }
 
 })
+}
 
       });
       
+    
 
       
       </script>
