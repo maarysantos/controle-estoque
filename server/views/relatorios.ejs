@@ -38,7 +38,7 @@
     <div id="acao">
      <div class="click-grid">
        <div class="step">1</div>
-       <form id="myform">
+       <form id="myform" onsubmit="return false;">
   
         <label class="click-grid__legend"><span>Escolha uma opção: </span></label>           
         
@@ -88,8 +88,6 @@
     </div>
   </div>
       </div>
-
-
       </body>
       <script>
        
@@ -98,15 +96,6 @@
     var erro= document.querySelector('.erro');
 
       botao.addEventListener('click', function(e){
-        e.preventDefault();
-
-        /*if(!form.data_inicio.value && !form.data_final.value ){
-
-          form.data_inicio.style.background="#ff8080";
-          form.data_final.style.background="#ff8080";
-          erro.innerHTML="Escolha um período";
-
-        }*/
 
        if(!form.data_inicio.value){
 
@@ -120,30 +109,25 @@
         console.log(form.data_inicio.value)
           erro.innerHTML="Escolha uma data final!";
 
-          } else{
+          } else {
           let campos = {};
           campos.data_inicio=form.data_inicio.value
           campos.data_final=form.data_final.value;
-          campos.reporControl=form.reportControl.value;
+          campos.reportControl=form.reportControl.value;
           console.log(campos);
           var jason = JSON.stringify(campos);
 $.ajax({
   url:'/relatorios/relatorio',
-  method:'get',
+  method:'post',
   contentType: "application/json",
   data:jason,
-  success: function(data){
-    $('#acao').html(data);
+  success: function(dados){
+    $('#acao').html(dados);
   }
 
 })
 }
 
       });
-      
-    
-
-      
       </script>
-
       </html>
