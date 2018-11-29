@@ -10,6 +10,5 @@ module.exports.getPagRelatorios = (req, res, next) => {
 };
 module.exports.carregaRelatorio = (req, res, next) => {
     let form = req.body;
-    console.log(req.body.reportControl);
     relatorioModel.carregaRelatorio(form, req, res, next);
 }

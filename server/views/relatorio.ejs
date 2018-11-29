@@ -1,5 +1,30 @@
 <div id="relatorio">
 
-    Olá
+    <h2> Relátório <%= title %> </h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">Código:</th>
+              <th scope="col">Produto:</th>
+              <th scope="col">Quantidade:</th>
+    
+    
+            </tr>
+        </thead>
+        <tbody>
+                <% for (var i =0; i< produtos.length; i++){ %>
+    
+        <tr>
+            <td> <%= produtos[i].estoque_cd_produto %> </td>
+            <td> <%= produtos[i].ds_produto %> </td>
+            <td> <%= produtos[i].qt_soma %> </td>
+    
+        </tr>
+          <% } %>
+          <tbody>
+    
+    </table>
+    
 
 </div>

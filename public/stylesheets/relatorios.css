@@ -51,7 +51,6 @@
 }
 .click-grid__input:checked+.click-grid__label {
     background-color: #d12e6a;
-    border-color: #666666;
     color: #F1F2F4;
 }
 
