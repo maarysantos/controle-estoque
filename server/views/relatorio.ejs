@@ -2,6 +2,7 @@
 
     <h2> Relátório <%= title %> </h2>
 
+    <form onsubmit="return false;">
     <table class="table">
         <thead>
             <tr>
@@ -25,7 +26,37 @@
           <tbody>
     
     </table>
-    <button id="btnGeraPdf" onclick="geraPdf('<%= produtos %>')">Salvar como Pdf</button>
-    <button id="btnInprimir" >Imprimir</button>
-
+    <button id="btnGeraPdf"   onclick="geraPdf('<%= JSON.stringify(produtos)%>')"> Salvar como Pdf </button>
+    <button id="btnInprimir">Imprimir</button>
+</form>
 </div>
+<script>
+
+function geraPdf(produtos){
+
+     var docDefinition = [
+     {
+			style: 'table',
+         table: { 
+				body: [
+                    ['Código', 'Descrição', 'Quantidade'],
+					[function(){
+                        for(var i=0; i<= produtos.length; i++){
+                            return produtos.estoque_cd_produto[i];
+                        }
+
+                    }, 'Another one here', 'OK?']
+				]
+            }
+     }
+     ]
+
+pdfMake.createPdf(docDefinition).open();
+// download the PDF
+pdfMake.createPdf(docDefinition).download('relatorio.pdf');
+}
+
+
+
+
+</script>
