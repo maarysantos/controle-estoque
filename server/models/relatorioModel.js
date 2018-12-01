@@ -4,38 +4,37 @@ var express = require('express');
 
 
 
-module.exports.carregaRelatorio = (form,req, res, next) => {
-        var connection = db();
-
-      if (req.body.reportControl = 1){
-        connection.query("SELECT estoque_cd_produto, ds_produto, sum(qt_produto) as qt_soma FROM saida_produto GROUP BY estoque_cd_produto;", function(error, result){
-        if(error){throw error};
-        console.log(result);
-        res.render('relatorio', {produtos: result, title:'Produtos Mais Vendidos'});
-        
-      });
-
-      if (req.body.reportControl = 2){
-        connection.query("SELECT estoque_cd_produto, ds_produto, sum(qt_produto) as qt_soma FROM saida_produto GROUP BY estoque_cd_produto ORDER BY sum(qt_produto) DESC;", function(error, result){
-          if(error){throw error};
-          res.render('relatorio', {produtos: result, title:'Produtos Menos Vendidos'});
-         
-        })
-      }
-
-      if(req.body.reportControl = 3){
-        connection.query("Select cd_produto, ds_produto, qt_produto as qt_soma from estoque order by qt_produto DESC", function (error, result){
-          if(error){throw error};
-        res.render('relatorio', {produtos:result, title:'Produtos com Estoque Mínimo'})
-  
-        })
-      }
-    };
-
+module.exports.carregaRelatorio = (form, req, res, next) => {
+    var connection = db();
+    let title = '';
+    let sql = '';
     
+    if (req.body.reportControl == 1){
+        title = 'Produtos Mais Vendidos';
+        sql = "SELECT estoque_cd_produto, ds_produto, sum(qt_produto) as qt_soma FROM saida_produto GROUP BY estoque_cd_produto, ds_produto;";
+    }
+    
+    if (req.body.reportControl == 2){
+        sql = "SELECT estoque_cd_produto, ds_produto, sum(qt_produto) as qt_soma FROM saida_produto GROUP BY estoque_cd_produto, ds_produto ORDER BY sum(qt_produto) DESC;";
+        titulo = 'Produtos Menos Vendidos';
+    }
+    if(req.body.reportControl == 3){
+        sql = "Select cd_produto as estoque_cd_produto, ds_produto, qt_produto as qt_soma from estoque where qt_produto <= 5 order by qt_produto DESC";
+        title = 'Produtos com Estoque Mínimo';
+    }
 
-   
+    if(req.body.reportControl == 4){
+      sql = "Select cd_produto as estoque_cd_produto, ds_produto, qt_produto as qt_soma from estoque where qt_produto > 5 order by qt_produto ASC";
+      title = 'Produtos com Estoque Máximo';
+  }
 
+    if(sql && title){
+        connection.query(sql, function(error, result){
+            if(error){throw error};
+            console.log(result);
+            res.render('relatorio', {produtos: result, title:title});
+        });
+    }else{
+        res.render('relatorio', {produtos: [], title:'Erro'});
+    }
 }
-
-
