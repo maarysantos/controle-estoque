@@ -9,10 +9,9 @@
               <th scope="col">Código:</th>
               <th scope="col">Produto:</th>
               <th scope="col">Quantidade:</th>
-    
-    
             </tr>
         </thead>
+
         <tbody>
                 <% for (var i =0; i< produtos.length; i++){ %>
     
@@ -26,37 +25,73 @@
           <tbody>
     
     </table>
-    <button id="btnGeraPdf"   onclick="geraPdf('<%= JSON.stringify(produtos)%>')"> Salvar como Pdf </button>
+    <button id="btnGeraPdf" onclick="geraPdf('<%= JSON.stringify(produtos)%>')"> Salvar como Pdf </button>
     <button id="btnInprimir">Imprimir</button>
 </form>
 </div>
 <script>
 
+
+
 function geraPdf(produtos){
+    var dados = JSON.parse(produtos)
+    const listaCodigos = dados.reduce((novoArray, atual) => {
+  novoArray.push(atual.estoque_cd_produto);
+  return novoArray;
+}, []);
 
-     var docDefinition = [
-     {
-			style: 'table',
-         table: { 
+ const listaProdutos = dados.reduce((novoArray, atual) => {
+  novoArray.push(atual.ds_produto);
+  return novoArray;
+}, []);
+
+const listaQtdd = dados.reduce((novoArray, atual) => {
+  novoArray.push(atual.qt_soma);
+  return novoArray;
+}, []);
+
+    var dd = {
+      pageSize: 'A4',
+      // [left, top, right, bottom] or [horizontal, vertical] 
+  pageMargins: [ 40, 60, 40, 60 ],
+	content: [
+    {text: 'Relatório do dia ', style: 'header'},
+		{
+			table: {
+                style:'table',
+                headerRows: 1,
 				body: [
-                    ['Código', 'Descrição', 'Quantidade'],
-					[function(){
-                        for(var i=0; i<= produtos.length; i++){
-                            return produtos.estoque_cd_produto[i];
-                        }
-
-                    }, 'Another one here', 'OK?']
+					['Código', 'Descrição', 'Quantidade'],
+					[listaCodigos, listaProdutos, listaQtdd],
 				]
-            }
-     }
-     ]
-
-pdfMake.createPdf(docDefinition).open();
+            },
+            footer: 
+              function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
+            layout: {
+				fillColor: function (i, node) {
+					return (i % 2 === 0) ? '#CCCCCC' : null;
+				}
+			}
+		},
+		
+    ],
+    styles: {
+     header: {
+       fontSize: 18,
+       bold: true,
+       margin: [20, 20, 0, 20],
+       alignment: 'center'
+      
+     },
+     items: {
+       alignment: 'center'
+       
+     },
+   }
+ };
+    
+pdfMake.createPdf(dd).open();
 // download the PDF
-pdfMake.createPdf(docDefinition).download('relatorio.pdf');
+pdfMake.createPdf(dd).download('relatorio.pdf');
 }
-
-
-
-
 </script>

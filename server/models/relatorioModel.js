@@ -31,7 +31,6 @@ module.exports.carregaRelatorio = (form, req, res, next) => {
     if(sql && title){
         connection.query(sql, function(error, result){
             if(error){throw error};
-            console.log(result);
             res.render('relatorio', {produtos: result, title:title});
         });
     }else{
