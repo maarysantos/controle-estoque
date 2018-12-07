@@ -37,3 +37,21 @@ module.exports.carregaRelatorio = (form, req, res, next) => {
         res.render('relatorio', {produtos: [], title:'Erro'});
     }
 }
+
+module.exports.carregaRelatorioProdutos = (req, res, next) => {
+    var connection = db();
+    let usuario = req.session.nome; 
+   connection.query("Select * from estoque", function(error, result){
+       if(error){throw error};
+       res.render('relatorioProdutos',{usuario: usuario, produtos:result});
+   })
+}
+
+module.exports.carregaRelatorioFornecedores = (req, res, next) => {
+    var connection = db();
+    let usuario = req.session.nome; 
+   connection.query("Select * from fornecedor", function(error, result){
+       if(error){throw error};
+       res.render('relatorioFornecedores',{usuario: usuario, fornecedor:result});
+   })
+}

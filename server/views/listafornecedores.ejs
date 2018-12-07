@@ -53,7 +53,7 @@
         <td> <%= fornecedores[i].nm_fantasia %> </td>
         <td> <%= fornecedores[i].nm_vendedor %> </td>
         <td> <%= fornecedores[i].cd_telvendedor%> </td>
-        <td> <a href="/listafornecedores/edit/<%= fornecedores[i].cd_fornecedor %>" onclick= 'return confirm("Deseja editar esse fornecedor ?");'> Editar </a></td>
+        <td> <a href='/listafornecedores/edit/<%= fornecedores[i].cd_fornecedor %>' onclick= 'return confirm("Deseja editar esse fornecedor ?");'> Editar </a></td>
         <td> <a href='/listafornecedores/delete/<%= fornecedores[i].cd_fornecedor %>' onclick= 'return confirm("Tem certeza ?");'> Excluir </a></td>
 
     </tr>

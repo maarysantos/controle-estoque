@@ -31,67 +31,71 @@
 </div>
 <script>
 
+  function geraPdf(produtos){
+      var dados = JSON.parse(produtos);
 
+      var externalDataRetrievedFromServer = dados.map(i => ({ 
+          Código:i.estoque_cd_produto,
+          Descrição:i.ds_produto,
+          Quantidade: i.qt_soma
+      }));
 
-function geraPdf(produtos){
-    var dados = JSON.parse(produtos)
-    const listaCodigos = dados.reduce((novoArray, atual) => {
-  novoArray.push(atual.estoque_cd_produto);
-  return novoArray;
-}, []);
+      function buildTableBody(data, columns) {
+          var body = [];
 
- const listaProdutos = dados.reduce((novoArray, atual) => {
-  novoArray.push(atual.ds_produto);
-  return novoArray;
-}, []);
+          body.push(columns);
 
-const listaQtdd = dados.reduce((novoArray, atual) => {
-  novoArray.push(atual.qt_soma);
-  return novoArray;
-}, []);
+          data.forEach(function(row) {
+              var dataRow = [];
+              columns.forEach(function(column) {
+              dataRow.push(row[column].toString());
+              })
 
-    var dd = {
+          body.push(dataRow);
+      });
+
+      return body;
+      }
+
+      function table(data, columns) {
+          return {
+              table: {
+              headerRows: 1,
+              widths: [ 100, '*', 'auto'],
+              body: buildTableBody(data, columns),
+        },
+      
+              footer: function(currentPage, pageCount) { 
+                  return currentPage.toString() + ' of ' + pageCount; },
+              };
+          }
+
+  var dd = {
       pageSize: 'A4',
       // [left, top, right, bottom] or [horizontal, vertical] 
-  pageMargins: [ 40, 60, 40, 60 ],
-	content: [
-    {text: 'Relatório do dia ', style: 'header'},
-		{
-			table: {
-                style:'table',
-                headerRows: 1,
-				body: [
-					['Código', 'Descrição', 'Quantidade'],
-					[listaCodigos, listaProdutos, listaQtdd],
-				]
-            },
-            footer: 
-              function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
-            layout: {
-				fillColor: function (i, node) {
-					return (i % 2 === 0) ? '#CCCCCC' : null;
-				}
-			}
-		},
-		
-    ],
-    styles: {
-     header: {
-       fontSize: 18,
-       bold: true,
-       margin: [20, 20, 0, 20],
-       alignment: 'center'
-      
-     },
-     items: {
-       alignment: 'center'
-       
-     },
-   }
- };
-    
-pdfMake.createPdf(dd).open();
-// download the PDF
-pdfMake.createPdf(dd).download('relatorio.pdf');
-}
+      pageMargins: [ 40, 60, 40, 60 ],
+      content: [
+          { text: 'Relatório', style: 'header' },
+          table(externalDataRetrievedFromServer, ['Código', 'Descrição','Quantidade']),
+      ],
+
+      styles: {
+          header: {
+              fontSize: 18,
+              bold: true,
+              margin: [20, 20, 0, 20],
+              alignment: 'center'
+          },
+
+          items: {
+              alignment: 'center'
+          },
+      }
+  }   
+
+  pdfMake.createPdf(dd).open();
+  // download the PDF
+  pdfMake.createPdf(dd).download('relatorio.pdf');
+  }
+  
 </script>

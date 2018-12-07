@@ -12,3 +12,11 @@ module.exports.carregaRelatorio = (req, res, next) => {
     let form = req.body;
     relatorioModel.carregaRelatorio(form, req, res, next);
 }
+
+module.exports.carregaRelatorioProdutos = (req, res, next) => {
+    relatorioModel.carregaRelatorioProdutos(req, res, next);
+}
+
+module.exports.carregaRelatorioFornecedores = (req, res, next) => {
+    relatorioModel.carregaRelatorioFornecedores(req, res, next);
+}
