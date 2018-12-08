@@ -41,10 +41,4 @@ router.post('/produtoxml', upload.single('upXml'), function(req, res, next) {
 
   router.post('/editar', controller.editaProduto);
 
-
-
-
-
-
-
   module.exports = router;

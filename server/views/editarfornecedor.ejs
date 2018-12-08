@@ -21,13 +21,6 @@
    <body>
     <%- include('menu'); %>
     
-    <div id="barraIdentificacao">
-      <div id="logo"></div>
-      <div id="conteudoId"> Olá <b><span id="lblLogado"> <%= usuario %> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
-        <button type="button" id="btnSair"> Sair</button>
-      </div>
-    </div>
-
     <div id="conteudo">
         <h1>Fornecedor</h1>
         <br>
@@ -104,13 +97,13 @@
         
             <div class="form-row">
               <div class="form-group md-col-2">
-                <label for="nm_vendedor">Telefone 1</label>
-                <input id="nm_vendedor" name="nm_vendedor" class="form-control telefone" value="<%= dados[i].cd_tel1 %>"/>
+                <label for="cd_tel1">Telefone 1</label>
+                <input id="cd_tel1" name="cd_tel1" class="form-control telefone" value="<%= dados[i].cd_tel1 %>"/>
               </div>
         
               <div class="form-group md-col-2">
-                <label for="cd_telvendedor">Telefone 2</label>
-                <input id="cd_telvendedor" name="cd_telvendedor" class="form-control telefone" value="<%= dados[i].cd_tel2 %>" />
+                <label for="cd_tel2">Telefone 2</label>
+                <input id="cd_tel2" name="cd_tel2" class="form-control telefone" value="<%= dados[i].cd_tel2 %>" />
               </div>
         
               <div class="form-group md-col-3">

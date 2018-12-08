@@ -11,6 +11,8 @@ const homeRouter = require('./routes/home');
 const Produto = require('./routes/produto');
 const Fornecedor = require('./routes/fornecedor');
 const Relatorios= require('./routes/relatorios');
+const Despesa = require('./routes/despesa');
+
 
 var app = express();
 
@@ -44,6 +46,7 @@ app.use('/home', homeRouter);
 app.use(Fornecedor);
 app.use(Produto);
 app.use(Relatorios);
+app.use(Despesa);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

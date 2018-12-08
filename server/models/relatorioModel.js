@@ -55,3 +55,12 @@ module.exports.carregaRelatorioFornecedores = (req, res, next) => {
        res.render('relatorioFornecedores',{usuario: usuario, fornecedor:result});
    })
 }
+
+module.exports.getInfoFornecedor = (id, req, res, next) => {
+    var connection = db();
+    let usuario = req.session.nome; 
+   connection.query("Select * from fornecedor where cd_fornecedor = ?",id, function(error, result){
+       if(error){throw error};
+       res.render('infoFornecedor',{usuario: usuario, fornecedor:result});
+   })
+}

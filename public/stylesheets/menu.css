@@ -10,7 +10,7 @@
 	background-color:#444444 ;
 	/*#363c4a;*/
 	height: 100%;
-    font-size:13px
+    font-size:12px
 }
 
 #conteudoBarraMenu {
@@ -162,7 +162,7 @@ a.lnkGeral:active {
 }
 
 #barraIdentificacao {
-	font-size: 13px;
+	font-size: 12px;
 	position: fixed;
 	top: 0;
 	left: 0;

@@ -20,18 +20,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.28/pdfmake.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.28/vfs_fonts.js"></script>  
 
-<title>Bazar Olimpio | Home</title>
+<title>Bazar Olimpio | Relatórios</title>
 </head>
 
 <body> 
   <%- include('menu'); %>
   
-  <div id="barraIdentificacao">
-    <div id="logo"></div>
-    <div id="conteudoId"> Olá, <b><span id="lblLogado">  <%= usuario %> </span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
-      <button type="button" id="btnSair"> Sair</button>
-    </div>
-  </div>
 
       <div id="conteudo">
 
@@ -92,7 +86,8 @@
             Embalagem: i.tipo_embalagem_nm_tipo_embalagem,
             Quantidade: i.qt_produto,
             VlUnitário: i.vl_unitario,
-            VlTotal: i.vl_total
+            VlTotal: i.vl_total,
+          
         }));
 
         function buildTableBody(data, columns) {

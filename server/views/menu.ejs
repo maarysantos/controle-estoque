@@ -1,7 +1,7 @@
 <aside id="barraMenu">
       <nav id="conteudoBarraMenu">
         <ul>
-          <li><a href="home" class="lnkBranco"><i class="fas fa-home"></i></i>&nbsp;Home</a></li>
+          <li><a href="/home" class="lnkBranco"><i class="fas fa-home"></i></i>&nbsp;Home</a></li>
     
           <li>
             <a id="itemConf1" href="" class="lnkBranco"><i class="fas fa-tag"></i>&nbsp;Produtos</a>
@@ -18,7 +18,7 @@
             <ul class="lstSubMenu2 submenu" >
               <li><a href="/novofornecedor" class="lnkSubItem subitem" > Novo Fornecedor</a> </li>
               <li><a href="#" class="lnkSubItem subitem" > Pesquisar Fornecedor</a> </li>
-              <li><a href="/listafornecedores" class= ubItem subitem" > Lista de Fornecedores </a> </li>
+              <li><a href="/listafornecedores" class= "lnkSubItem subitem" > Lista de Fornecedores </a> </li>
             </ul>
           </li>
     
@@ -29,7 +29,6 @@
 
               <li><a href="/relatorios/relatorio/todosprodutos" class="lnkSubItem subitem" > Todos os produtos </a> </li>
               <li><a href="/relatorios/relatorio/todosfornecedores" class="lnkSubItem subitem" > Todos os fornecedores </a> </li>
-              <li><a href="#" class="lnkSubItem subitem" > Menos Vendidos </a> </li>
               <li><a href="#" class="lnkSubItem subitem" > Produtos Comprados </a> </li>
             </ul>
           </li>
@@ -47,10 +46,17 @@
           <li> 
             <a id="itemConf5" href="#" class="lnkBranco"><i class="fas fa-wallet"></i> </i>&nbsp;Despesas</a>
             <ul class="lstSubMenu5 submenu">
-              <li><a href="" class="lnkSubItem subitem">Loja</a></li>
+              <li><a href="/despesa/loja" class="lnkSubItem subitem">Loja</a></li>
               <li><a href="" class="lnkSubItem subitem">Pessoais</a></li>
             </ul>
           </li>
         </ul>
       </nav>
     </aside>
+    <div id="barraIdentificacao">
+        <div id="logo"></div>
+        <div id="conteudoId"> Olá <b><span id="lblLogado"> <%= usuario %></span></b> <span>|</span> <a href="">Alterar Senha</a> <span>|</span>
+          <button type="button" id="btnSair"> Sair</button>
+        </div>
+      </div>
+  

@@ -10,5 +10,7 @@ router.get('/relatorios/relatorio/todosprodutos', controller.carregaRelatorioPro
 
 router.get('/relatorios/relatorio/todosfornecedores', controller.carregaRelatorioFornecedores);
 
+router. get('/info/fornecedor/:id', controller.getInfoFornecedor);
+
 
 module.exports = router;
