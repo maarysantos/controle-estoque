@@ -75,7 +75,9 @@ input[type='checkbox']+label, .page-v1 input[type='radio']+label {
 text-align:center; font-size:30px; margin-bottom:10px; margin-top:10px;}
 form{margin-bottom:10px; }
 
-
+/* Div de informações individual de um fornecedor*/
+.containerInfoFornecedor ul li{padding:0 10px 10px 0; font-size:15px;}
+strong{text-transform: uppercase;}
 
 
 

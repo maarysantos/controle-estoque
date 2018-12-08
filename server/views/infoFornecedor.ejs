@@ -27,36 +27,36 @@
 <body> 
   <%- include('menu'); %>
   
-  
-
       <div id="conteudo">
             <h1>Relatórios</h1>
             <br>
             <h2> Informações</h2>
             <br>
             <form onsubmit="return false;">
-            <div>
+            <div class="containerInfoFornecedor">
             <% for (var i =0; i< fornecedor.length; i++){ %>
-
-            Código:<p><%= fornecedor[i].cd_fornecedor %></p>
-            Razão Social:<p><%= fornecedor[i].nm_razao %></p>
-            Nome Fantasia:<p><%= fornecedor[i].nm_fantasia %></p>
-            CNPJ<p><%= fornecedor[i].cd_cnpj %></p>
-            Inscrição Estadual <p><%= fornecedor[i].cd_ie %></p>
-            CEP: <p><%= fornecedor[i].cd_cep %></p>
-            Endereço: <p><%= fornecedor[i].ds_endereco %></p>
-            Nº: <p><%= fornecedor[i].cd_numero %></p>
-            Bairro:<p><%= fornecedor[i].nm_bairro %></p>
-            Cidade:<p><%= fornecedor[i].nm_cidade %></p>
-            Estado:<p><%= fornecedor[i].nm_estado %></p>
-            Telefone:<p><%= fornecedor[i].cd_tel1 %></p>
-            Telefone:<p><%= fornecedor[i].cd_tel2 %></p>
-            Email:<p><%= fornecedor[i].nm_email %></p>
-            Site: <p><%= fornecedor[i].nm_site %></p>
-            Vendedor:<p><%= fornecedor[i].nm_vendedor%></p>
-            Telefone vendedor:<p><%= fornecedor[i].cd_telvendedor %></p>
+            <ul>
+            <li> <strong>Código: </strong>  <%= fornecedor[i].cd_fornecedor %></li>
+            <li> <strong> Razão Social: </strong> <%= fornecedor[i].nm_razao %></li>
+            <li> <strong>Nome Fantasia: </strong> <%= fornecedor[i].nm_fantasia %></li>
+            <li> <strong>CNPJ: </strong> <%= fornecedor[i].cd_cnpj %></li>
+            <li> <strong>Inscrição Estadual: </strong> <%= fornecedor[i].cd_ie %></li>
+            <li> <strong>CEP: </strong> <%= fornecedor[i].cd_cep %> </li>
+            <li> <strong>Endereço:</strong> <%= fornecedor[i].ds_endereco %> </li>
+            <li> <strong>Nº:</strong> <%= fornecedor[i].cd_numero %></li>
+            <li> <strong>Bairro:</strong> <%= fornecedor[i].nm_bairro %></li>
+            <li> <strong>Cidade:</strong> <%= fornecedor[i].nm_cidade %></li>
+            <li> <strong>Estado:</strong> <%= fornecedor[i].nm_estado %></li>
+            <li> <strong>Telefone:</strong> <%= fornecedor[i].cd_tel1 %></li>
+            <li> <strong>Telefone:</strong> <%= fornecedor[i].cd_tel2 %></li>
+            <li> <strong>Email:</strong> <%= fornecedor[i].nm_email %> </li>
+            <li> <strong>Site:</strong> <%= fornecedor[i].nm_site %> </li>
+            <li> <strong>Vendedor:</strong> <%= fornecedor[i].nm_vendedor%> </li>
+            <li> <strong>Telefone vendedor:</strong> <%= fornecedor[i].cd_telvendedor %> </li>
+            </ul>
 <% } %>
             </div>
+
             <button id="btnGeraPdf" onclick="geraPdf('<%= JSON.stringify(fornecedor)%>')"> Salvar como Pdf </button>
             <button id="btnInprimir">Imprimir</button>
             </form>

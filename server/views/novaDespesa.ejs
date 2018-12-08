@@ -1,1 +1,33 @@
-ola
+<div>
+
+    <h2> Nova Despesa </h2>
+    
+    <form method="POST">
+        <div class="form-row">
+            <div class="form-group  md-col-7" >
+                <label for="ds_despesa">Nome da Despesa:</label>
+                <input id="ds_despesa" name="ds_despesa" class="form-control" type="text"   />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group  md-col-2" >
+                <label for="dt_compra">Data da Compra:</label>
+                 <input id="dt_compra" name="dt_compra" class="form-control" type="date"   />
+            </div>
+
+            <div class="form-group  md-col-2">
+                <label for="dt_pagamento">Data Pagamento:</label>
+                <input id="dt_pagamento" class="form-control" name="dt_pagamento" type="date" />
+            </div>
+
+             <div class="form-group  md-col-2">
+                <label for="vl_despesa">Valor da Despesa:</label>
+                <input id="vl_despesa" class="form-control" name="vl_despesa"  />
+            </div>
+        </div>
+        <button id="btnCancelar" type="reset">  </button>
+        <button id="btnEnviar">Enviar</button>
+    </form>
+</div>
+    
