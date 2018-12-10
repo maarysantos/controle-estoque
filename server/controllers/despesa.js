@@ -6,6 +6,10 @@ module.exports.carregaDespesaLoja = (req, res, next) => {
     despesaModel.carregaDespesaLoja(req,res, next);
 }
 
+module.exports.carregaDespesaPessoal = (req, res, next) => {
+    despesaModel.carregaDespesaPessoal(req,res, next);
+}
+
 module.exports.getNovaDespesa = (req, res, next) => {
     let usuario=req.session.name;
     res.render('novaDespesa', {usuario:usuario})

@@ -15,7 +15,7 @@ module.exports.getPagNovoProduto = (usuario, req, res, next) =>{
 
 module.exports.inserirProduto = (formproduto, req, res) =>{
   var connection = db();
-
+ console.log(formproduto)
   connection.query("insert into estoque set ?", formproduto, function(err, result) {
     if(err){throw(err);
 

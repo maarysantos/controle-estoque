@@ -68,6 +68,33 @@
                   <input id="vl_total"  name="vl_total" class="form-control mask" placeholder="R$" type="" />
                </div>
             </div>
+            <h5>Dados da Nota Fiscal / *Não obrigatório /*Se o fornecedor não estiver na lista, então cadastre o novo fornecedor</h5>
+
+            <hr class="divisoria" />
+            <div class="form-row">
+
+               <div class="form-group md-col-2">
+                  <label for="fornecedor_cd_fornecedor">Selecione o fornecedor:</label>
+                  <select id="fornecedor_cd_fornecedor" name="fornecedor_cd_fornecedor" class="form-control"></select>
+               </div>
+
+               <div class="form-group md-col-2">
+                  <label for="cd_nfe">Nº Nota Fiscal</label>
+                  <input id="cd_nfe"  name="cd_nfe" class="form-control mask"  disabled/>
+               </div>
+
+               <div class="form-group md-col-2">
+                  <label for="dt_criacao">Data Compra:</label>
+                  <input id="dt_criacao"  name="dt_criacao" class="form-control mask"  disabled />
+               </div>
+
+               <div class="form-group md-col-2">
+                  <label for="dt_emissao">Data Emissão:</label>
+                  <input id="dt_emissao"  name="dt_emissao" class="form-control mask"  disabled/>
+               </div>
+      
+            </div>
+
             <button type="button" id="btnGravar" data-toggle="modal" data-target="#mymodal"> Inserir</button>
             <input id="btnCancelar" type="reset"/>
             <div id="mymodal" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
