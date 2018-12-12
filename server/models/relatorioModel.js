@@ -40,27 +40,24 @@ module.exports.carregaRelatorio = (form, req, res, next) => {
 
 module.exports.carregaRelatorioProdutos = (req, res, next) => {
     var connection = db();
-    let usuario = req.session.nome; 
    connection.query("Select * from estoque", function(error, result){
        if(error){throw error};
-       res.render('relatorioProdutos',{usuario: usuario, produtos:result});
+       res.render('relatorioProdutos',{ produtos:result});
    })
 }
 
 module.exports.carregaRelatorioFornecedores = (req, res, next) => {
     var connection = db();
-    let usuario = req.session.nome; 
-   connection.query("Select * from fornecedor", function(error, result){
+    connection.query("Select * from fornecedor", function(error, result){
        if(error){throw error};
-       res.render('relatorioFornecedores',{usuario: usuario, fornecedor:result});
+       res.render('relatorioFornecedores', {fornecedor:result});
    })
 }
 
 module.exports.getInfoFornecedor = (id, req, res, next) => {
     var connection = db();
-    let usuario = req.session.nome; 
    connection.query("Select * from fornecedor where cd_fornecedor = ?",id, function(error, result){
        if(error){throw error};
-       res.render('infoFornecedor',{usuario: usuario, fornecedor:result});
+       res.render('infoFornecedor',{fornecedor:result});
    })
 }

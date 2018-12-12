@@ -3,8 +3,7 @@ var router = express.Router();
 var fornecedorModel = require('../models/fornecedorModel');
 
 module.exports.getNovoFornecedor = (req, res, next) => {
-        var usuario = req.session.nome; 
-        res.render('novofornecedor', {usuario:usuario});            
+        res.render('novofornecedor');            
     
 };
 
@@ -27,8 +26,7 @@ module.exports.deleteFornecedor = (req, res, next) => {
 
 module.exports.editarFornecedor = (req, res, next) => {
   let id = req.params.id;
-  let usuario = req.session.nome;
-  fornecedorModel.editarFornecedor(id, usuario, req, res, next);
+  fornecedorModel.editarFornecedor(id, req, res, next);
 }
 
 

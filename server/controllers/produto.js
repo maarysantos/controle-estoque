@@ -7,8 +7,7 @@ var produtoModel= require('../models/produtoModel');
 
 /*============== Novo Produto ===========================*/
 module.exports.carregaPagNovoProduto = (req, res, next) =>{
-    var usuario = req.session.nome; 
-    produtoModel.getPagNovoProduto(usuario, req, res, next);
+    produtoModel.getPagNovoProduto( req, res, next);
 
 }
 
@@ -22,7 +21,6 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
   fs.readFile(fileDate,'utf-8', (err, data) => {
     if (err){throw err;}
 
-      var usuario = req.session.nome; 
       var parser       = new xml2js.Parser();
       parser.parseString(data.substring(0, data.length), function(err, result){
         if(!err){
@@ -34,7 +32,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
             produtos.push(prod);
           });
 
-          res.render('produtoxml', {produtos : produtos, usuario:usuario});
+          res.render('produtoxml', {produtos : produtos});
         }else{
           console.error(err);
         }
@@ -43,8 +41,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
 }
 
 module.exports.carregarPagProdutoXML = (req, res, next) =>{
-   var usuario = req.session.nome; 
-   res.render('produtoxml', {produtos : [], usuario:usuario });            
+   res.render('produtoxml', {produtos : [] });            
 };
 
 
@@ -144,8 +141,7 @@ module.exports.salvarProdutosNota= (req, res, next)=>{
               
 /*============== Saída de Produto =================*/
 module.exports.carregarPagSaidaProduto = (req, res, next) =>{
-   var usuario = req.session.nome; 
-   res.render('saidaproduto', {usuario:usuario, msg:{}});            
+   res.render('saidaproduto', {msg:{}});            
 };
 
 module.exports.carregaTypeAhead = (req, res, next) =>{
@@ -162,19 +158,16 @@ module.exports.atualizarEstoque = (req, res, next) =>{
 };
 
 module.exports.getNovoFornecedor = (req, res, next) =>{
-  res.render('novofornecedor', {usuario:usuario});
+  res.render('novofornecedor');
 };
 
 module.exports.carregarEditarProduto = (req, res, next) =>{
-  var usuario = req.session.nome; 
-  res.render('editarproduto', {usuario: usuario});            
+  res.render('editarproduto');            
 };
 
 
 module.exports.editaProduto = (req, res, next) => {
     var form = req.body;
-    var usuario = req.session.nome;
-    
-    produtoModel.editaProduto(form, usuario, req, res, next);
+    produtoModel.editaProduto(form, req, res, next);
     
   };

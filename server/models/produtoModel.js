@@ -2,11 +2,11 @@ var mysql = require('mysql');
 var db = require('../db');
 var express = require('express');
 
-module.exports.getPagNovoProduto = (usuario, req, res, next) =>{
+module.exports.getPagNovoProduto = ( req, res, next) =>{
     var connection = db();
 
     connection.query("SELECT nm_tipo_embalagem FROM tipo_embalagem", function(error, result){
-      res.render('novoproduto', {usuario : usuario, tipo_embalagem_nm_tipo_embalagem : result, msg:{}});
+      res.render('novoproduto', { tipo_embalagem_nm_tipo_embalagem : result, msg:{}});
 
     });
 
@@ -26,9 +26,8 @@ module.exports.inserirProduto = (formproduto, req, res) =>{
         if (err){throw err};
 
          let msg="Produto cadastrado com sucesso!";
-         let usuario = req.session.nome;
     
-         res.render('novoproduto', {usuario : usuario, tipo_embalagem_nm_tipo_embalagem : result, msg:msg});
+         res.render('novoproduto', {tipo_embalagem_nm_tipo_embalagem : result, msg:msg});
 
       });
     }
@@ -60,7 +59,6 @@ module.exports.buscadorTypeAhead = (key, req, res) =>{
 };
     
 module.exports.atualizarEstoque = (formvenda, codigo, quantidade, req, res) =>{ 
-  let usuario = req.session.nome;
   var connection = db();
 
   connection.query("SELECT qt_produto from estoque where cd_produto ="+codigo+"", function(error, result) {
@@ -78,13 +76,13 @@ module.exports.atualizarEstoque = (formvenda, codigo, quantidade, req, res) =>{
           if (error) {throw error};
 
           let msg="Produto atualizado com sucesso!";
-          res.render('saidaproduto', {usuario : usuario, msg:msg});
+          res.render('saidaproduto', {msg:msg});
         });
     }     
 
     if (resultado < 0){ 
           let msg="Não há produtos disponíveis no estoque!";
-          res.render('saidaproduto', {usuario : usuario, msg:msg});
+          res.render('saidaproduto', {msg:msg});
     }
   });
 };

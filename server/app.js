@@ -37,6 +37,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use(function(req, res, next) {
   if (req.session.autorizado) {
+    res.locals.usuario = req.session.nome;
     next();
   } else {
     res.redirect('/');

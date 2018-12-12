@@ -4,8 +4,7 @@ var relatorioModel = require('../models/relatorioModel');
 
 
 module.exports.getPagRelatorios = (req, res, next) => {
-    let usuario = req.session.nome; 
-    res.render('relatorios', {usuario:usuario});            
+    res.render('relatorios');            
 
 };
 module.exports.carregaRelatorio = (req, res, next) => {
