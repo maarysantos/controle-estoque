@@ -74,23 +74,28 @@
             <div class="form-row">
 
                <div class="form-group md-col-3">
-                  <label for="fornecedor_cd_fornecedor">Selecione o fornecedor:</label>
-                  <select id="fornecedor_cd_fornecedor" name="fornecedor_cd_fornecedor" class="form-control"></select>
+                  <label for="nm_fantasia">Selecione o fornecedor:</label>
+                  <select id="nm_fantasia" name="nm_fantasia" class="form-control">
+                     <option selected>-</option>
+                     <% for (var i=0; i< nm_fantasia.length; i++){ %>
+                     <option> <%= nm_fantasia[i].nm_fantasia %></option>
+                     <% } %>
+                  </select>
                </div>
 
                <div class="form-group md-col-2">
                   <label for="cd_nfe">Nº Nota Fiscal</label>
-                  <input id="cd_nfe"  name="cd_nfe" class="form-control mask"  disabled/>
+                  <input id="cd_nfe"  name="cd_nfe" class="form-control" disabled/>
                </div>
 
                <div class="form-group md-col-2">
                   <label for="dt_criacao">Data Compra:</label>
-                  <input id="dt_criacao"  name="dt_criacao" class="form-control mask"  disabled />
+                  <input id="dt_criacao"  name="dt_criacao" class="form-control" type="date"  disabled />
                </div>
 
                <div class="form-group md-col-2">
                   <label for="dt_emissao">Data Emissão:</label>
-                  <input id="dt_emissao"  name="dt_emissao" class="form-control mask"  disabled/>
+                  <input id="dt_emissao"  name="dt_emissao" class="form-control" type="date"  disabled/>
                </div>
       
             </div>
@@ -125,7 +130,9 @@
           </div>
         <% } %>   
   </body>
+
    <script>
+
       $(function() {
         $('.mask').maskMoney({
              decimal: ".",
@@ -133,6 +140,24 @@
         }
         );
       });
+
+      var select =  document.getElementById('nm_fantasia');
+
+      select.addEventListener('change', function(){
+
+         if (select.value == '-'){
+            document.getElementById("cd_nfe").disabled = true;
+            document.getElementById("dt_criacao").disabled = true; 
+            document.getElementById("dt_emissao").disabled = true; 
+         } 
+
+         else{
+            document.getElementById("cd_nfe").disabled = false;
+            document.getElementById("dt_criacao").disabled = false; 
+            document.getElementById("dt_emissao").disabled = false; 
+
+         };
+     });
 
    </script>
 </html>

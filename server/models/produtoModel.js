@@ -6,10 +6,12 @@ module.exports.getPagNovoProduto = ( req, res, next) =>{
     var connection = db();
 
     connection.query("SELECT nm_tipo_embalagem FROM tipo_embalagem", function(error, result){
-      res.render('novoproduto', { tipo_embalagem_nm_tipo_embalagem : result, msg:{}});
-
+      var embalagens = result;
+      connection.query("SELECT cd_fornecedor, nm_fantasia from fornecedor", function(error, result){
+        var fornecedores = result;
+        res.render('novoproduto', { tipo_embalagem_nm_tipo_embalagem : embalagens, nm_fantasia: fornecedores, msg:{}});
+      })
     });
-
 };
 
 
