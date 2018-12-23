@@ -20,47 +20,24 @@ USE `estoque` ;
 CREATE TABLE IF NOT EXISTS `estoque`.`usuario` (
   `cd_usuario` INT NOT NULL,
   `nm_usuario` VARCHAR(200) NOT NULL,
+  `nm_email` VARCHAR(255) NOT NULL,
   `nm_senha` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`cd_usuario`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `estoque`.`tipo_embalagem`
+-- Table `estoque`.`produto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`tipo_embalagem` (
-  `nm_tipo_embalagem` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`nm_tipo_embalagem`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `estoque`.`estoque`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`estoque` (
+CREATE TABLE IF NOT EXISTS `estoque`.`produto` (
   `cd_produto` VARCHAR(10) NOT NULL,
   `cd_ncm` INT NOT NULL,
-  `ds_produto` VARCHAR(200) NOT NULL,
-  `qt_produto` INT NOT NULL,
-  `vl_unitario` DECIMAL(10,2) NOT NULL,
-  `vl_total` DECIMAL(10,2) NOT NULL,
-  `tipo_embalagem_nm_tipo_embalagem` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`cd_produto`),
-  INDEX `fk_estoque_tipo_embalagem1_idx` (`tipo_embalagem_nm_tipo_embalagem` ASC),
-  CONSTRAINT `fk_estoque_tipo_embalagem1`
-    FOREIGN KEY (`tipo_embalagem_nm_tipo_embalagem`)
-    REFERENCES `estoque`.`tipo_embalagem` (`nm_tipo_embalagem`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `estoque`.`lucro`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`lucro` (
-  `taxa_lucro` DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (`taxa_lucro`))
+  `ds_produto` VARCHAR(255) NOT NULL,
+  `nm_embalagem` VARCHAR(100) NOT NULL,
+  `qt_estoque` INT NOT NULL,
+  `vl_unitario` DECIMAL(5,2) NOT NULL,
+  `vl_total` DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY (`cd_produto`))
 ENGINE = InnoDB;
 
 
@@ -94,55 +71,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`notafiscal` (
   `cd_nfe` VARCHAR(100) NOT NULL,
-  `dt_emissao` DATETIME NOT NULL,
-  `dt_criacao` DATETIME NOT NULL,
-  `Fornecedor_cd_fornecedor` INT NOT NULL,
+  `dt_emissao` DATE NOT NULL,
+  `dt_criacao` DATE NOT NULL,
+  `fornecedor_cd_fornecedor` INT NOT NULL,
   PRIMARY KEY (`cd_nfe`),
-  INDEX `fk_NotaFiscal_Fornecedor1_idx` (`Fornecedor_cd_fornecedor` ASC),
+  INDEX `fk_NotaFiscal_Fornecedor1_idx` (`fornecedor_cd_fornecedor` ASC),
   CONSTRAINT `fk_NotaFiscal_Fornecedor1`
-    FOREIGN KEY (`Fornecedor_cd_fornecedor`)
+    FOREIGN KEY (`fornecedor_cd_fornecedor`)
     REFERENCES `estoque`.`fornecedor` (`cd_fornecedor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `estoque`.`saida_produto`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`saida_produto` (
-  `cd_produto_saida` INT NOT NULL AUTO_INCREMENT,
-  `ds_produto` VARCHAR(200) NOT NULL,
-  `qt_produto` INT NOT NULL,
-  `vl_unitario` DECIMAL(10,2) NOT NULL,
-  `dt_saida` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `estoque_cd_produto` VARCHAR(10) NOT NULL,
-  PRIMARY KEY (`cd_produto_saida`),
-  INDEX `fk_saida_produto_estoque1_idx` (`estoque_cd_produto` ASC),
-  CONSTRAINT `fk_saida_produto_estoque1`
-    FOREIGN KEY (`estoque_cd_produto`)
-    REFERENCES `estoque`.`estoque` (`cd_produto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `estoque`.`entrada_produto`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `estoque`.`entrada_produto` (
-  `cd_produto_entrada` INT NOT NULL AUTO_INCREMENT,
-  `cd_ncm` INT NOT NULL,
-  `ds_produto` VARCHAR(200) NOT NULL,
-  `qt_produto` INT NOT NULL,
-  `vl_unitario` DECIMAL(10,2) NOT NULL,
-  `dt_entrada` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `estoque_cd_produto` VARCHAR(10) NOT NULL,
-  PRIMARY KEY (`cd_produto_entrada`),
-  INDEX `fk_entrada_produto_estoque1_idx` (`estoque_cd_produto` ASC),
-  CONSTRAINT `fk_entrada_produto_estoque1`
-    FOREIGN KEY (`estoque_cd_produto`)
-    REFERENCES `estoque`.`estoque` (`cd_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -152,9 +88,9 @@ ENGINE = InnoDB;
 -- Table `estoque`.`tipo_despesa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`tipo_despesa` (
-  `cd_tipo_despesa` INT NOT NULL,
-  `nm_tipo_despesa` VARCHAR(255) NULL,
-  PRIMARY KEY (`cd_tipo_despesa`))
+  `cd_despesa` INT NOT NULL,
+  `nm_despesa` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`cd_despesa`))
 ENGINE = InnoDB;
 
 
@@ -163,17 +99,67 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `estoque`.`despesa` (
   `cd_despesa` INT NOT NULL AUTO_INCREMENT,
-  `ds_despesa` VARCHAR(255) NULL,
-  `nm_tipo_despesa` VARCHAR(255) NOT NULL,
-  `vl_despesa` VARCHAR(255) NULL,
-  `dt_pagamento` DATE NULL,
-  `dt_compra` DATE NULL,
-  `tipo_despesa_cd_tipo_despesa` INT NOT NULL,
+  `ds_despesa` VARCHAR(255) NOT NULL,
+  `dt_pagamento` DATE NOT NULL,
+  `dt_compra` DATE NOT NULL,
+  `vl_despesa` DECIMAL(5,2) NOT NULL,
+  `tipo_despesa_cd_despesa` INT NOT NULL,
   PRIMARY KEY (`cd_despesa`),
-  INDEX `fk_despesa_tipo_despesa1_idx` (`tipo_despesa_cd_tipo_despesa` ASC),
-  CONSTRAINT `fk_despesa_tipo_despesa1`
-    FOREIGN KEY (`tipo_despesa_cd_tipo_despesa`)
-    REFERENCES `estoque`.`tipo_despesa` (`cd_tipo_despesa`)
+  INDEX `fk_despesa_tipo_despesa2_idx` (`tipo_despesa_cd_despesa` ASC),
+  CONSTRAINT `fk_despesa_tipo_despesa2`
+    FOREIGN KEY (`tipo_despesa_cd_despesa`)
+    REFERENCES `estoque`.`tipo_despesa` (`cd_despesa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `estoque`.`lancamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `estoque`.`lancamento` (
+  `cd_lancamento` INT NOT NULL AUTO_INCREMENT,
+  `nm_fornecedor` VARCHAR(255) NULL,
+  `dt_lancamento` DATE NOT NULL,
+  `qt_produto` INT NOT NULL,
+  `nm_tipo_lancamento` VARCHAR(255) NOT NULL,
+  `cd_nota_fiscal` VARCHAR(255) NULL,
+  `produto_cd_produto` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`cd_lancamento`),
+  INDEX `fk_lancamento_produto1_idx` (`produto_cd_produto` ASC),
+  CONSTRAINT `fk_lancamento_produto1`
+    FOREIGN KEY (`produto_cd_produto`)
+    REFERENCES `estoque`.`produto` (`cd_produto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `estoque`.`tipo_despesa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `estoque`.`tipo_despesa` (
+  `cd_despesa` INT NOT NULL,
+  `nm_despesa` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`cd_despesa`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `estoque`.`despesa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `estoque`.`despesa` (
+  `cd_despesa` INT NOT NULL AUTO_INCREMENT,
+  `ds_despesa` VARCHAR(255) NOT NULL,
+  `dt_pagamento` DATE NOT NULL,
+  `dt_compra` DATE NOT NULL,
+  `vl_despesa` DECIMAL(5,2) NOT NULL,
+  `tipo_despesa_cd_despesa` INT NOT NULL,
+  PRIMARY KEY (`cd_despesa`),
+  INDEX `fk_despesa_tipo_despesa2_idx` (`tipo_despesa_cd_despesa` ASC),
+  CONSTRAINT `fk_despesa_tipo_despesa2`
+    FOREIGN KEY (`tipo_despesa_cd_despesa`)
+    REFERENCES `estoque`.`tipo_despesa` (`cd_despesa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

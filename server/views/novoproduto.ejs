@@ -48,11 +48,13 @@
             </div>
             <div class="form-row">
                <div class="form-group md-col-2">
-                  <label for="tipo_embalagem_nm_tipo_embalagem">Embalagem</label>
-                  <select id="tipo_embalagem_nm_tipo_embalagem" name="tipo_embalagem_nm_tipo_embalagem" class="form-control">
-                     <%  for (var i=0; i< tipo_embalagem_nm_tipo_embalagem.length; i++){ %>
-                     <option> <%= tipo_embalagem_nm_tipo_embalagem[i].nm_tipo_embalagem %></option>
-                     <% } %>
+                  <label for="nm_emabalagem">Embalagem</label>
+                  <select id="nm_emabalagem" name="nm_emabalagem" class="form-control">
+                     <option>UN</option>
+                     <option>PC</option>
+                     <option>RL</option>
+                     <option>CA</option>
+                     <option>RM</option>
                   </select>
                </div>
                <div class="form-group md-col-2">
