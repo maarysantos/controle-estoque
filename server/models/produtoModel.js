@@ -6,30 +6,52 @@ module.exports.getPagNovoProduto = ( req, res, next) =>{
     var connection = db();
 
       connection.query("SELECT cd_fornecedor, nm_fantasia from fornecedor", function(error, result){
-        var fornecedores = result;
-        res.render('novoproduto', { tipo_embalagem_nm_tipo_embalagem : embalagens, nm_fantasia: fornecedores, msg:{}});
+        if(error){throw error};
+        res.render('novoproduto', { dadosFor: result, msg:{}});
     });
 };
 
 
 module.exports.inserirProduto = (formproduto, req, res) =>{
   var connection = db();
- console.log(formproduto)
-  connection.query("insert into estoque set ?", formproduto, function(err, result) {
-    if(err){throw(err);
+  let dadosProd = {...formproduto};
+  delete dadosProd.nm_fantasia;
+  delete dadosProd.cd_nfe;
+  delete dadosProd.dt_criacao;
+  delete dadosProd.dt_emissao;
 
-    } else {
+  let dadosNota = { ...formproduto};
+  delete dadosNota.cd_produto;
+  delete dadosNota.cd_ncm;
+  delete dadosNota.ds_produto;
+  delete dadosNota.qt_estoque;
+  delete dadosNota.nm_embalagem;
+  delete dadosNota.vl_unitario;
+  delete dadosNota.vl_total;
+  delete dadosNota.nm_fantasia;
 
-      connection.query("SELECT nm_tipo_embalagem FROM tipo_embalagem", function(error, result){
+  if (formproduto.nm_fantasia !=='-'){
+    connection.query("insert into notafiscal set ?", dadosNota, function(err, result) {
+      if(err){throw(err);}
+  });
+};
 
-        if (err){throw err};
 
-         let msg="Produto cadastrado com sucesso!";
+  connection.query("insert into produto set ?", dadosProd, function(err, result) {
+    if(err){
+      let msg='Produto já cadastrado no sistema';
+      connection.query("SELECT cd_fornecedor, nm_fantasia from fornecedor", function(error, result){
+        var fornecedores = result;
+        res.render('novoproduto', { nm_fantasia: fornecedores, msg:msg});
+    });
+    };
     
-         res.render('novoproduto', {tipo_embalagem_nm_tipo_embalagem : result, msg:msg});
+         let msg="Produto cadastrado com sucesso!";
 
+         connection.query("SELECT cd_fornecedor, nm_fantasia from fornecedor", function(error, result){
+          var fornecedores = result;
+          res.render('novoproduto', { nm_fantasia: fornecedores, msg:msg});
       });
-    }
   });
 };
 

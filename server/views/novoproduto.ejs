@@ -48,8 +48,8 @@
             </div>
             <div class="form-row">
                <div class="form-group md-col-2">
-                  <label for="nm_emabalagem">Embalagem</label>
-                  <select id="nm_emabalagem" name="nm_emabalagem" class="form-control">
+                  <label for="nm_embalagem">Embalagem</label>
+                  <select id="nm_embalagem" name="nm_embalagem" class="form-control">
                      <option>UN</option>
                      <option>PC</option>
                      <option>RL</option>
@@ -58,8 +58,8 @@
                   </select>
                </div>
                <div class="form-group md-col-2">
-                  <label for="qt_produto">Quantidade</label>
-                  <input id="qt_produto" name="qt_produto" type="number" class="form-control" style="width:100%"/> 
+                  <label for="qt_estoque">Quantidade</label>
+                  <input id="qt_estoque" name="qt_estoque" type="number" class="form-control" style="width:100%"/> 
                </div>
                <div class="form-group md-col-2">
                   <label for="vl_unitario">Valor Unitário</label>
@@ -79,15 +79,17 @@
                   <label for="nm_fantasia">Selecione o fornecedor:</label>
                   <select id="nm_fantasia" name="nm_fantasia" class="form-control">
                      <option selected>-</option>
-                     <% for (var i=0; i< nm_fantasia.length; i++){ %>
-                     <option> <%= nm_fantasia[i].nm_fantasia %></option>
+                     <% for (var i=0; i< dadosFor.length; i++){ %>
+                     <option value="<%=dadosFor[i].cd_fornecedor %>"> <%= dadosFor[i].nm_fantasia %></option>
                      <% } %>
                   </select>
                </div>
 
                <div class="form-group md-col-2">
                   <label for="cd_nfe">Nº Nota Fiscal</label>
-                  <input id="cd_nfe"  name="cd_nfe" class="form-control" disabled/>
+                  <select id="cd_nfe" name="cd_nfe" class="form-control" disabled>
+                  <option selected>-</option>
+               
                </div>
 
                <div class="form-group md-col-2">
@@ -160,6 +162,5 @@
 
          };
      });
-
    </script>
 </html>
