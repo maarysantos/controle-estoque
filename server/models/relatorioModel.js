@@ -4,7 +4,7 @@ var express = require('express');
 
 
 
-module.exports.carregaRelatorio = (form, req, res, next) => {
+module.exports.carregaRelatorio = (req, res, next) => {
     var connection = db();
     let title = '';
     let sql = '';

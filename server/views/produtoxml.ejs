@@ -64,10 +64,10 @@
                 <input name="cd_produto[<%- i -%>]" type="hidden" value ="<%= produtos[i].cProd %>"   />
                 <input name="cd_ncm[<%- i -%>]"  type="hidden" value = "<%= produtos[i].NCM %>"/>
                 <input name="ds_produto[<%- i -%>]"  type="hidden" value= "<%= produtos[i].xProd %>" />
-                <input name="qt_produto[<%- i -%>]"  type="hidden"  value = "<%= produtos[i].qCom %>"/>
+                <input name="qt_estoque[<%- i -%>]"  type="hidden"  value = "<%= produtos[i].qCom %>"/>
                 <input name="vl_unitario[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vUnCom %>" />
                 <input name="vl_total[<%- i -%>]"  type="hidden" value = "<%= produtos[i].vProd %>" />
-                <input name="tipo_embalagem_nm_tipo_embalagem[<%- i -%>]"   type="hidden" value = "<%= produtos[i].uCom %>" />
+                <input name="nm_embalagem[<%- i -%>]"   type="hidden" value = "<%= produtos[i].uCom %>" />
 
               </td>
               <td> <%= produtos[i].cProd %> </td>

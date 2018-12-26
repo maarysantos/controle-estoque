@@ -8,8 +8,7 @@ module.exports.getPagRelatorios = (req, res, next) => {
 
 };
 module.exports.carregaRelatorio = (req, res, next) => {
-    let form = req.body;
-    relatorioModel.carregaRelatorio(form, req, res, next);
+    relatorioModel.carregaRelatorio(req, res, next);
 }
 
 module.exports.carregaRelatorioProdutos = (req, res, next) => {

@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var db = require('../db');
-var express = require('express');
 
 module.exports.getPagNovoProduto = ( req, res, next) =>{
     var connection = db();
@@ -12,54 +11,70 @@ module.exports.getPagNovoProduto = ( req, res, next) =>{
 };
 
 
+module.exports.carregaSelectCdNota = (req, res, next) =>{
+  var connection = db();
+    connection.query("SELECT cd_nfe from notafiscal where fornecedor_cd_fornecedor = ?",req.body.fornecedor_cd_fornecedor, function(error, result){
+      if(error){throw error};
+      res.send(result);
+  });
+};
+
+
 module.exports.inserirProduto = (formproduto, req, res) =>{
   var connection = db();
+  
   let dadosProd = {...formproduto};
   delete dadosProd.nm_fantasia;
   delete dadosProd.cd_nfe;
-  delete dadosProd.dt_criacao;
-  delete dadosProd.dt_emissao;
 
-  let dadosNota = { ...formproduto};
-  delete dadosNota.cd_produto;
-  delete dadosNota.cd_ncm;
-  delete dadosNota.ds_produto;
-  delete dadosNota.qt_estoque;
-  delete dadosNota.nm_embalagem;
-  delete dadosNota.vl_unitario;
-  delete dadosNota.vl_total;
-  delete dadosNota.nm_fantasia;
 
-  if (formproduto.nm_fantasia !=='-'){
-    connection.query("insert into notafiscal set ?", dadosNota, function(err, result) {
-      if(err){throw(err);}
-  });
-};
+  let data = new Date();
+  let numero = Math.floor(Math.random() * 1000);
 
+  let hoje =data.getFullYear()+'-'+ (data.getMonth() -1) +'-'+ data.getDate();
+  console.log(hoje)
+  let dadosLa = { ...formproduto,
+     cd_lancamento:numero,
+     nm_fornecedor:formproduto.nm_fantasia,
+     dt_lancamento:hoje,
+     qt_produto: formproduto.qt_estoque,
+     nm_tipo_lancamento:'entrada',
+     produto_cd_produto:formproduto.cd_produto
+    };
+
+
+  delete dadosLa.cd_produto;
+  delete dadosLa.cd_ncm;
+  delete dadosLa.ds_produto;
+  delete dadosLa.qt_estoque;
+  delete dadosLa.nm_embalagem;
+  delete dadosLa.vl_unitario;
+  delete dadosLa.vl_total;
+  delete dadosLa.nm_fantasia;
 
   connection.query("insert into produto set ?", dadosProd, function(err, result) {
-    if(err){
-      let msg='Produto já cadastrado no sistema';
-      connection.query("SELECT cd_fornecedor, nm_fantasia from fornecedor", function(error, result){
-        var fornecedores = result;
-        res.render('novoproduto', { nm_fantasia: fornecedores, msg:msg});
-    });
-    };
-    
-         let msg="Produto cadastrado com sucesso!";
+    if(err){throw err};
 
-         connection.query("SELECT cd_fornecedor, nm_fantasia from fornecedor", function(error, result){
-          var fornecedores = result;
-          res.render('novoproduto', { nm_fantasia: fornecedores, msg:msg});
-      });
+    connection.query("insert into lancamento set ?", dadosLa, function(err, result){
+      if(err){throw err};
+      let msg = 'Produto cadastrado com sucesso!';
+
+      connection.query("SELECT cd_fornecedor, nm_fantasia from fornecedor", function(error, result){
+        if(error){throw error};
+        res.render('novoproduto', { dadosFor: result, msg:msg});
+    });
+
   });
-};
+  });
+
+
+}
 
 module.exports.buscadorTypeAhead = (key, req, res) =>{
 
   var connection = db();
 
-  connection.query('SELECT * from estoque where cd_produto like "%'+key+'%" or ds_produto like "%'+key+'%"',
+  connection.query('SELECT * from produto where cd_produto like "%'+key+'%" or ds_produto like "%'+key+'%"',
     function(err, rows, fields) {
 
       if (err){ throw err};
@@ -82,14 +97,14 @@ module.exports.buscadorTypeAhead = (key, req, res) =>{
 module.exports.atualizarEstoque = (formvenda, codigo, quantidade, req, res) =>{ 
   var connection = db();
 
-  connection.query("SELECT qt_produto from estoque where cd_produto ="+codigo+"", function(error, result) {
+  connection.query("SELECT qt_produto from produto where cd_produto ="+codigo+"", function(error, result) {
    
     if (error){ console.log(error);} 
     var qt_produto = result[0].qt_produto;
     var resultado= qt_produto - quantidade;
     
     if (resultado >= 0) {
-        connection.query('UPDATE estoque SET qt_produto = ? WHERE cd_produto = ?', [resultado, codigo], function (error, results, fields) {
+        connection.query('UPDATE produto SET qt_produto = ? WHERE cd_produto = ?', [resultado, codigo], function (error, results, fields) {
           if (error) {throw error};
         });
             

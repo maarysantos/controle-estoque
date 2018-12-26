@@ -18,6 +18,8 @@ var upload = multer({storage});
 router.get('/novoproduto', controller.carregaPagNovoProduto);
 router.post('/novoproduto', controller.post);
 
+router.post('/cdfornecedor/cdnota', controller.carregaSelectCdNota);
+
 /*============Rotas página Produto Xml ==================*/
 
 router.post('/produtoxml', upload.single('upXml'), function(req, res, next) {

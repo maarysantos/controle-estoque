@@ -118,7 +118,6 @@
           campos.data_inicio=form.data_inicio.value
           campos.data_final=form.data_final.value;
           campos.reportControl=form.reportControl.value;
-          console.log(campos);
           var jason = JSON.stringify(campos);
 $.ajax({
   url:'/relatorios/relatorio',

@@ -70,11 +70,10 @@
                   <input id="vl_total"  name="vl_total" class="form-control mask" placeholder="R$" type="" />
                </div>
             </div>
-            <h5>Dados da Nota Fiscal / *Não obrigatório /*Se o fornecedor não estiver na lista, então cadastre o novo fornecedor</h5>
+            <h5>Dados da Nota Fisca do Produto </h5>
 
             <hr class="divisoria" />
             <div class="form-row">
-
                <div class="form-group md-col-3">
                   <label for="nm_fantasia">Selecione o fornecedor:</label>
                   <select id="nm_fantasia" name="nm_fantasia" class="form-control">
@@ -85,24 +84,13 @@
                   </select>
                </div>
 
-               <div class="form-group md-col-2">
-                  <label for="cd_nfe">Nº Nota Fiscal</label>
+               <div class="form-group md-col-3">
+                  <label for="cd_nfe">Nº Nota Fiscal </label>
                   <select id="cd_nfe" name="cd_nfe" class="form-control" disabled>
-                  <option selected>-</option>
-               
+                  </select>
                </div>
-
-               <div class="form-group md-col-2">
-                  <label for="dt_criacao">Data Compra:</label>
-                  <input id="dt_criacao"  name="dt_criacao" class="form-control" type="date"  disabled />
-               </div>
-
-               <div class="form-group md-col-2">
-                  <label for="dt_emissao">Data Emissão:</label>
-                  <input id="dt_emissao"  name="dt_emissao" class="form-control" type="date"  disabled/>
-               </div>
-      
             </div>
+
 
             <button type="button" id="btnGravar" data-toggle="modal" data-target="#mymodal"> Inserir</button>
             <input id="btnCancelar" type="reset"/>
@@ -146,21 +134,45 @@
       });
 
       var select =  document.getElementById('nm_fantasia');
+      var select2 = document.getElementById('cd_nfe');
+      var form = document.querySelector('#form');
 
       select.addEventListener('change', function(){
 
+
          if (select.value == '-'){
             document.getElementById("cd_nfe").disabled = true;
-            document.getElementById("dt_criacao").disabled = true; 
-            document.getElementById("dt_emissao").disabled = true; 
          } 
 
          else{
+  
             document.getElementById("cd_nfe").disabled = false;
-            document.getElementById("dt_criacao").disabled = false; 
-            document.getElementById("dt_emissao").disabled = false; 
+            
+            var fornSelecionado={};
+            fornSelecionado.fornecedor_cd_fornecedor=select.value;
+            var jason = JSON.stringify(fornSelecionado);
 
-         };
-     });
+            $.ajax({
+               url:'/cdfornecedor/cdnota',
+               method:'post',
+               contentType: "application/json",
+               data:jason,
+               success: function(dados){
+                  if (dados != null) {
+                    var selectbox = $('#cd_nfe');
+                    selectbox.find('option').remove();
+                    
+                    $.each(dados, function (i, d) {
+                     $('<option>').val(d.cd_nfe).text(d.cd_nfe).appendTo(selectbox);
+                    });
+                  } 
+                  else{
+
+                  }
+               }
+            })
+         }
+      });
+
    </script>
 </html>

@@ -11,6 +11,11 @@ module.exports.carregaPagNovoProduto = (req, res, next) =>{
 
 }
 
+module.exports.carregaSelectCdNota = (req, res, next) =>{
+    produtoModel.carregaSelectCdNota(req, res, next);
+
+}
+
 module.exports.post = (req, res, next) => {
     var formproduto = req.body;
     produtoModel.inserirProduto (formproduto, req, res);
@@ -26,13 +31,16 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
         if(!err){
           var [ notaFiscal ] = result.nfeProc.NFe;
           var [ informacao ] = notaFiscal.infNFe;
+          var [nota] = informacao.ide;
+          var [fornecedor] = informacao.emit;
+          
           var produtos=[];
           informacao.det.forEach(i => {
             var [prod] = i.prod;
             produtos.push(prod);
           });
 
-          res.render('produtoxml', {produtos : produtos});
+          res.render('produtoxml', {produtos : produtos, fornecedor:fornecedor, nota:nota});
         }else{
           console.error(err);
         }
@@ -41,7 +49,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
 }
 
 module.exports.carregarPagProdutoXML = (req, res, next) =>{
-   res.render('produtoxml', {produtos : [] });            
+   res.render('produtoxml', {produtos : [], fornecedor: [], nota: [] });            
 };
 
 
@@ -128,7 +136,7 @@ module.exports.salvarProdutosNota= (req, res, next)=>{
               
   let inserts = produtos.map(produto =>{
     var connection = db();
-    connection.query("insert into estoque set ?", produto, function(err, result) {
+    connection.query("insert into produto set ?", produto, function(err, result) {
     if(err){
       console.log(err);
       }else{
