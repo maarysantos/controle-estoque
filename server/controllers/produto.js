@@ -40,7 +40,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
             produtos.push(prod);
           });
 
-          res.render('produtoxml', {produtos : produtos, fornecedor:fornecedor, nota:nota});
+          res.render('produtoxml', {produtos : produtos});
         }else{
           console.error(err);
         }
@@ -49,7 +49,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
 }
 
 module.exports.carregarPagProdutoXML = (req, res, next) =>{
-   res.render('produtoxml', {produtos : [], fornecedor: [], nota: [] });            
+   res.render('produtoxml', {produtos : []});            
 };
 
 
