@@ -31,15 +31,17 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
         if(!err){
           var [ notaFiscal ] = result.nfeProc.NFe;
           var [ informacao ] = notaFiscal.infNFe;
-          var [nota] = informacao.ide;
-          var [fornecedor] = informacao.emit;
-          
+          //Objeto com dados do Fornecedor (emissor) da notaFiscal
+          var [infoForn] = informacao.emit;
+          // Objeto com dados da NotaFiscal
+          var [infoNota] = informacao.ide;
+
+          // Objeto com dados dos produtos
           var produtos=[];
           informacao.det.forEach(i => {
             var [prod] = i.prod;
             produtos.push(prod);
           });
-
           res.render('produtoxml', {produtos : produtos});
         }else{
           console.error(err);
