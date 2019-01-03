@@ -23,6 +23,9 @@ insert into notafiscal value
 (123579, '2018-12-02', '2018-12-02', 01);
 
 ALTER TABLE lancamento CHANGE cd_nota_fiscal cd_nfe varchar(100);
+ALTER TABLE notafiscal CHANGE dt_emissao dt_emissao datetime;
+ALTER TABLE notafiscal CHANGE dt_criacao dt_criacao datetime;
+
 
 
 

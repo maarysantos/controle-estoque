@@ -36,22 +36,102 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           // Objeto com dados da NotaFiscal
           var [infoNota] = informacao.ide;
 
+
+          //setando atributos do banco de dados tabela FORNECEDOR
+          let fornecedor = {...infoForn,
+             cd_cnpj : infoForn.CNPJ,
+             cd_ie : infoForn.IE,
+             nm_razao : infoForn.xNome,
+             nm_fantasia : infoForn.xFant,
+             cd_cep : infoForn.enderEmit[0].CEP,
+             ds_endereco : infoForn.enderEmit[0].xLgr,
+             cd_numero : infoForn.enderEmit[0].nro,
+             nm_bairro : infoForn.enderEmit[0].xBairro,
+             nm_cidade : infoForn.enderEmit[0].xMun,
+             nm_estado : infoForn.enderEmit[0].UF,
+             nm_pais : infoForn.enderEmit[0].xPais,
+             cd_tel1 : infoForn.enderEmit[0].fone
+          };
+
+          //setando atributos do banco de dados tabela NOTAFISCAL
+
+          let nota = {...infoNota,
+            cd_nfe :infoNota.cNF, 
+            dt_emissao: infoNota.dhEmi,
+            dt_criacao : infoNota.dhSaiEnt
+         };
+
+          delete nota.cNF;
+          delete nota.dhEmi;
+          delete nota.dhSaiEnt;
+          delete nota.nNF;
+          delete nota.cDV;
+          delete nota.cMunFG;
+          delete nota.cUF;
+          delete nota.finNFe;
+          delete nota.indPag;
+          delete nota.mod;
+          delete nota.natOp;
+          delete nota.procEmi;
+          delete nota.serie;
+          delete nota.tpAmb;
+          delete nota.tpEmis;
+          delete nota.tpNF;
+          delete nota.verProc;
+          delete nota.tpImp;
+          delete nota.indFinal;
+          delete nota.indDest;
+          delete nota.indPres;
+          delete nota.idDest;
+
+          delete fornecedor.CRT;
+          delete fornecedor.CNPJ;
+          delete fornecedor.IE;
+          delete fornecedor.xFant;
+          delete fornecedor.xNome;
+          delete fornecedor.enderEmit;
+
+
           // Objeto com dados dos produtos
           var produtos=[];
           informacao.det.forEach(i => {
             var [prod] = i.prod;
             produtos.push(prod);
           });
-          res.render('produtoxml', {produtos : produtos});
-        }else{
-          console.error(err);
+
+          var connection = db();
+
+          connection.query("SELECT COUNT(1) as count from fornecedor WHERE cd_cnpj = ?", fornecedor.cd_cnpj, function (err, result){
+          if(err){throw err;}
+            if(result[0].count == 0){
+                connection.query("INSERT INTO FORNECEDOR set ?",fornecedor, function(err, result){
+                    if(err){throw err;}
+                    var valores = [nota, fornecedor_cd_fornecedor = result.insertId];
+                    connection.query("INSERT INTO notafiscal set ?",valores, function(err, result){
+                    if(err){throw err;}
+                   console.log('gravou');
+                    
+                });
+            });
+
+            } else {
+                console.log('nao há registros');
+
+
+            };
+            });
+          
+          res.render ('produtoxml', {produtos:produtos});
+        
         }
     });
+
   });
+
 }
 
 module.exports.carregarPagProdutoXML = (req, res, next) =>{
-   res.render('produtoxml', {produtos : []});            
+   res.render('produtoxml', {produtos : [], msg:{}});            
 };
 
 
