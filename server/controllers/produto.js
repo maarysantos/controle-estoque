@@ -54,12 +54,16 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           };
 
           //setando atributos do banco de dados tabela NOTAFISCAL
+         var dataEmissao = infoNota.dhEmi[0].substring(0, 10);
+         var dataCriacao = infoNota.dhSaiEnt[0].substring(0, 10);
+ 
 
           let nota = {...infoNota,
             cd_nfe :infoNota.cNF, 
-            dt_emissao: infoNota.dhEmi,
-            dt_criacao : infoNota.dhSaiEnt
+            dt_emissao: dataEmissao,
+            dt_criacao : dataCriacao
          };
+
 
           delete nota.cNF;
           delete nota.dhEmi;
@@ -83,7 +87,6 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           delete nota.indDest;
           delete nota.indPres;
           delete nota.idDest;
-
           delete fornecedor.CRT;
           delete fornecedor.CNPJ;
           delete fornecedor.IE;
@@ -91,6 +94,7 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           delete fornecedor.xNome;
           delete fornecedor.enderEmit;
 
+          console.log(nota)
 
           // Objeto com dados dos produtos
           var produtos=[];
@@ -102,26 +106,38 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           var connection = db();
 
           connection.query("SELECT COUNT(1) as count from fornecedor WHERE cd_cnpj = ?", fornecedor.cd_cnpj, function (err, result){
-          if(err){throw err;}
-            if(result[0].count == 0){
-                connection.query("INSERT INTO FORNECEDOR set ?",fornecedor, function(err, result){
-                    if(err){throw err;}
-                    var valores = [nota, fornecedor_cd_fornecedor = result.insertId];
-                    connection.query("INSERT INTO notafiscal set ?",valores, function(err, result){
-                    if(err){throw err;}
-                   console.log('gravou');
-                    
-                });
+            if(err){throw err;}
+
+                if(result[0].count == 0){
+                    connection.query("INSERT INTO FORNECEDOR set ?",fornecedor, function(err, result){
+                       if(err){throw err;}
+                       var codigo = result.insertId;
+                       let valores = {...nota, fornecedor_cd_fornecedor:codigo}
+
+                       connection.query("INSERT INTO notafiscal set ?",valores, function(err, result){
+                           if(err){throw err;}
+                           let msg= "Fornecedor e nota Fiscal inseridos com sucesso!"
+                           res.render ('produtoxml', {produtos:produtos, msg:msg});
+                      });
+                    });
+                };
+
+                if(result[0].count !== 0){
+                    connection.query("SELECT cd_fornecedor from fornecedor where cd_cnpj =?",fornecedor.cd_cnpj, function(err, result){
+                        if(err){throw err;}
+                        console.log(result[0]);
+                        let dados = {...nota, fornecedor_cd_fornecedor:1}
+
+                        connection.query("INSERT INTO notafiscal set ?",dados, function(err, result){
+                            if(err){throw err;}
+                            let msg= "Dados da nota Fiscal cadastrada com sucesso!"
+                            res.render ('produtoxml', {produtos:produtos, msg:msg});
+                       });
+                   });
+
+                }
             });
 
-            } else {
-                console.log('nao há registros');
-
-
-            };
-            });
-          
-          res.render ('produtoxml', {produtos:produtos});
         
         }
     });

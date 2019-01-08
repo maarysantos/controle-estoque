@@ -85,7 +85,12 @@
   </form>
   <br>
 </div>
-
+<% if (msg.length > 0){ %>
+  <div class="alert alert-success alert-dismissible" id="msg">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= msg %>
+  </div>
+<% } %>   
 
 </body>
 <script>

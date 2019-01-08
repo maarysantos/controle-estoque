@@ -29,8 +29,13 @@
       <h5>Dados do Produto</h5>
 
       <hr class="divisoria" />
-      
-     
+      <% if (msg.length > 0){ %>
+         <div class="alert alert-success alert-dismissible" id="msg">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             <%= msg %>
+         </div>
+       <% } %>   
+
          <form id="form"  action="" method="post">
             <div class="form-row">
                <div class="form-group  md-col-2" >
@@ -115,12 +120,6 @@
             </div>
          </form>
         </div>
-        <% if (msg.length > 0){ %>
-          <div class="alert alert-success alert-dismissible" id="msg">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <%= msg %>
-          </div>
-        <% } %>   
   </body>
 
    <script>
