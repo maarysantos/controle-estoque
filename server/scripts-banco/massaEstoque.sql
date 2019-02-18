@@ -1,5 +1,4 @@
-
-insert into usuario value (4001, 'Mari Santos','maary.santos1@gmail.com',123);
+insert into usuario value (4002, 'Mari Santos','maary.santos1@gmail.com', 123);
 
 insert into tipo_despesa value (01, 'loja');
 insert into tipo_despesa value (02, 'pessoal');
@@ -22,9 +21,8 @@ insert into notafiscal value
 insert into notafiscal value 
 (123579, '2018-12-02', '2018-12-02', 01);
 
-ALTER TABLE lancamento CHANGE cd_nota_fiscal cd_nfe varchar(100);
-ALTER TABLE notafiscal CHANGE dt_emissao dt_emissao datetime;
-ALTER TABLE notafiscal CHANGE dt_criacao dt_criacao datetime;
+
+
 
 
 

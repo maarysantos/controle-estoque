@@ -94,8 +94,6 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
           delete fornecedor.xNome;
           delete fornecedor.enderEmit;
 
-          console.log(nota)
-
           // Objeto com dados dos produtos
           var produtos=[];
           informacao.det.forEach(i => {
@@ -103,40 +101,32 @@ module.exports.carregarNotaXML = (fileDate, req, res, next) =>{
             produtos.push(prod);
           });
 
-          var connection = db();
+        var connection = db();
+        let consultaForn = new Promise((resolve, reject)=>{
+            connection.query("SELECT COUNT(1) as count from fornecedor WHERE cd_cnpj = ?", fornecedor.cd_cnpj, function (err, result){
+               let resultForn = 'oi';
+               resolve(resultForn);
+           });
+         });
 
-          connection.query("SELECT COUNT(1) as count from fornecedor WHERE cd_cnpj = ?", fornecedor.cd_cnpj, function (err, result){
-            if(err){throw err;}
-
-                if(result[0].count == 0){
-                    connection.query("INSERT INTO FORNECEDOR set ?",fornecedor, function(err, result){
-                       if(err){throw err;}
-                       var codigo = result.insertId;
-                       let valores = {...nota, fornecedor_cd_fornecedor:codigo}
-
-                       connection.query("INSERT INTO notafiscal set ?",valores, function(err, result){
-                           if(err){throw err;}
-                           let msg= "Fornecedor e nota Fiscal inseridos com sucesso!"
-                           res.render ('produtoxml', {produtos:produtos, msg:msg});
-                      });
-                    });
-                };
-
-                if(result[0].count !== 0){
-                    connection.query("SELECT cd_fornecedor from fornecedor where cd_cnpj =?",fornecedor.cd_cnpj, function(err, result){
-                        if(err){throw err;}
-                        console.log(result[0]);
-                        let dados = {...nota, fornecedor_cd_fornecedor:1}
-
-                        connection.query("INSERT INTO notafiscal set ?",dados, function(err, result){
-                            if(err){throw err;}
-                            let msg= "Dados da nota Fiscal cadastrada com sucesso!"
-                            res.render ('produtoxml', {produtos:produtos, msg:msg});
-                       });
-                   });
-
-                }
+         let consultaNota = new Promise((resolve, reject)=>{
+            connection.query("SELECT COUNT(1) as count from notafiscal WHERE cd_cnpj = ?", nota.cd_nfe, function (err, result){
+                let resultNota = 'ola';
+                resolve(resultNota);
             });
+          });
+
+          Promise.all([consultaForn, consultaNota]).then (resultForn, resultNota=>{
+            if (resultForn =='oi' && resultNota== 'ola'){
+                //InsereForn.then(valores =>{
+                    //InsereNotaFiscal.then(result=>{
+                       res.render('produtoxml', {produtos:produtos, msg:'ok'});
+
+                   // })
+                 //})
+             }
+
+         });
 
         
         }
